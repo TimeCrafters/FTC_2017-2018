@@ -13,7 +13,7 @@ public class TestEngine extends Engine {
 
     @Override
     public void setProcesses(){
-        addState(new GrabberTeleop(this,0.1));
+        addState(new GrabberTeleop(this,0.3));
     }
 
 }

@@ -23,7 +23,7 @@ public class GrabberTeleop extends Config {
     @Override
     public void init(){
         super.init();
-        dcGrabber.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
     }
 
     @Override
@@ -34,14 +34,18 @@ public class GrabberTeleop extends Config {
         if(engine.gamepad1.x){
             position ++;
             dcGrabber.setPower(power);
+            dcGrabber.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }else if (engine.gamepad1.b){
             position --;
-            dcGrabber.setPower(power);
+            dcGrabber.setPower(-power);
+            dcGrabber.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }else{
-            dcGrabber.setPower(0.0);
+            dcGrabber.setPower(power);
+            dcGrabber.setTargetPosition(dcGrabber.getCurrentPosition());
+            dcGrabber.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
-        dcGrabber.setTargetPosition(position);
+
 
     }
 
