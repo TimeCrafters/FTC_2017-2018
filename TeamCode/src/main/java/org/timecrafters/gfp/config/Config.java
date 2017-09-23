@@ -18,6 +18,11 @@ public class Config extends State {
     public DcMotor dcGrabberOne;
     public DcMotor dcGrabberTwo;
 
+    public DcMotor dcFrontRight;
+    public DcMotor dcFrontLeft;
+    public DcMotor dcBackRight;
+    public DcMotor dcBackLeft;
+
 
     public void init(){
         dcGrabberOne = engine.hardwareMap.dcMotor.get("dcGrabberOne");
