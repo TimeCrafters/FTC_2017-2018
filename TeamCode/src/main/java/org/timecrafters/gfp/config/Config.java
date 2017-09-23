@@ -15,12 +15,18 @@ public class Config extends State {
         this.engine = engine;
     }
 
-    public DcMotor dcGrabber;
+    public DcMotor dcGrabberOne;
+    public DcMotor dcGrabberTwo;
+
 
     public void init(){
-        dcGrabber = engine.hardwareMap.dcMotor.get("dcGrabber");
-        dcGrabber.resetDeviceConfigurationForOpMode();
-        dcGrabber.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        dcGrabberOne = engine.hardwareMap.dcMotor.get("dcGrabberOne");
+
+        dcGrabberTwo = engine.hardwareMap.dcMotor.get("dcGrabberTwo");
+
+        //Reset Encoders
+        dcGrabberOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        dcGrabberTwo.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     public void exec(){

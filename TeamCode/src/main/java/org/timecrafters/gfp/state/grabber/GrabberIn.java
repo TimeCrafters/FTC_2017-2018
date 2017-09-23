@@ -26,15 +26,15 @@ public class GrabberIn extends Config {
     @Override
     public void init(){
         super.init();
-        dcGrabber.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        dcGrabberOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
     @Override
     public void exec(){
-        dcGrabber.setPower(power);
-        dcGrabber.setTargetPosition(position);
+        dcGrabberOne.setPower(power);
+        dcGrabberOne.setTargetPosition(position);
 
-        if(dcGrabber.getCurrentPosition() >= dcGrabber.getTargetPosition()){
+        if(dcGrabberOne.getCurrentPosition() >= dcGrabberOne.getTargetPosition()){
             setFinished(true);
         }
 
@@ -43,7 +43,7 @@ public class GrabberIn extends Config {
 
     @Override
     public void stop(){
-        dcGrabber.setTargetPosition(0);
+        dcGrabberOne.setTargetPosition(0);
     }
 
 }

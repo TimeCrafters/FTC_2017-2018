@@ -13,6 +13,8 @@ public class GrabberTeleop extends Config {
 
     private double power;
     private int position;
+    private boolean firstStopOne;
+    private boolean firstStopTwo;
 
 
     public GrabberTeleop(Engine engine, double power){
@@ -31,19 +33,45 @@ public class GrabberTeleop extends Config {
 
 
 
-        if(engine.gamepad1.x){
+        if(engine.gamepad1.left_trigger > 0){
             position ++;
-            dcGrabber.setPower(power);
-            dcGrabber.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        }else if (engine.gamepad1.b){
+            dcGrabberOne.setPower(power);
+            dcGrabberOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            firstStopOne = true;
+        }else if (engine.gamepad1.right_trigger > 0){
             position --;
-            dcGrabber.setPower(-power);
-            dcGrabber.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            dcGrabberOne.setPower(-power);
+            dcGrabberOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            firstStopOne = true;
         }else{
-            dcGrabber.setPower(power);
-            dcGrabber.setTargetPosition(dcGrabber.getCurrentPosition());
-            dcGrabber.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            if(firstStopOne) {
+                dcGrabberOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                dcGrabberOne.setPower(power);
+                dcGrabberOne.setTargetPosition(dcGrabberOne.getCurrentPosition());
+                firstStopOne = false;
+            }
+
         }
+
+        if(engine.gamepad1.left_bumper ){
+            dcGrabberTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            dcGrabberTwo.setPower(power);
+            firstStopTwo = true;
+        }else if(engine.gamepad1.right_bumper){
+            dcGrabberTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            dcGrabberTwo.setPower(-power);
+            firstStopTwo = true;
+        }else{
+            if(firstStopTwo) {
+                dcGrabberTwo.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                dcGrabberTwo.setTargetPosition(dcGrabberTwo.getCurrentPosition());
+                firstStopTwo = false;
+
+            }
+
+        }
+
+
 
 
 
@@ -51,7 +79,7 @@ public class GrabberTeleop extends Config {
 
     @Override
     public void stop(){
-        dcGrabber.setTargetPosition(0);
+        dcGrabberOne.setTargetPosition(0);
     }
 
 }
