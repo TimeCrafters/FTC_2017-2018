@@ -31,6 +31,8 @@ public class ReadCam extends Config {
     VuforiaTrackables relicTrackables;
     VuforiaTrackable relicTemplate;
 
+    private RelicRecoveryVuMark vuMark;
+
     int count = 0;
 
     public void init(){
@@ -56,10 +58,13 @@ public class ReadCam extends Config {
     }
     public void exec(){
 
-        RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+        vuMark = RelicRecoveryVuMark.from(relicTemplate);
+
+
         if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
 
             engine.telemetry.addData("VuMark", "%s visible", vuMark);
+            setFinished(true);
 
         }else {
             engine.telemetry.addData("VuMark", "not visible");
@@ -72,4 +77,7 @@ public class ReadCam extends Config {
         return (transformationMatrix != null) ? transformationMatrix.formatAsTransform() : "null";
     }
 
+    public RelicRecoveryVuMark getVuMark() {
+        return vuMark;
+    }
 }
