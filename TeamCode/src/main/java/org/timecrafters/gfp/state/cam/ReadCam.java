@@ -70,8 +70,12 @@ public class ReadCam extends Config {
             engine.telemetry.addData("VuMark", "not visible");
         }
 
+
+
         engine.telemetry.update();
     }
+
+
 
     String format(OpenGLMatrix transformationMatrix) {
         return (transformationMatrix != null) ? transformationMatrix.formatAsTransform() : "null";
