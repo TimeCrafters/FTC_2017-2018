@@ -30,9 +30,9 @@ public class Config extends State {
     public void init(){
 
         //Grabbers
-        /*dcGrabberOne = engine.hardwareMap.dcMotor.get("dcGrabberOne");
+        dcGrabberOne = engine.hardwareMap.dcMotor.get("dcGrabberOne");
 
-        dcGrabberTwo = engine.hardwareMap.dcMotor.get("dcGrabberTwo");*/
+        dcGrabberTwo = engine.hardwareMap.dcMotor.get("dcGrabberTwo");
 
         //Drive Train
             dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");

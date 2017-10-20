@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.Teleop.DriveTrain;
+import org.timecrafters.gfp.Teleop.Grabbers;
 
 /**
  * Created by t420 on 10/5/2017.
@@ -13,6 +14,7 @@ public class TeleopEngine extends Engine {
 
     public void setProcesses(){
         addState(new DriveTrain(this));
+        addStateProcess(new Grabbers(this,0.3));
         //addStateProcess(new Winch(this,1.0));
     }
 }   
