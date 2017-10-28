@@ -81,7 +81,17 @@ public class ReadCam extends Config {
         return (transformationMatrix != null) ? transformationMatrix.formatAsTransform() : "null";
     }
 
+    public VuforiaTrackable getRelicTemplate(){return relicTemplate; }
     public RelicRecoveryVuMark getVuMark() {
         return vuMark;
+    }
+    public int getMarcInt(){
+        if(vuMark == RelicRecoveryVuMark.RIGHT){
+            return 0;
+        }else if (vuMark == RelicRecoveryVuMark.CENTER){
+            return 1;
+        }else{
+            return 2;
+        }
     }
 }

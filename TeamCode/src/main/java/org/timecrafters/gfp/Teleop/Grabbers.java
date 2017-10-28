@@ -19,20 +19,24 @@ public class Grabbers extends Config {
     @Override
     public void exec(){
 
-        //Grabbers Out
-        if(engine.gamepad1.b) {
-            dcGrabberOne.setPower(power);
-            dcGrabberTwo.setPower(-power);
+        //Right Grabber
+        if(engine.gamepad1.right_bumper) {
+            dcRightGrabber.setPower(power);
+
+        }else if (engine.gamepad1.right_trigger > 0){
+            dcRightGrabber.setPower(-power);
+        }else{
+            dcRightGrabber.setPower(0);
         }
-        // Grabbers In
-        else if(engine.gamepad1.x){
-            dcGrabberOne.setPower(-power);
-            dcGrabberTwo.setPower(power);
+
+        if(engine.gamepad1.left_bumper){
+            dcLeftGrabber.setPower(-power);
+        }else if(engine.gamepad1.left_trigger > 0){
+            dcLeftGrabber.setPower(power);
+        }else{
+            dcLeftGrabber.setPower(0);
         }
-        else{
-            dcGrabberOne.setPower(0.0);
-            dcGrabberTwo.setPower(0.0);
-        }
+
 
     }
 }

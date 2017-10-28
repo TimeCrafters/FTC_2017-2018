@@ -21,7 +21,7 @@ public class DriveTrain extends Config {
         dcFrontRight.setPower(engine.gamepad1.right_stick_y);
         dcBackRight.setPower(engine.gamepad1.right_stick_y);
 
-        dcFrontLeft.setPower(-engine.gamepad1.left_stick_y);
-        dcBackLeft.setPower(-engine.gamepad1.left_stick_y);
+        dcFrontLeft.setPower(engine.gamepad1.left_stick_y);
+        dcBackLeft.setPower(engine.gamepad1.left_stick_y);
     }
 }

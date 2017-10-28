@@ -35,36 +35,36 @@ public class GrabberTeleop extends Config {
 
         if(engine.gamepad1.left_trigger > 0){
             position ++;
-            dcGrabberOne.setPower(power);
-            dcGrabberOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            dcRightGrabber.setPower(power);
+            dcRightGrabber.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             firstStopOne = true;
         }else if (engine.gamepad1.right_trigger > 0){
             position --;
-            dcGrabberOne.setPower(-power);
-            dcGrabberOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            dcRightGrabber.setPower(-power);
+            dcRightGrabber.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             firstStopOne = true;
         }else{
             if(firstStopOne) {
-                dcGrabberOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                dcGrabberOne.setPower(power);
-                dcGrabberOne.setTargetPosition(dcGrabberOne.getCurrentPosition());
+                dcRightGrabber.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                dcRightGrabber.setPower(power);
+                dcRightGrabber.setTargetPosition(dcRightGrabber.getCurrentPosition());
                 firstStopOne = false;
             }
 
         }
 
         if(engine.gamepad1.left_bumper ){
-            dcGrabberTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            dcGrabberTwo.setPower(power);
+            dcLeftGrabber.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            dcLeftGrabber.setPower(power);
             firstStopTwo = true;
         }else if(engine.gamepad1.right_bumper){
-            dcGrabberTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            dcGrabberTwo.setPower(-power);
+            dcLeftGrabber.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            dcLeftGrabber.setPower(-power);
             firstStopTwo = true;
         }else{
             if(firstStopTwo) {
-                dcGrabberTwo.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                dcGrabberTwo.setTargetPosition(dcGrabberTwo.getCurrentPosition());
+                dcLeftGrabber.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                dcLeftGrabber.setTargetPosition(dcLeftGrabber.getCurrentPosition());
                 firstStopTwo = false;
 
             }
@@ -79,7 +79,7 @@ public class GrabberTeleop extends Config {
 
     @Override
     public void stop(){
-        dcGrabberOne.setTargetPosition(0);
+        dcRightGrabber.setTargetPosition(0);
     }
 
 }

@@ -18,16 +18,16 @@ public class DriveTest extends Config {
 
     public void init(){
         super.init();
-        dcGrabberOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        dcRightGrabber.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
     @Override
     public void exec(){
-        dcGrabberOne.setPower(1.0);
-        dcGrabberOne.setTargetPosition(500);
+        dcRightGrabber.setPower(1.0);
+        dcRightGrabber.setTargetPosition(500);
 
-        if(!dcGrabberOne.isBusy()){
-            dcGrabberOne.setPower(0.0);
+        if(!dcRightGrabber.isBusy()){
+            dcRightGrabber.setPower(0.0);
             setFinished(true);
         }
     }

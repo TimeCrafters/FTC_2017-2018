@@ -1,6 +1,5 @@
 package org.timecrafters.gfp.state.drive.driveToPictoPos;
 
-import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.Config;
 
@@ -10,18 +9,30 @@ import org.timecrafters.gfp.config.Config;
 
 public class DriveToPictoPos extends Config {
 
-    RelicRecoveryVuMark vuMark;
+    int vuMark;
 
-    public DriveToPictoPos(Engine engine, RelicRecoveryVuMark vuMark){
+    public DriveToPictoPos(Engine engine, int vuMark){
         super(engine);
         this.vuMark = vuMark;
+
     }
 
     public void exec(){
 
-        /*if(*//* first option *//*);
-        if(*//* second option *//*);
-        if(*//* third option *//*);*/
+        switch (vuMark){
+
+            //Glyph Right
+            case 0:
+                break;
+
+            //Glyph Center
+            case 1:
+                break;
+
+            //Glyph Left
+            case 2:
+                 break;
+        }
 
     }
 }
