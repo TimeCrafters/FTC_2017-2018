@@ -17,9 +17,9 @@ public class Winch extends Config {
 
     public void exec() {
 
-        if (engine.gamepad1.y){
+        if (engine.gamepad2.y){
             svWinch.setPower(power);
-        }else if(engine.gamepad1.a){
+        }else if(engine.gamepad2.a){
             svWinch.setPower(-power);
         }else{
             svWinch.setPower(0.0);
