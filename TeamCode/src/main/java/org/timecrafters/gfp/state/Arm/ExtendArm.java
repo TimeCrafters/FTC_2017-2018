@@ -1,5 +1,7 @@
 package org.timecrafters.gfp.state.Arm;
 
+import android.util.Log;
+
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.Config;
 
@@ -9,13 +11,41 @@ import org.timecrafters.gfp.config.Config;
 
 public class ExtendArm extends Config {
 
-    double position;
+    int rotations;
 
-    public ExtendArm(Engine engine){
+    int rotationCount = 0;
+
+    boolean pressed = false;
+
+    double power;
+
+    public ExtendArm(Engine engine,double power, int rotations){
         super(engine);
+        this.rotations = rotations;
+        this.power = power;
     }
 
     public void exec(){
+
+        //svWinch.setPower(power);
+
+        if(!pressed && winchTouch.isPressed()){
+            pressed = true;
+        }else if(pressed && !winchTouch.isPressed()){
+            rotationCount ++;
+            pressed = false;
+        }
+
+
+        Log.i(TAG,Integer.toString(rotationCount));
+
+        if(rotationCount >= rotations){
+            svWinch.setPower(0);
+            setFinished(true);
+        }
+
+        engine.telemetry.addData("Touch Sensor",winchTouch.isPressed());
+        engine.telemetry.update();
 
     }
 }

@@ -3,6 +3,7 @@ package org.timecrafters.gfp.config;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.State;
@@ -29,6 +30,8 @@ public class Config extends State {
 
     public CRServo svWinch;
 
+    public TouchSensor winchTouch;
+
 
     public void init(){
 
@@ -38,26 +41,22 @@ public class Config extends State {
         dcLeftGrabber = engine.hardwareMap.dcMotor.get("dcLeftGrabber");
 
         //Drive Train
-            dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
-            dcFrontLeft  = engine.hardwareMap.dcMotor.get("dcFrontLeft");
+        dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
+        dcFrontLeft  = engine.hardwareMap.dcMotor.get("dcFrontLeft");
 
-            dcBackRight  = engine.hardwareMap.dcMotor.get("dcBackRight");
-            dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
+        dcBackRight  = engine.hardwareMap.dcMotor.get("dcBackRight");
+        dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
 
-            dcBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-            dcFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        dcBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        dcFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
-            svWinch = engine.hardwareMap.crservo.get("svWinch");
-            svWinch.setDirection(DcMotorSimple.Direction.REVERSE);
+        svWinch = engine.hardwareMap.crservo.get("svWinch");
+        //svWinch.setDirection(DcMotorSimple.Direction.REVERSE);
 
-            dcArm = engine.hardwareMap.dcMotor.get("dcArm");
+        dcArm = engine.hardwareMap.dcMotor.get("dcArm");
 
-            /*svWinch = engine.hardwareMap.crservo.get("svWinch");*/
+        winchTouch = engine.hardwareMap.touchSensor.get("winchTouch");
 
-
-        //Reset Encoders
-        /*dcRightGrabber.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        dcLeftGrabber.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);*/
     }
 
     public void exec(){
