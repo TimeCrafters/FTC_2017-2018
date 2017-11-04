@@ -27,8 +27,8 @@ public class ExtendArm extends Config {
 
     public void exec(){
 
-        //svWinch.setPower(power);
-
+        svWinch.setPower(power);
+//qwejroiqjewrq;ewjrqew rci1
         if(!pressed && winchTouch.isPressed()){
             pressed = true;
         }else if(pressed && !winchTouch.isPressed()){

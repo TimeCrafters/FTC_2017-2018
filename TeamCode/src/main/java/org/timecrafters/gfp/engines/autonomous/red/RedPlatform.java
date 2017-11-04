@@ -3,7 +3,7 @@ package org.timecrafters.gfp.engines.autonomous.red;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.timecrafters.engine.Engine;
-import org.timecrafters.gfp.state.Arm.ExtendArm;
+import org.timecrafters.gfp.state.drive.DriveStraightForward;
 
 /**
  * Created by t420 on 11/2/2017.
@@ -14,7 +14,8 @@ import org.timecrafters.gfp.state.Arm.ExtendArm;
 public class RedPlatform extends Engine {
 
     public void setProcesses(){
-        addState(new ExtendArm(this,1.0,5));
+        addState(new DriveStraightForward(this,0.5,500));
+        //addState(new ExtendArm(this,1.0,3));
     }
 
 }

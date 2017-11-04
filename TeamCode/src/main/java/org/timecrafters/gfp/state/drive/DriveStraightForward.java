@@ -8,9 +8,9 @@ import org.timecrafters.engine.Engine;
  * Created by t420 on 11/2/2017.
  */
 
-public class DriveStraight extends Drive {
+public class DriveStraightForward extends Drive {
 
-    public DriveStraight(Engine engine, double power, int distance){
+    public DriveStraightForward(Engine engine, double power, int distance){
         super(engine);
         this.power = power;
         this.distance = distance;

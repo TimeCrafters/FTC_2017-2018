@@ -1,5 +1,7 @@
 package org.timecrafters.gfp.state.drive;
 
+import android.util.Log;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.timecrafters.engine.Engine;
@@ -49,11 +51,17 @@ public abstract class Drive extends Config {
         int motorTickSubtotal = 0;
         int motorTickAverage = 0;
         for(int i = 0; i < motors.length; i ++){
-            motorTickSubtotal += motors[i].getCurrentPosition();
+            motorTickSubtotal += Math.abs(motors[i].getCurrentPosition());
             motorTickAverage = motorTickSubtotal/(i+1);
         }
 
+        Log.i(TAG,Integer.toString(motorTickAverage));
+
         if(motorTickAverage >= distance){
+            dcFrontRight.setPower(0);
+            dcFrontLeft.setPower(0);
+            dcBackRight.setPower(0);
+            dcBackLeft.setPower(0);
             setFinished(true);
         }
 
@@ -61,11 +69,11 @@ public abstract class Drive extends Config {
     }
 
     public void setMotors(int frontLeft, int backLeft, int frontRight, int backRight){
-        this.frontRight = frontRight;
-        this.frontLeft = frontLeft;
+        this.frontRight = -frontRight;
+        this.frontLeft = -frontLeft;
 
-        this.backRight = backRight;
-        this.backLeft = backLeft;
+        this.backRight = -backRight;
+        this.backLeft = -backLeft;
 
     }
 
