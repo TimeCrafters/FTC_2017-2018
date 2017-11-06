@@ -1,5 +1,7 @@
 package org.timecrafters.gfp.Teleop;
 
+import android.util.Log;
+
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.Config;
 
@@ -18,11 +20,13 @@ public class Winch extends Config {
     public void exec() {
 
         if (engine.gamepad2.y){
-            svWinch.setPower(power);
+            dcWinch.setPower(power);
         }else if(engine.gamepad2.a){
-            svWinch.setPower(-power);
+            dcWinch.setPower(-power);
         }else{
-            svWinch.setPower(0.0);
+            dcWinch.setPower(0.0);
         }
+
+        Log.i(TAG, Integer.toString(dcWinch.getCurrentPosition()));
     }
 }

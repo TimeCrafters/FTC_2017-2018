@@ -17,11 +17,28 @@ public class DriveTrain extends Config {
     public void exec(){
 
 
+        double subtract = 0.5;
 
-        dcFrontRight.setPower(engine.gamepad1.right_stick_y);
-        dcBackRight.setPower(engine.gamepad1.right_stick_y);
+        double rightPower = engine.gamepad1.right_stick_y;
+        double leftPower = engine.gamepad1.left_stick_y;
 
-        dcFrontLeft.setPower(engine.gamepad1.left_stick_y);
-        dcBackLeft.setPower(engine.gamepad1.left_stick_y);
+        if(Math.abs(rightPower) == rightPower && rightPower > subtract){
+            rightPower-=subtract;
+        }else if(Math.abs(rightPower) != rightPower && rightPower < -subtract){
+            rightPower +=subtract;
+        }
+
+        if(Math.abs(leftPower) == leftPower && leftPower > subtract){
+
+            leftPower-=subtract;
+        }else if(Math.abs(rightPower) != leftPower && leftPower < -subtract){
+            leftPower +=subtract;
+        }
+
+        dcFrontRight.setPower(rightPower);
+        dcBackRight.setPower(rightPower);
+
+        dcFrontLeft.setPower(leftPower);
+        dcBackLeft.setPower(leftPower);
     }
 }

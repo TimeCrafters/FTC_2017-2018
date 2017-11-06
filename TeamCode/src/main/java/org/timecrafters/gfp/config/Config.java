@@ -1,6 +1,5 @@
 package org.timecrafters.gfp.config;
 
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.TouchSensor;
@@ -28,7 +27,7 @@ public class Config extends State {
 
     public DcMotor dcArm;
 
-    public CRServo svWinch;
+    public DcMotor dcWinch;
 
     public TouchSensor winchTouch;
 
@@ -50,10 +49,14 @@ public class Config extends State {
         dcBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         dcFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        svWinch = engine.hardwareMap.crservo.get("svWinch");
-        //svWinch.setDirection(DcMotorSimple.Direction.REVERSE);
+        dcWinch = engine.hardwareMap.dcMotor.get("dcWinch");
+        dcWinch.setDirection(DcMotorSimple.Direction.REVERSE);
+        dcWinch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //dcWinch.setDirection(DcMotorSimple.Direction.REVERSE);
 
         dcArm = engine.hardwareMap.dcMotor.get("dcArm");
+        dcArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        dcArm.setDirection(DcMotorSimple.Direction.REVERSE);
 
         winchTouch = engine.hardwareMap.touchSensor.get("winchTouch");
 

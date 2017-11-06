@@ -9,18 +9,20 @@ import org.timecrafters.gfp.config.Config;
 
 public class Arm extends Config {
 
-    double power;
+    double upPower;
+    double downPower;
 
-    public Arm(Engine engine, double power){
+    public Arm(Engine engine, double upPower, double downPower){
         super(engine);
-        this.power = power;
+        this.upPower = upPower;
+        this.downPower = downPower;
     }
 
     public void exec(){
         if(engine.gamepad2.dpad_down){
-            dcArm.setPower(power);
+            dcArm.setPower(-downPower);
         }else if (engine.gamepad2.dpad_up){
-            dcArm.setPower(-power);
+            dcArm.setPower(upPower);
         }else{
             dcArm.setPower(0.0);
         }

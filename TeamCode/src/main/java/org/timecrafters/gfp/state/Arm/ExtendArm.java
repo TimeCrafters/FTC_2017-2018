@@ -1,6 +1,6 @@
 package org.timecrafters.gfp.state.Arm;
 
-import android.util.Log;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.Config;
@@ -17,6 +17,8 @@ public class ExtendArm extends Config {
 
     boolean pressed = false;
 
+    boolean firstRun = true;
+
     double power;
 
     public ExtendArm(Engine engine,double power, int rotations){
@@ -27,25 +29,19 @@ public class ExtendArm extends Config {
 
     public void exec(){
 
-        svWinch.setPower(power);
-//qwejroiqjewrq;ewjrqew rci1
-        if(!pressed && winchTouch.isPressed()){
-            pressed = true;
-        }else if(pressed && !winchTouch.isPressed()){
-            rotationCount ++;
-            pressed = false;
+        if(firstRun){
+            dcWinch.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            dcWinch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            firstRun = false;
         }
 
+        dcWinch.setPower(power);
 
-        Log.i(TAG,Integer.toString(rotationCount));
-
-        if(rotationCount >= rotations){
-            svWinch.setPower(0);
+        if(Math.abs(dcWinch.getCurrentPosition()) >= rotations){
+            dcWinch.setPower(0);
             setFinished(true);
         }
 
-        engine.telemetry.addData("Touch Sensor",winchTouch.isPressed());
-        engine.telemetry.update();
 
     }
 }
