@@ -18,6 +18,6 @@ public class TeleopEngine extends Engine {
         addState(new DriveTrain(this));
         addStateProcess(new Grabbers(this,0.3));
         addStateProcess(new Winch(this,1.0));
-        addStateProcess(new Arm(this,1.0,0.01));
+        addStateProcess(new Arm(this,1.0,0.05));
     }
 }

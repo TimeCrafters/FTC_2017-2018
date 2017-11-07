@@ -21,8 +21,10 @@ public class Arm extends Config {
     public void exec(){
         if(engine.gamepad2.dpad_down){
             dcArm.setPower(-downPower);
+
         }else if (engine.gamepad2.dpad_up){
             dcArm.setPower(upPower);
+
         }else{
             dcArm.setPower(0.0);
         }
