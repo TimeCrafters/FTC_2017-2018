@@ -1,7 +1,5 @@
 package org.timecrafters.gfp.state.drive;
 
-import android.util.Log;
-
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.timecrafters.engine.Engine;
@@ -24,8 +22,25 @@ public abstract class Drive extends Config {
     private boolean firstRun = true;
     private DcMotor[] motors;
 
+    private double powerInc = 0.05;
+    private int powerChanges;
+
+    private int rampDistance;
+    private int rampChangeDistances;
+
+    private double currentPower;
+    private int lastChangePosition = 0;
+
+
     public Drive(Engine engine){
         super(engine);
+    }
+
+    public void init(){
+        super.init();
+        rampDistance = (int)(distance *.20);
+        powerChanges = (int)(power/powerInc);
+        rampChangeDistances = (int)rampDistance/powerChanges;
     }
 
     public void exec(){
@@ -41,13 +56,11 @@ public abstract class Drive extends Config {
             dcBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             firstRun = false;
+            currentPower = powerInc;
+
         }
 
-        dcFrontRight.setPower(frontRight*power);
-        dcFrontLeft.setPower(frontLeft*power);
-        dcBackRight.setPower(backRight*power);
-        dcBackLeft.setPower(backLeft*power);
-
+        //Average necersary motors
         int motorTickSubtotal = 0;
         int motorTickAverage = 0;
         for(int i = 0; i < motors.length; i ++){
@@ -55,8 +68,27 @@ public abstract class Drive extends Config {
             motorTickAverage = motorTickSubtotal/(i+1);
         }
 
-        Log.i(TAG,Integer.toString(motorTickAverage));
+        //check if ramping up
+        if(motorTickAverage < rampDistance ){
+            if(motorTickAverage >= lastChangePosition+rampChangeDistances){
+                lastChangePosition = motorTickAverage;
+                currentPower += powerInc;
+            }
+        }
+        //check if ramping down
+        else if(motorTickAverage >= distance - rampDistance){
+            if(motorTickAverage >= lastChangePosition + rampChangeDistances){
+                lastChangePosition = motorTickAverage;
+                currentPower -= powerInc;
+            }
+        }
+        //if not ramping up or down set power to absolute
+        else{
+            currentPower = power;
+            lastChangePosition = motorTickAverage;
+        }
 
+        //Check if state needs to be finished
         if(motorTickAverage >= distance){
             dcFrontRight.setPower(0);
             dcFrontLeft.setPower(0);
@@ -65,7 +97,10 @@ public abstract class Drive extends Config {
             setFinished(true);
         }
 
-
+        dcFrontRight.setPower(frontRight*currentPower);
+        dcFrontLeft.setPower(frontLeft*currentPower);
+        dcBackRight.setPower(backRight*currentPower);
+        dcBackLeft.setPower(backLeft*currentPower);
     }
 
     public void setMotors(int frontLeft, int backLeft, int frontRight, int backRight){
