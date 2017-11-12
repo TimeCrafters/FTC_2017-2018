@@ -88,6 +88,13 @@ public abstract class Drive extends Config {
             lastChangePosition = motorTickAverage;
         }
 
+        //Setting motor powers
+        //TODO if ramping doesnt function properly remove current power and replace with power.
+        dcFrontRight.setPower(frontRight*currentPower);
+        dcFrontLeft.setPower(frontLeft*currentPower);
+        dcBackRight.setPower(backRight*currentPower);
+        dcBackLeft.setPower(backLeft*currentPower);
+
         //Check if state needs to be finished
         if(motorTickAverage >= distance){
             dcFrontRight.setPower(0);
@@ -96,11 +103,6 @@ public abstract class Drive extends Config {
             dcBackLeft.setPower(0);
             setFinished(true);
         }
-
-        dcFrontRight.setPower(frontRight*currentPower);
-        dcFrontLeft.setPower(frontLeft*currentPower);
-        dcBackRight.setPower(backRight*currentPower);
-        dcBackLeft.setPower(backLeft*currentPower);
     }
 
     public void setMotors(int frontLeft, int backLeft, int frontRight, int backRight){
@@ -116,6 +118,14 @@ public abstract class Drive extends Config {
         this.motors = motors;
 
     }
+
+    public void stop(){
+        dcFrontLeft.setPower(0);
+        dcFrontRight.setPower(0);
+        dcBackLeft.setPower(0);
+        dcBackRight.setPower(0);
+    }
+
 
 
 }

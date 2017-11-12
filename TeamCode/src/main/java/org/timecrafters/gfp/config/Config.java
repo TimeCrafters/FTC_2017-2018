@@ -56,7 +56,7 @@ public class Config extends State {
 
         dcArm = engine.hardwareMap.dcMotor.get("dcArm");
         dcArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        dcArm.setDirection(DcMotorSimple.Direction.REVERSE);
+        dcArm.setDirection(DcMotorSimple.Direction.FORWARD);
 
         winchTouch = engine.hardwareMap.touchSensor.get("winchTouch");
 
