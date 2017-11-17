@@ -15,9 +15,10 @@ public class TestEngineBlue extends Engine {
 
     @Override
     public void setProcesses() {
-        addState(new DriveStraightForward(this,0.35,1400));
-        addState(new TurnLeft(this,0.3,500));
+        addState(new DriveStraightForward(this,0.25,800));
+        addState(new TurnLeft(this,0.3,50));
         addState(new ExtendArm(this, 0.3, 100));
+
 
     }
 
