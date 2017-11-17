@@ -2,6 +2,7 @@ package org.timecrafters.gfp.config;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.I2cDevice;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.timecrafters.engine.Engine;
@@ -30,6 +31,10 @@ public class Config extends State {
     public DcMotor dcWinch;
 
     public TouchSensor winchTouch;
+
+    public I2cDevice frontRightSensor;
+    public I2cDevice frontLeftSensor;
+    public I2cDevice frontSensor;
 
 
     public void init(){
