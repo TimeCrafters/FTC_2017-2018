@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.timecrafters.engine.Engine;
+import org.timecrafters.gfp.state.Arm.ExtendArm;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
 
@@ -16,10 +17,9 @@ import org.timecrafters.gfp.state.drive.TurnLeft;
 public class DarcShadowzTestEngineBlue extends Engine {
 
     public void setProcesses() {
-        addState(new DriveStraightForward(this, .3, 1500));
-        addState(new TurnLeft(this, .3, 500));
-
-
+        addState(new DriveStraightForward(this, .3, 750));
+       // addState(new TurnLeft(this, .2, 100));
+      //  addState(new ExtendArm(this, 1, 3100));
 
     }
 
