@@ -1,5 +1,7 @@
 package org.timecrafters.gfp.state.drive;
 
+import android.util.Log;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.timecrafters.engine.Engine;
@@ -60,7 +62,7 @@ public abstract class Drive extends Config {
 
         }
 
-        //Average necersary motors
+        /*//Average necersary motors
         int motorTickSubtotal = 0;
         int motorTickAverage = 0;
         for(int i = 0; i < motors.length; i ++){
@@ -87,22 +89,62 @@ public abstract class Drive extends Config {
             currentPower = power;
             lastChangePosition = motorTickAverage;
         }
-
+*/
         //Setting motor powers
         //TODO if ramping doesnt function properly remove current power and replace with power.
-        dcFrontRight.setPower(frontRight*currentPower);
-        dcFrontLeft.setPower(frontLeft*currentPower);
-        dcBackRight.setPower(backRight*currentPower);
-        dcBackLeft.setPower(backLeft*currentPower);
+        /*dcFrontRight.setPower(frontRight*power);
+        dcFrontLeft.setPower(frontLeft*power);
+        dcBackRight.setPower(backRight*power);
+        dcBackLeft.setPower(backLeft*power);
+*/
 
         //Check if state needs to be finished
-        if(motorTickAverage >= distance){
+
+        int dcFrontRightEncoder = Math.abs(dcFrontRight.getCurrentPosition());
+        int dcFrontLeftEncoder = Math.abs(dcFrontLeft.getCurrentPosition());
+        int dcBackRightEncoder = Math.abs(dcBackRight.getCurrentPosition());
+        int dcBackLeftEncoder = Math.abs(dcBackLeft.getCurrentPosition());
+
+        if(dcFrontRightEncoder >= distance){
+            dcFrontRight.setPower(0);
+        }else{
+            dcFrontRight.setPower(frontRight*power);
+        }
+        if(dcFrontLeftEncoder >= distance){
+            dcFrontLeft.setPower(0);
+        }else{
+            dcFrontLeft.setPower(frontLeft*power);
+        }
+        if(dcBackRightEncoder >= distance){
+            dcBackRight.setPower(0);
+        }else{
+            dcBackRight.setPower(backRight*power);
+        }
+        if(dcBackLeftEncoder >= distance){
+            dcBackLeft.setPower(0);
+        }else{
+            dcBackLeft.setPower(backLeft*power);
+        }
+
+        //For setting all motors to end at the same time
+        //TODO reinable this when mr badger realises he is wrong
+        /*if(motorTickAverage >= distance){
             dcFrontRight.setPower(0);
             dcFrontLeft.setPower(0);
             dcBackRight.setPower(0);
             dcBackLeft.setPower(0);
             setFinished(true);
-        }
+        }*/
+
+        Log.i(TAG, "Front Right :" +  Integer.toString(dcFrontRightEncoder));
+        Log.i(TAG, "Front Left :" + Integer.toString(dcFrontLeftEncoder));
+
+        Log.i(TAG, "Back Right :" + Integer.toString(dcBackRightEncoder));
+        Log.i(TAG, "Back Left :" + Integer.toString(dcBackLeftEncoder));
+
+        Log.i(TAG,"---------");
+        engine.telemetry.update();
+
     }
 
     public void setMotors(int frontLeft, int backLeft, int frontRight, int backRight){
