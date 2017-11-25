@@ -33,6 +33,13 @@ public abstract class Drive extends Config {
     private double currentPower;
     private int lastChangePosition = 0;
 
+    private int frontRightStart;
+    private int frontLeftStart;
+    private int backRightStart;
+    private int backLeftStart;
+
+    private boolean[] finished = new boolean[4];
+
 
     public Drive(Engine engine){
         super(engine);
@@ -47,19 +54,14 @@ public abstract class Drive extends Config {
 
     public void exec(){
         if(firstRun){
-            dcFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            dcFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            dcBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            dcBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-            dcFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            dcFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            dcBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            dcBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            frontRightStart = Math.abs(dcFrontRight.getCurrentPosition());
+            frontLeftStart = Math.abs(dcFrontLeft.getCurrentPosition());
+            backRightStart = Math.abs(dcBackRight.getCurrentPosition());
+            backLeftStart = Math.abs(dcBackLeft.getCurrentPosition());
 
-            firstRun = false;
             currentPower = powerInc;
-
+            firstRun = false;
         }
 
         /*//Average necersary motors
@@ -100,31 +102,37 @@ public abstract class Drive extends Config {
 
         //Check if state needs to be finished
 
-        int dcFrontRightEncoder = Math.abs(dcFrontRight.getCurrentPosition());
-        int dcFrontLeftEncoder = Math.abs(dcFrontLeft.getCurrentPosition());
-        int dcBackRightEncoder = Math.abs(dcBackRight.getCurrentPosition());
-        int dcBackLeftEncoder = Math.abs(dcBackLeft.getCurrentPosition());
+        int dcFrontRightEncoder =   Math.abs(dcFrontRight.getCurrentPosition())-frontRightStart;
+        int dcFrontLeftEncoder = Math.abs(dcFrontLeft.getCurrentPosition()) - frontLeftStart;
+        int dcBackRightEncoder = Math.abs(dcBackRight.getCurrentPosition()) - backRightStart;
+        int dcBackLeftEncoder = Math.abs(dcBackLeft.getCurrentPosition()) - backLeftStart;
 
         if(dcFrontRightEncoder >= distance){
+            finished[0] = true;
             dcFrontRight.setPower(0);
         }else{
-            dcFrontRight.setPower(frontRight*power);
+            dcFrontRight.setPower(power*frontRight);
         }
         if(dcFrontLeftEncoder >= distance){
+            finished[1] = true;
             dcFrontLeft.setPower(0);
         }else{
-            dcFrontLeft.setPower(frontLeft*power);
+            dcFrontLeft.setPower(power*frontLeft);
         }
         if(dcBackRightEncoder >= distance){
+            finished[2] = true;
             dcBackRight.setPower(0);
         }else{
-            dcBackRight.setPower(backRight*power);
+            dcBackRight.setPower(power*backRight);
         }
         if(dcBackLeftEncoder >= distance){
+            finished[3] = true;
             dcBackLeft.setPower(0);
         }else{
-            dcBackLeft.setPower(backLeft*power);
+            dcBackLeft.setPower(power*backLeft);
         }
+
+
 
         //For setting all motors to end at the same time
         //TODO reinable this when mr badger realises he is wrong

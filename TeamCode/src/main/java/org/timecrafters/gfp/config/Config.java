@@ -3,6 +3,7 @@ package org.timecrafters.gfp.config;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.I2cDevice;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.timecrafters.engine.Engine;
@@ -32,9 +33,9 @@ public class Config extends State {
 
     public TouchSensor winchTouch;
 
-    public I2cDevice frontRightSensor;
-    public I2cDevice frontLeftSensor;
-    public I2cDevice frontSensor;
+    public OpticalDistanceSensor frontRightDistanceSensor;
+    public OpticalDistanceSensor backRightDistanceSensor;
+    public OpticalDistanceSensor frontDistanceSensor;
 
 
     public void init(){
@@ -46,13 +47,20 @@ public class Config extends State {
 
         //Drive Train
         dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
+        dcFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sleep(50);
+
         dcFrontLeft  = engine.hardwareMap.dcMotor.get("dcFrontLeft");
+        dcFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sleep(50);
 
         dcBackRight  = engine.hardwareMap.dcMotor.get("dcBackRight");
-        dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
+        dcBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sleep(50);
 
-        dcBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        dcFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
+        dcBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sleep(50);
 
         dcWinch = engine.hardwareMap.dcMotor.get("dcWinch");
         dcWinch.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -64,10 +72,20 @@ public class Config extends State {
         dcArm.setDirection(DcMotorSimple.Direction.FORWARD);
 
         winchTouch = engine.hardwareMap.touchSensor.get("winchTouch");
+        //frontRightDistanceSensor = engine.hardwareMap.get(OpticalDistanceSensor.class, "frontRightDistanceSensor");
 
     }
 
     public void exec(){
         setFinished(true);
     }
+
+    public void sleep(long timems){
+        try {
+            Thread.sleep(timems);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
