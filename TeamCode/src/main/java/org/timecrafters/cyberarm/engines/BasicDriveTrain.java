@@ -18,8 +18,6 @@ public class BasicDriveTrain extends OpMode {
     public DcMotor dcFrontLeft;
     public DcMotor dcBackRight;
     public DcMotor dcBackLeft;
-    public boolean thirdRun = false;
-    public int counter = 0;
 
     public int targetDistance = 84*12;
     public double motorPower = 0.2;
@@ -37,42 +35,32 @@ public class BasicDriveTrain extends OpMode {
         dcBackLeft.setDirection(DcMotor.Direction.REVERSE);
         dcFrontLeft.setDirection(DcMotor.Direction.REVERSE);
 
-        dcFrontRight.setPower(motorPower); dcFrontLeft.setPower(motorPower);
-        dcBackRight.setPower(motorPower);  dcBackLeft.setPower(motorPower);
+        dcFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        dcFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        dcFrontRight.setTargetPosition(targetDistance); dcFrontLeft.setTargetPosition(targetDistance);
-        dcBackRight.setTargetPosition(targetDistance);  dcBackLeft.setTargetPosition(targetDistance);
+        dcBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        dcBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
 //        toneGenerator = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
     }
 
     @Override
     public void start() {
-        dcFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        dcFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        dcFrontRight.setPower(motorPower); dcFrontLeft.setPower(motorPower);
+        dcBackRight.setPower(motorPower);  dcBackLeft.setPower(motorPower);
 
-        dcBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        dcBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        dcFrontRight.setTargetPosition(targetDistance); dcFrontLeft.setTargetPosition(targetDistance);
+        dcBackRight.setTargetPosition(targetDistance);  dcBackLeft.setTargetPosition(targetDistance);
+
+        dcFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        dcFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        dcBackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        dcBackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
     @Override
     public void loop() {
-        if (counter == 3) { thirdRun = true; }
-
-        if (thirdRun) {
-            dcFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            dcFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-            dcBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            dcBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-            thirdRun = false;
-        }
-
-        if (counter >= 4) {
-
-        }
-
         telemetry.addLine("Drive Train Encoders");
         telemetry.addData("FRight", dcFrontRight.getCurrentPosition());
         telemetry.addData("FLeft", dcFrontLeft.getCurrentPosition());
@@ -83,7 +71,6 @@ public class BasicDriveTrain extends OpMode {
 //        if (getBatteryVoltage() < 11.5) {
 //            toneGenerator.startTone(ToneGenerator.TONE_CDMA_EMERGENCY_RINGBACK, 250);
 //        }
-        counter++;
     }
 
     @Override
