@@ -37,6 +37,8 @@ public class Config extends State {
     public OpticalDistanceSensor backRightDistanceSensor;
     public OpticalDistanceSensor frontDistanceSensor;
 
+    long time = 100;
+
 
     public void init(){
 
@@ -45,22 +47,21 @@ public class Config extends State {
 
         dcLeftGrabber = engine.hardwareMap.dcMotor.get("dcLeftGrabber");
 
-        //Drive Train
-        dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
-        dcFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sleep(50);
+        sleep(time);
 
+        //Drive Train
         dcFrontLeft  = engine.hardwareMap.dcMotor.get("dcFrontLeft");
         dcFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sleep(50);
+
+        dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
+        dcFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         dcBackRight  = engine.hardwareMap.dcMotor.get("dcBackRight");
         dcBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sleep(50);
+
 
         dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
         dcBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sleep(50);
 
         dcWinch = engine.hardwareMap.dcMotor.get("dcWinch");
         dcWinch.setDirection(DcMotorSimple.Direction.REVERSE);

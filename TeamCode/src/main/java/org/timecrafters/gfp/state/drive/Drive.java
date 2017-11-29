@@ -64,7 +64,7 @@ public abstract class Drive extends Config {
             firstRun = false;
         }
 
-        /*//Average necersary motors
+        //Average necersary motors
         int motorTickSubtotal = 0;
         int motorTickAverage = 0;
         for(int i = 0; i < motors.length; i ++){
@@ -91,7 +91,7 @@ public abstract class Drive extends Config {
             currentPower = power;
             lastChangePosition = motorTickAverage;
         }
-*/
+
         //Setting motor powers
         //TODO if ramping doesnt function properly remove current power and replace with power.
         /*dcFrontRight.setPower(frontRight*power);
@@ -111,25 +111,25 @@ public abstract class Drive extends Config {
             finished[0] = true;
             dcFrontRight.setPower(0);
         }else{
-            dcFrontRight.setPower(power*frontRight);
+            dcFrontRight.setPower(currentPower *frontRight);
         }
         if(dcFrontLeftEncoder >= distance){
             finished[1] = true;
             dcFrontLeft.setPower(0);
         }else{
-            dcFrontLeft.setPower(power*frontLeft);
+            dcFrontLeft.setPower(currentPower*frontLeft);
         }
         if(dcBackRightEncoder >= distance){
             finished[2] = true;
             dcBackRight.setPower(0);
         }else{
-            dcBackRight.setPower(power*backRight);
+            dcBackRight.setPower(currentPower*backRight);
         }
         if(dcBackLeftEncoder >= distance){
             finished[3] = true;
             dcBackLeft.setPower(0);
         }else{
-            dcBackLeft.setPower(power*backLeft);
+            dcBackLeft.setPower(currentPower*backLeft);
         }
 
 
