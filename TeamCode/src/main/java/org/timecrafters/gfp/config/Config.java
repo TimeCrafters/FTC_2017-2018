@@ -55,9 +55,11 @@ public class Config extends State {
 
         dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
         dcFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        dcFrontRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
         dcBackRight  = engine.hardwareMap.dcMotor.get("dcBackRight");
         dcBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        dcBackRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
         dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
