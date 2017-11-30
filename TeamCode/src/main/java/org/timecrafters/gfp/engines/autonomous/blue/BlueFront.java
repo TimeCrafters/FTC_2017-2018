@@ -7,6 +7,7 @@ import org.timecrafters.gfp.state.Arm.ExtendArm;
 import org.timecrafters.gfp.state.Arm.RaiseArm;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.grabber.LeftGrabber;
+import org.timecrafters.gfp.state.ultrasonic.UltraSonic;
 
 /**
  * Created by t420 on 11/10/2017.
@@ -16,6 +17,14 @@ import org.timecrafters.gfp.state.grabber.LeftGrabber;
 public class BlueFront extends Engine {
 
     public void setProcesses(){
+
+        UltraSonic ultraSonic = new UltraSonic(this,6);
+        DriveStraightForward driveStraightForward = new DriveStraightForward(this, 0.5, 800);
+        driveStraightForward.runUntillStateFinished(ultraSonic);
+
+        addState(ultraSonic);
+        addStateProcess(driveStraightForward);
+
         addState(new DriveStraightForward(this, 0.5,800));
         addState(new ExtendArm(this,1.0,1550));
         addState(new RaiseArm(this,1.0,1750));

@@ -59,10 +59,17 @@ public abstract class Drive extends Config {
     public void exec(){
         if(firstRun){
 
-            frontRightStart = Math.abs(dcFrontRight.getCurrentPosition());
-            frontLeftStart = Math.abs(dcFrontLeft.getCurrentPosition());
-            backRightStart = Math.abs(dcBackRight.getCurrentPosition());
-            backLeftStart = Math.abs(dcBackLeft.getCurrentPosition());
+            dcFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            dcFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            dcFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            dcFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            dcBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            dcBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            dcBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            dcBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             currentPower = powerInc;
             firstRun = false;
@@ -96,10 +103,10 @@ public abstract class Drive extends Config {
             lastChangePosition = motorTickAverage;
         }
 
-        int dcFrontRightEncoder =   Math.abs(dcFrontRight.getCurrentPosition())-frontRightStart;
-        int dcFrontLeftEncoder = Math.abs(dcFrontLeft.getCurrentPosition()) - frontLeftStart;
-        int dcBackRightEncoder = Math.abs(dcBackRight.getCurrentPosition()) - backRightStart;
-        int dcBackLeftEncoder = Math.abs(dcBackLeft.getCurrentPosition()) - backLeftStart;
+        int dcFrontRightEncoder =   Math.abs(dcFrontRight.getCurrentPosition());
+        int dcFrontLeftEncoder = Math.abs(dcFrontLeft.getCurrentPosition());
+        int dcBackRightEncoder = Math.abs(dcBackRight.getCurrentPosition());
+        int dcBackLeftEncoder = Math.abs(dcBackLeft.getCurrentPosition());
         //Chack if running untill state is finished
         //TODO make this a switch statement to account for other runmodes you lazy bum
         if(runUntillStateFinished){
