@@ -52,7 +52,6 @@ public class Config extends State {
         //Drive Train
         dcFrontLeft  = engine.hardwareMap.dcMotor.get("dcFrontLeft");
         dcFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        dcFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
         dcFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -65,7 +64,6 @@ public class Config extends State {
 
         dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
         dcBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        dcBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         dcWinch = engine.hardwareMap.dcMotor.get("dcWinch");
         dcWinch.setDirection(DcMotorSimple.Direction.REVERSE);
