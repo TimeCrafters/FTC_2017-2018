@@ -20,12 +20,13 @@ public class VeerLeft extends Config {
         dcBackRight.setPower(0.25);
         dcBackLeft.setPower(0.75);
 
+
         if(dcFrontRight.getCurrentPosition()>=700)
 
-            dcFrontRight.setPower(0.0);
-            dcFrontLeft.setPower(0.0);
-            dcBackRight.setPower(0.0);
-            dcBackLeft.setPower(0.0);
+        dcFrontRight.setPower(0.0);
+        dcFrontLeft.setPower(0.0);
+        dcBackRight.setPower(0.0);
+        dcBackLeft.setPower(0.0);
 
 
     }
