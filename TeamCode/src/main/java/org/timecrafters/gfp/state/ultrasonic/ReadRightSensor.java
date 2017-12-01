@@ -12,6 +12,5 @@ public class ReadRightSensor extends UltraSonic {
     }
     public void init(){
         super.init();
-        setSensor(frontRightDistanceSensor);
     }
 }
