@@ -1,8 +1,11 @@
 package org.timecrafters.gfp.state.drive;
 
+import android.util.Log;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.timecrafters.engine.Engine;
+import org.timecrafters.engine.State;
 import org.timecrafters.gfp.config.Config;
 
 /**
@@ -31,6 +34,16 @@ public abstract class Drive extends Config {
     private double currentPower;
     private int lastChangePosition = 0;
 
+    private int frontRightStart;
+    private int frontLeftStart;
+    private int backRightStart;
+    private int backLeftStart;
+
+    private boolean runUntillStateFinished = false;
+    private volatile State finishedState;
+
+    private boolean[] finished = new boolean[4];
+
 
     public Drive(Engine engine){
         super(engine);
@@ -45,19 +58,21 @@ public abstract class Drive extends Config {
 
     public void exec(){
         if(firstRun){
-            dcFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            dcFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            dcBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            dcBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+            dcFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             dcFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            dcFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             dcFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            dcBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             dcBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            dcBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             dcBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-            firstRun = false;
             currentPower = powerInc;
-
+            firstRun = false;
         }
 
         //Average necersary motors
@@ -88,21 +103,83 @@ public abstract class Drive extends Config {
             lastChangePosition = motorTickAverage;
         }
 
-        //Setting motor powers
-        //TODO if ramping doesnt function properly remove current power and replace with power.
-        dcFrontRight.setPower(frontRight*currentPower);
-        dcFrontLeft.setPower(frontLeft*currentPower);
-        dcBackRight.setPower(backRight*currentPower);
-        dcBackLeft.setPower(backLeft*currentPower);
+        int dcFrontRightEncoder =   Math.abs(dcFrontRight.getCurrentPosition());
+        int dcFrontLeftEncoder = Math.abs(dcFrontLeft.getCurrentPosition());
+        int dcBackRightEncoder = Math.abs(dcBackRight.getCurrentPosition());
+        int dcBackLeftEncoder = Math.abs(dcBackLeft.getCurrentPosition());
+        //Chack if running untill state is finished
+        //TODO make this a switch statement to account for other runmodes you lazy bum
+        if(runUntillStateFinished){
 
-        //Check if state needs to be finished
-        if(motorTickAverage >= distance){
-            dcFrontRight.setPower(0);
-            dcFrontLeft.setPower(0);
-            dcBackRight.setPower(0);
-            dcBackLeft.setPower(0);
-            setFinished(true);
+            if(finishedState.getIsFinished()){
+                dcFrontRight.setPower(0);
+                dcFrontLeft.setPower(0);
+                dcBackRight.setPower(0);
+                dcBackLeft.setPower(0);
+
+                for(int i = 0; i < finished.length; i ++){
+                    finished[i] = true;
+                }
+            }else{
+                dcFrontRight.setPower(currentPower*frontRight);
+                dcFrontLeft.setPower(currentPower*frontLeft);
+
+                dcBackLeft.setPower(currentPower*backLeft);
+                dcBackRight.setPower(currentPower*backRight);
+
+            }
+
+        }else {
+            if (dcFrontRightEncoder >= distance) {
+                finished[0] = true;
+                dcFrontRight.setPower(0);
+            } else {
+                dcFrontRight.setPower(power * frontRight);
+            }
+            if (dcFrontLeftEncoder >= distance) {
+                finished[1] = true;
+                dcFrontLeft.setPower(0);
+            } else {
+                dcFrontLeft.setPower(power * frontLeft);
+            }
+            if (dcBackRightEncoder >= distance) {
+                finished[2] = true;
+                dcBackRight.setPower(0);
+            } else {
+                dcBackRight.setPower(power * backRight);
+            }
+            if (dcBackLeftEncoder >= distance) {
+                finished[3] = true;
+                dcBackLeft.setPower(0);
+            } else {
+                dcBackLeft.setPower(power * backLeft);
+            }
         }
+
+
+
+        Log.i(TAG+".DRIVEMOTORS", "Front Right :" +  Integer.toString(dcFrontRightEncoder));
+        Log.i(TAG+".DRIVEMOTORS", "Front Left :" + Integer.toString(dcFrontLeftEncoder));
+
+        Log.i(TAG+".DRIVEMOTORS", "Back Right :" + Integer.toString(dcBackRightEncoder));
+        Log.i(TAG+".DRIVEMOTORS", "Back Left :" + Integer.toString(dcBackLeftEncoder));
+
+        Log.i(TAG+".DRIVEMOTORS","---------");
+
+        boolean finishedReturn = true;
+        for(int i = 0; i < finished.length; i ++){
+            if(finished[i] == false){
+                finishedReturn = false;
+                break;
+            }
+        }
+        setFinished(finishedReturn);
+
+    }
+
+    public void runUntillStateFinished(State state){
+        runUntillStateFinished = true;
+        finishedState = state;
     }
 
     public void setMotors(int frontLeft, int backLeft, int frontRight, int backRight){
