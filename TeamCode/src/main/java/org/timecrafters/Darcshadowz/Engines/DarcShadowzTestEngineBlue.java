@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.timecrafters.Darcshadowz.State.VeeringRight;
 import org.timecrafters.engine.Engine;
+import org.timecrafters.gfp.state.drive.DriveStraightForward;
 
 /**
  * Created by Dylan on 11/14/2017.
@@ -17,8 +18,8 @@ public class DarcShadowzTestEngineBlue extends Engine {
 
     public void setProcesses() {
 
-        addState(new VeeringRight(this));
-  //      addState(new DriveStraightForward(this, .2, 1853)); // 22" * 84.24 = 1853.28
+  //      addState(new VeeringRight(this));
+     addState(new DriveStraightForward(this, 1.0, 100));
 //        addState(new RaiseArm(this, 1, 500));
 //        addState(new ExtendArm(this, 1, 1550));
 //        addState(new LeftGrabber(this, 0.5, 150));
