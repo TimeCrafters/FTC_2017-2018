@@ -39,7 +39,7 @@ public abstract class Drive extends Config {
     private boolean[] finished = new boolean[4];
 
 
-    private Drive(Engine engine){
+    Drive(Engine engine){
         super(engine);
     }
 
