@@ -39,7 +39,7 @@ public abstract class Drive extends Config {
     private boolean[] finished = new boolean[4];
 
 
-    private Drive(Engine engine){
+    Drive(Engine engine){
         super(engine);
     }
 
@@ -159,6 +159,7 @@ public abstract class Drive extends Config {
                 dcFrontLeft.setPower(0);
                 dcBackRight.setPower(0);
                 dcBackLeft.setPower(0);
+                setFinished(true);
             }
         }
 
