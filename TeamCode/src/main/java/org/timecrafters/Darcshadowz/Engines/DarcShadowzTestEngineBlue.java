@@ -10,7 +10,7 @@ import org.timecrafters.gfp.state.drive.DriveStraightForward;
  * Created by Dylan on 11/14/2017.
  */
 
-//1000Ticks = 33 Centimeters = 13 inches
+//1000Ticks = 23.5 Centimeters 23.5 cm
 
 @Autonomous(name = "DYLAN TEST")
 public class DarcShadowzTestEngineBlue extends Engine {
