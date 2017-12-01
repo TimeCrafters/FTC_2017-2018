@@ -159,6 +159,7 @@ public abstract class Drive extends Config {
                 dcFrontLeft.setPower(0);
                 dcBackRight.setPower(0);
                 dcBackLeft.setPower(0);
+                setFinished(true);
             }
         }
 
