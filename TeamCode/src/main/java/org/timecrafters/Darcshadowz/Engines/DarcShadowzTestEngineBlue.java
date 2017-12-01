@@ -10,7 +10,7 @@ import org.timecrafters.gfp.state.drive.DriveStraightForward;
  * Created by Dylan on 11/14/2017.
  */
 
-
+//1000Ticks = 33 Centimeters = 13 inches
 
 @Autonomous(name = "DYLAN TEST")
 public class DarcShadowzTestEngineBlue extends Engine {
@@ -18,7 +18,7 @@ public class DarcShadowzTestEngineBlue extends Engine {
     public void setProcesses() {
 
   //      addState(new VeeringRight(this));
-     addState(new DriveStraightForward(this, 1.0, 1000));
+     addState(new DriveStraightForward(this, .1, 1000));
 //        addState(new RaiseArm(this, 1, 500));
 //        addState(new ExtendArm(this, 1, 1550));
 //        addState(new LeftGrabber(this, 0.5, 150));
