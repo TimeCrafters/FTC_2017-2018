@@ -10,7 +10,6 @@ import org.timecrafters.gfp.state.drive.DriveStraightForward;
  * Created by Dylan on 11/14/2017.
  */
 
-//84.24 ticks = 1" IMPORTANT!!!!!!!!
 
 
 @Autonomous(name = "DYLAN TEST")
@@ -19,7 +18,7 @@ public class DarcShadowzTestEngineBlue extends Engine {
     public void setProcesses() {
 
   //      addState(new VeeringRight(this));
-     addState(new DriveStraightForward(this, 1.0, 100));
+     addState(new DriveStraightForward(this, 1.0, 500));
 //        addState(new RaiseArm(this, 1, 500));
 //        addState(new ExtendArm(this, 1, 1550));
 //        addState(new LeftGrabber(this, 0.5, 150));
