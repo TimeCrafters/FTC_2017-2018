@@ -173,14 +173,14 @@ public abstract class Drive extends Config {
 
         Log.i(TAG+".DRIVEMOTORS","---------");
 
-        boolean finishedReturn = true;
+        /*boolean finishedReturn = true;
         for (boolean aFinished : finished) {
             if (!aFinished) {
                 finishedReturn = false;
                 break;
             }
         }
-        setFinished(finishedReturn);
+        setFinished(finishedReturn);*/
 
     }
 
