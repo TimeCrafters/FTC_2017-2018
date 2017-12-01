@@ -190,11 +190,11 @@ public abstract class Drive extends Config {
     }
 
     void setMotors(int frontLeft, int backLeft, int frontRight, int backRight){
-        this.frontRight = -frontRight;
-        this.frontLeft = -frontLeft;
+        this.frontRight = frontRight;
+        this.frontLeft = frontLeft;
 
-        this.backRight = -backRight;
-        this.backLeft = -backLeft;
+        this.backRight = backRight;
+        this.backLeft = backLeft;
 
     }
 
