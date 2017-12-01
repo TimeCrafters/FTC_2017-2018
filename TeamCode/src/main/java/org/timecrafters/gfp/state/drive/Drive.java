@@ -124,7 +124,7 @@ public abstract class Drive extends Config {
             }
 
         }else {
-            if (dcFrontRightEncoder >= distance) {
+            /*if (dcFrontRightEncoder >= distance) {
                 finished[0] = true;
                 dcFrontRight.setPower(0);
             } else {
@@ -147,6 +147,18 @@ public abstract class Drive extends Config {
                 dcBackLeft.setPower(0);
             } else {
                 dcBackLeft.setPower(power * backLeft);
+            }*/
+
+            dcFrontRight.setPower(power*frontRight);
+            dcFrontLeft.setPower(power*frontLeft);
+            dcBackRight.setPower(power*backRight);
+            dcBackLeft.setPower(power*backLeft);
+
+            if(motorTickAverage >= distance){
+                dcFrontRight.setPower(0);
+                dcFrontLeft.setPower(0);
+                dcBackRight.setPower(0);
+                dcBackLeft.setPower(0);
             }
         }
 
