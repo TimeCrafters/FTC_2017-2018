@@ -18,7 +18,7 @@ public class DarcShadowzTestEngineBlue extends Engine {
     public void setProcesses() {
 
   //      addState(new VeeringRight(this));
-     addState(new DriveStraightForward(this, 1.0, 500));
+     addState(new DriveStraightForward(this, 1.0, 1000));
 //        addState(new RaiseArm(this, 1, 500));
 //        addState(new ExtendArm(this, 1, 1550));
 //        addState(new LeftGrabber(this, 0.5, 150));
