@@ -64,7 +64,7 @@ public class UltraSonic extends Config {
         average/=length;
 
         if(runUntillDistance){
-            if(average >= runDistance){
+            if(average <= runDistance){
                 setFinished(true);
             }
         }
