@@ -124,30 +124,6 @@ public abstract class Drive extends Config {
             }
 
         }else {
-            /*if (dcFrontRightEncoder >= distance) {
-                finished[0] = true;
-                dcFrontRight.setPower(0);
-            } else {
-                dcFrontRight.setPower(power * frontRight);
-            }
-            if (dcFrontLeftEncoder >= distance) {
-                finished[1] = true;
-                dcFrontLeft.setPower(0);
-            } else {
-                dcFrontLeft.setPower(power * frontLeft);
-            }
-            if (dcBackRightEncoder >= distance) {
-                finished[2] = true;
-                dcBackRight.setPower(0);
-            } else {
-                dcBackRight.setPower(power * backRight);
-            }
-            if (dcBackLeftEncoder >= distance) {
-                finished[3] = true;
-                dcBackLeft.setPower(0);
-            } else {
-                dcBackLeft.setPower(power * backLeft);
-            }*/
 
             dcFrontRight.setPower(power*frontRight);
             dcFrontLeft.setPower(power*frontLeft);
