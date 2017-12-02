@@ -26,7 +26,7 @@ public class TestEngine extends Engine {
         driveStraightForward.runUntillStateFinished(readFrontRightRange);
 
         addState(readFrontRightRange);
-        addStateProcess(driveStraightForward);
+        //addStateProcess(driveStraightForward);
 
 
         //addState(new ButtClass(this));
