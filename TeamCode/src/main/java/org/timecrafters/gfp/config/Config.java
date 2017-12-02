@@ -1,5 +1,6 @@
 package org.timecrafters.gfp.config;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.I2cDevice;
@@ -33,9 +34,9 @@ public class Config extends State {
 
     public TouchSensor winchTouch;
 
-    public OpticalDistanceSensor frontRightDistanceSensor;
-    public OpticalDistanceSensor backRightDistanceSensor;
-    public OpticalDistanceSensor frontDistanceSensor;
+    public ModernRoboticsI2cRangeSensor frontRightDistanceSensor;
+    public ModernRoboticsI2cRangeSensor backRightDistanceSensor;
+    public ModernRoboticsI2cRangeSensor frontDistanceSensor;
 
     long time = 100;
 
@@ -75,7 +76,8 @@ public class Config extends State {
         dcArm.setDirection(DcMotorSimple.Direction.FORWARD);
 
         winchTouch = engine.hardwareMap.touchSensor.get("winchTouch");
-        //frontRightDistanceSensor = engine.hardwareMap.get(OpticalDistanceSensor.class, "frontRightDistanceSensor");
+        frontRightDistanceSensor = engine.hardwareMap.get(ModernRoboticsI2cRangeSensor.class,
+                "frontRightDistanceSensor");
 
     }
 

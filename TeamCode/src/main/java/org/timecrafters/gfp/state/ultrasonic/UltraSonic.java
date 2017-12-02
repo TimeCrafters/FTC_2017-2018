@@ -34,7 +34,7 @@ public class UltraSonic extends Config {
 
         //Take readings to fill distances array
         for(int i = 0; i < distances.length; i ++){
-            double distance = sensor.getDistance(DistanceUnit.CM);
+            double distance = sensor.cmUltrasonic();
 
             if(distance > 0 && distance < 255) {
                 distances[i] = distance;
@@ -64,7 +64,7 @@ public class UltraSonic extends Config {
         average/=length;
 
         if(runUntillDistance){
-            if(average >= runDistance){
+            if(average <= runDistance){
                 setFinished(true);
             }
         }
