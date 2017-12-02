@@ -3,9 +3,8 @@ package org.timecrafters.gfp.engines;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.timecrafters.engine.Engine;
-import org.timecrafters.gfp.state.drive.DriveStraightForward;
-import org.timecrafters.gfp.state.ultrasonic.ReadFrontRightRange;
-import org.timecrafters.gfp.state.ultrasonic.UltraSonic;
+import org.timecrafters.gfp.state.TestState;
+import org.timecrafters.gfp.subEngine.TestSubEngine;
 
 
 /**
@@ -16,18 +15,13 @@ public class TestEngine extends Engine {
 
     @Override
     public void setProcesses(){
-        //Setup range sensor
-        ReadFrontRightRange readFrontRightRange = new ReadFrontRightRange(this, 60);
-        readFrontRightRange.runUntillDistance(6);
-
-        //Setup drive to use range sensor to stop instead of ticks
-        DriveStraightForward driveStraightForward = new DriveStraightForward(this,
-                0.2,600);
-        driveStraightForward.runUntillStateFinished(readFrontRightRange);
-
-        addState(readFrontRightRange);
         //addStateProcess(driveStraightForward);
+        /*addState(new TestState());
+        addStateProcess(new TestState());*/
+        TestState testState = new TestState();
 
+        addState(testState);
+        addSubEngine(new TestSubEngine(testState));
 
         //addState(new ButtClass(this));
         //addState(new DriveTest(this));

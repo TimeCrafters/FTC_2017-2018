@@ -1,5 +1,7 @@
 package org.timecrafters.engine;
 
+import android.util.Log;
+
 /**
  * Created by goldfishpi on 12/2/17.
  */
@@ -13,11 +15,25 @@ public abstract class SubEngine {
     int currentX = 0;
     int currentY = 0;
 
+    public boolean runable = false;
+
+    public static String TAG = "PROGRAM.SUBENGINE";
+
     public abstract void setProcesses();
 
-    public void addStateProcess(State state){
-        processes[stateX-1][stateY] = state;
+    public abstract void evaluate();
+
+    public void addState(State state){
+        stateY = 0;
+        processes[stateX][stateY] = state;
+        Log.i(TAG, "CREATED NEW STATE : " + "["+stateX + "]" + "[" + stateY +"]" );
+        stateX ++;
+    }
+
+    public void addStateProcesses(State state){
         stateY ++;
+        processes[stateX-1][stateY] = state;
+        Log.i(TAG, "ADDED PROCCES TO STATE : " + "["+stateX + "]" + "[" + stateY +"]" );
     }
 
     public int getCurrentX() {
@@ -28,4 +44,15 @@ public abstract class SubEngine {
         return currentY;
     }
 
+    public State[][] getProcesses() {
+        return processes;
+    }
+
+    public boolean isRunable() {
+        return runable;
+    }
+
+    public void setRunable(boolean runable) {
+        this.runable = runable;
+    }
 }

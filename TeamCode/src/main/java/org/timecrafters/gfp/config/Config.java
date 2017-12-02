@@ -83,12 +83,4 @@ public class Config extends State {
         setFinished(true);
     }
 
-    public void sleep(long timems){
-        try {
-            Thread.sleep(timems);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
 }
