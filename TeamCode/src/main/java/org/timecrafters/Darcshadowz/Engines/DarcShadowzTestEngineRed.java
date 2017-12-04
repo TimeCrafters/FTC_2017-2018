@@ -15,23 +15,41 @@ import org.timecrafters.gfp.state.grabber.LeftGrabber;
  * Created by Dylan on 11/14/2017.
  */
 
-//1000Ticks = 23.5 Centimeters 23.5 cm
+//1000Ticks = 23.5CM
 
 @Autonomous(name = "DYLAN TEST")
-public class DarcShadowzTestEngineBlue extends Engine {
+public class DarcShadowzTestEngineRed extends Engine {
 
     public void setProcesses() {
 
+        //Left Collumn
           addState(new DriveStraightForward(this, .1, 2200));
-          //addState(new ExtendArm(this, 1, 1000));
-         // addState(new RaiseArm(this, 1, 2500));
           addState(new TurnLeft(this, .2, 1025));
           addState(new DriveStraightForward(this, 0.2, 1300));
           addState(new TurnRight(this,0.2,1025));
           addState(new DriveStraightForward(this, 0.1, 500));
           addState(new ExtendArm(this, 1, 1700));
-   //       addState(new RaiseArm(this, -1, 1750));
           addState(new LeftGrabber(this, 0.5, 500));
+
+
+        //Center Collumn
+        addState(new DriveStraightForward(this, .1, 2200));
+        addState(new TurnLeft(this, .2, 1025));
+        addState(new DriveStraightForward(this, 0.2, 1300)); // change to make smaller distance
+        addState(new TurnRight(this,0.2,1025));
+        addState(new DriveStraightForward(this, 0.1, 500));
+        addState(new ExtendArm(this, 1, 1700));
+        addState(new LeftGrabber(this, 0.5, 500));
+
+
+        //Right Collumn
+        addState(new DriveStraightForward(this, .1, 2200));
+  //      addState(new TurnLeft(this, .2, 1025));
+  //      addState(new DriveStraightForward(this, 0.2, 1300)); // change to make smaller distance
+  //      addState(new TurnRight(this,0.2,1025));
+  //      addState(new DriveStraightForward(this, 0.1, 500));
+        addState(new ExtendArm(this, 1, 1700));
+        addState(new LeftGrabber(this, 0.5, 500));
 
 
     }
