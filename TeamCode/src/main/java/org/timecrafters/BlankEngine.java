@@ -13,6 +13,6 @@ public class BlankEngine extends Engine {
         //Adds in state
         addState(new BlankState(this));
         //Adds a linear process to the state
-        addStateProcess(new BlankState(this));
+        addThreadedState(new BlankState(this));
     }
 }
