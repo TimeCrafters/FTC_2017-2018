@@ -16,6 +16,7 @@ public class RedBack extends Engine{
     public void setProcesses() {
         addState(new DriveStraightBackward(this, 0.2, 1936 ));
         addState(new TurnRight(this, 0.2, 1035));
+        addState(new DriveStraightBackward(this, 0.2, 430));
 
 
     }
