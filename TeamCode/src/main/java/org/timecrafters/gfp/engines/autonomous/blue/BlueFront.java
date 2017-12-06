@@ -24,7 +24,7 @@ public class BlueFront extends Engine {
         driveStraightForward.runUntillStateFinished(ultraSonic);
 
         addState(ultraSonic);
-        addStateProcess(driveStraightForward);
+        addThreadedState(driveStraightForward);
 
         addState(new DriveStraightForward(this, 0.5,800));
 

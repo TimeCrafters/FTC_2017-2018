@@ -15,9 +15,9 @@ public class TestEngine extends Engine {
 
     @Override
     public void setProcesses(){
-        //addStateProcess(driveStraightForward);
+        //addThreadedState(driveStraightForward);
         /*addState(new TestState());
-        addStateProcess(new TestState());*/
+        addThreadedState(new TestState());*/
         TestState testState = new TestState();
 
         addState(testState);
