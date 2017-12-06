@@ -26,21 +26,37 @@ public abstract class Engine extends OpMode {
     //changed robot prefs
     public State[][] processes = new State[100][100];
     private Thread[] threads = new Thread[100];
+    private SubEngine[] subEngines = new SubEngine[100];
+
+    private State[][] subProcesses;
+
     private int threadX = 0;
 
     private boolean expandingArray;
 
-    private int stateX = 0;
-    private int stateY = 0;
+    private int processesX = 0;
+    private int processesY = 0;
+
+    private int subX = 0;
+    private int subY = 0;
+
+
+    private boolean checkingStates = true;
+
+    private int subEngineX = 0;
+    boolean isSubEngineinit = false;
 
     public volatile double[][][] cache = new double[100][100][100];
 
 
     private static String TAG = "PROGRAM.ENGINE: ";
+    private static String SUBTAG = "PROGRAM.SUBENGINE";
     private int x = 0;
     private int currentProcess = 0;
     private boolean machineFinished = false;
     private boolean opFininished = true;
+
+    private boolean subProcessFinished = true;
 
     private int threadIndex;
 
@@ -63,6 +79,38 @@ public abstract class Engine extends OpMode {
 
     //checks if ops are finished
     public void loop() {
+        if(checkingStates) {
+            checkStateFinished();
+        }else{
+            subEngines[x].evaluate();
+            if(subEngines[x].isRunable()) {
+                checkSubEngines();
+            }else{
+                Log.i(TAG, "SUB ENGINE NOT RUNNABLE : " + "[" + Integer.toString(x) + "]" + "[0]");
+                checkingStates = true;
+                x++;
+            }
+        }
+
+    }
+
+    //kills all processes running when program endes
+    @Override
+    public void stop() {
+        for (int x = 0; x < processes.length; x++) {
+            for (int y = 0; y < processes.length; y++) {
+                if (processes[x][y] != null) {
+                    processes[x][y].setFinished(true);
+                    processes[x][y].stop();
+                    Log.i(TAG, "KILLED OP : " + "[" + Integer.toString(x) + "]" + "[" + Integer.toString(y) + "]");
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
+    public void checkStateFinished(){
         if (!opFininished && !machineFinished) {
 
             for (int y = 0; y < processes.length; y++) {
@@ -98,31 +146,76 @@ public abstract class Engine extends OpMode {
                 Log.i(TAG, "Started State : " + Integer.toString(x));
 
 
-            } else if (processes[x][0] == null && !machineFinished) {
+            }else if(subEngines[x] != null){
+                checkingStates = false;
+            }
+            else if (processes[x][0] == null && !machineFinished) {
                 Log.i(TAG, "MACHINE TERMINATED");
                 machineFinished = true;
                 stop();
             }
 
         }
-
-
     }
 
-    //kills all processes running when program endes
-    @Override
-    public void stop() {
-        for (int x = 0; x < processes.length; x++) {
-            for (int y = 0; y < processes.length; y++) {
-                if (processes[x][y] != null) {
-                    processes[x][y].setFinished(true);
-                    processes[x][y].stop();
-                    Log.i(TAG, "KILLED OP : " + "[" + Integer.toString(x) + "]" + "[" + Integer.toString(y) + "]");
-                } else {
+    public void checkSubEngines(){
+
+
+        if(!isSubEngineinit){
+            subEngines[x].setProcesses();
+            subProcesses = subEngines[x].getProcesses();
+
+            Log.i(TAG, "CREATED SUB ENGINE : " + "[" + Integer.toString(x) + "]" + "[0]");
+
+            for(int i = 0; i < subProcesses.length; i ++){
+                for(int y = 0; y < subProcesses.length; y ++ ){
+                    if(subProcesses[i][y] != null){
+                        String msg ="INTITALIZED SUBSTATE : " +"[" + Integer.toString(i) +"]" + "["+Integer.toString(y)+"]";
+                        Log.i(SUBTAG,msg );
+                        subProcesses[i][y].init();
+                    }
+                }
+            }
+
+            isSubEngineinit = true;
+        }
+
+        if(subProcessFinished){
+            if(subProcesses[subX][0] != null){
+
+                threadIndex = 0;
+                for (int i = 0; i < subProcesses.length; i++) {
+                    threads[i] = new Thread(subProcesses[subX][i]);
+                    threads[i].start();
+                    threadIndex ++;
+                }
+                subProcessFinished = false;
+                currentProcess = subX;
+                Log.i(SUBTAG, "STARTED SUB STATE : " + Integer.toString(subX));
+
+            }else{
+                x++;
+                checkingStates = true;
+            }
+        }else{
+            for(int i = 0; i < subProcesses.length; i ++){
+                if(subProcesses[subX][i]!= null){
+                    if(subProcesses[subX][i].getIsFinished()){
+                        subProcessFinished = true;
+                        Log.i(SUBTAG, "FINISHED SUB OP : " + "[" + Integer.toString(subX) + "]" + "[" + Integer.toString(i) + "]");
+                    }else{
+                        subProcessFinished = false;
+                    }
+                }else{
                     break;
+                }
+
+                if(subProcessFinished){
+                    subX++;
                 }
             }
         }
+
     }
 
     //set processes in extended classes
@@ -161,16 +254,16 @@ public abstract class Engine extends OpMode {
     }
 
     public void addState(State state){
-        if(processes.length/3 - stateX > 0) {
+        if(processes.length/3 - processesX > 0) {
 
-            stateY = 0;
+            processesY = 0;
 
-            processes[stateX][stateY] = state;
+            processes[processesX][processesY] = state;
 
-            stateY++;
-            stateX++;
+            processesY++;
+            processesX++;
 
-            Log.i(TAG, "ADDED NEW STATE AT : " + Integer.toString(stateX) );
+            Log.i(TAG, "ADDED NEW STATE AT : " + Integer.toString(processesX) );
         }else{
             expandingArray = true;
             Log.i(TAG, "REALOCATED ARRAY!!!! WOOO!!!!");
@@ -179,19 +272,19 @@ public abstract class Engine extends OpMode {
             processes = temp;
             Log.i(TAG, "FINISHED ALLOCATION, ARRAY SIZE NOW : " + Integer.toString(processes.length));
 
-            stateY = 0;
+            processesY = 0;
 
-            processes[stateX][stateY] = state;
+            processes[processesX][processesY] = state;
 
-            stateY++;
-            stateX++;
+            processesY++;
+            processesX++;
             expandingArray=false;
         }
     }
 
     public void addStateProcess(State state){
-        processes[stateX-1][stateY] = state;
-        stateY ++;
+        processes[processesX -1][processesY] = state;
+        processesY++;
     }
 
     public void addCacheData(int index, int layer, double data) {
@@ -202,5 +295,9 @@ public abstract class Engine extends OpMode {
         return cache[0][index][layer];
     }
 
+    public void addSubEngine(SubEngine subEngine){
+        subEngines[processesX] = subEngine;
+        processesX++;
+    }
 
 }

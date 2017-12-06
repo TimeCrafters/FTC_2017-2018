@@ -42,4 +42,12 @@ public abstract class State implements Runnable  {
         isFinished = value;
     }
     public boolean getIsFinished(){return isFinished;}
+
+    public void sleep(long timems){
+        try {
+            Thread.sleep(timems);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

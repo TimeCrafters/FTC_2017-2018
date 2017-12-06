@@ -1,5 +1,6 @@
 package org.timecrafters.gfp.config;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.I2cDevice;
@@ -33,9 +34,9 @@ public class Config extends State {
 
     public TouchSensor winchTouch;
 
-    public OpticalDistanceSensor frontRightDistanceSensor;
-    public OpticalDistanceSensor backRightDistanceSensor;
-    public OpticalDistanceSensor frontDistanceSensor;
+    public ModernRoboticsI2cRangeSensor frontRightDistanceSensor;
+    public ModernRoboticsI2cRangeSensor backRightDistanceSensor;
+    public ModernRoboticsI2cRangeSensor frontDistanceSensor;
 
     long time = 100;
 
@@ -52,7 +53,6 @@ public class Config extends State {
         //Drive Train
         dcFrontLeft  = engine.hardwareMap.dcMotor.get("dcFrontLeft");
         dcFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        dcFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
         dcFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -63,7 +63,6 @@ public class Config extends State {
 
         dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
         dcBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        dcBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         dcWinch = engine.hardwareMap.dcMotor.get("dcWinch");
         dcWinch.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -75,20 +74,13 @@ public class Config extends State {
         dcArm.setDirection(DcMotorSimple.Direction.FORWARD);
 
         winchTouch = engine.hardwareMap.touchSensor.get("winchTouch");
-        //frontRightDistanceSensor = engine.hardwareMap.get(OpticalDistanceSensor.class, "frontRightDistanceSensor");
+        frontRightDistanceSensor = engine.hardwareMap.get(ModernRoboticsI2cRangeSensor.class,
+                "frontRightDistanceSensor");
 
     }
 
     public void exec(){
         setFinished(true);
-    }
-
-    public void sleep(long timems){
-        try {
-            Thread.sleep(timems);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
 }
