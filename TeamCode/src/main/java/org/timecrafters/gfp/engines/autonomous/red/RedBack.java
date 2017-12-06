@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.state.drive.DriveStraightBackward;
+import org.timecrafters.gfp.state.drive.TurnLeft;
 import org.timecrafters.gfp.state.drive.TurnRight;
 
 /**
@@ -14,7 +15,7 @@ public class RedBack extends Engine{
     @Override
     public void setProcesses() {
         addState(new DriveStraightBackward(this, 0.2, 1935 ));
-        addState(new TurnRight(this, 0.2, 516));
+        addState(new TurnLeft(this, 0.2, 1032));
 
 
     }
