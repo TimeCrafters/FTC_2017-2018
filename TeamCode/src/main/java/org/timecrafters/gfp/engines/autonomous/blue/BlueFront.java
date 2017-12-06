@@ -27,9 +27,7 @@ public class BlueFront extends Engine {
         addStateProcess(driveStraightForward);
 
         addState(new DriveStraightForward(this, 0.5,800));
-        addState(new TurnRight(this, 0.2, 150));
-        addState(new ExtendArm(this, 0.5, 300));
-        addState(new );
+
 
     }
 
