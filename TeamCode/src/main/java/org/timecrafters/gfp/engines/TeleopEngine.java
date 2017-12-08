@@ -16,9 +16,9 @@ public class TeleopEngine extends Engine {
 
     public void setProcesses(){
         addState(new DriveTrain(this));
-        addStateProcess(new Grabbers(this,0.3));
-        addStateProcess(new Winch(this,1.0));
-        addStateProcess(new Arm(this,1.0,0.3));
+        addThreadedState(new Grabbers(this,0.3));
+        addThreadedState(new Winch(this,1.0));
+        addThreadedState(new Arm(this,1.0,0.3));
     }
 
 }

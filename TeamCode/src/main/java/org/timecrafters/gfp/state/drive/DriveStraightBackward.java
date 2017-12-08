@@ -19,7 +19,7 @@ public class DriveStraightBackward extends Drive {
     public void init(){
         super.init();
         //Front Left, Back Left, Front Right, Back Right
-        setMotors(-1,-1,-1,-1);
+        setMotors(1,1,1,1);
         DcMotor[] motors = {dcBackRight, dcBackLeft};
         setReadMotors(motors);
     }
