@@ -22,7 +22,7 @@ public class DarcShadowzTestEngineRed extends Engine {
 
     public void setProcesses() {
 
-        //Left Collumn
+        //Left Column
           addState(new DriveStraightForward(this, .1, 2200));
           addState(new TurnLeft(this, .2, 1025));
           addState(new DriveStraightForward(this, 0.2, 1300));
@@ -32,24 +32,24 @@ public class DarcShadowzTestEngineRed extends Engine {
           addState(new LeftGrabber(this, 0.5, 500));
 
 
-        //Center Collumn
-        addState(new DriveStraightForward(this, .1, 2200));
-        addState(new TurnLeft(this, .2, 1025));
-        addState(new DriveStraightForward(this, 0.2, 1300)); // change to make smaller distance
-        addState(new TurnRight(this,0.2,1025));
-        addState(new DriveStraightForward(this, 0.1, 500));
-        addState(new ExtendArm(this, 1, 1700));
-        addState(new LeftGrabber(this, 0.5, 500));
-
-
-        //Right Collumn
-        addState(new DriveStraightForward(this, .1, 2200));
+        //Center Column
+  //      addState(new DriveStraightForward(this, .1, 2200));
   //      addState(new TurnLeft(this, .2, 1025));
   //      addState(new DriveStraightForward(this, 0.2, 1300)); // change to make smaller distance
   //      addState(new TurnRight(this,0.2,1025));
   //      addState(new DriveStraightForward(this, 0.1, 500));
-        addState(new ExtendArm(this, 1, 1700));
-        addState(new LeftGrabber(this, 0.5, 500));
+  //      addState(new ExtendArm(this, 1, 1700));
+   //     addState(new LeftGrabber(this, 0.5, 500));
+
+
+        //Right Column
+   //     addState(new DriveStraightForward(this, .1, 2200));
+  //      addState(new TurnLeft(this, .2, 1025));
+  //      addState(new DriveStraightForward(this, 0.2, 1300)); // change to make smaller distance
+  //      addState(new TurnRight(this,0.2,1025));
+  //      addState(new DriveStraightForward(this, 0.1, 500));
+  //      addState(new ExtendArm(this, 1, 1700));
+  //      addState(new LeftGrabber(this, 0.5, 500));
 
 
     }
