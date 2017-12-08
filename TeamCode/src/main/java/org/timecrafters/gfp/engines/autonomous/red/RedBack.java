@@ -15,7 +15,7 @@ import org.timecrafters.gfp.state.drive.TurnRight;
 public class RedBack extends Engine{
     @Override
     public void setProcesses() {
-        addState(new DriveStraightForward(this, 0.2, 4171 ));
+        addState(new DriveStraightForward(this, 0.2, 4170 ));
         addState(new TurnRight(this, 0.2, 1437));
         addState(new DriveStraightForward(this, 0.2, 1900));
 
