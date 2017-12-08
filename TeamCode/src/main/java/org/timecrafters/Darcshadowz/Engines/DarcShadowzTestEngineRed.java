@@ -6,6 +6,7 @@ import org.timecrafters.Darcshadowz.State.VeeringRight;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.state.Arm.ExtendArm;
 import org.timecrafters.gfp.state.Arm.RaiseArm;
+import org.timecrafters.gfp.state.drive.DriveStraightBackward;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
 import org.timecrafters.gfp.state.drive.TurnRight;
@@ -22,17 +23,20 @@ public class DarcShadowzTestEngineRed extends Engine {
 
     public void setProcesses() {
 
-        //Left Column
-          addState(new DriveStraightForward(this, .1, 2200));
+        //center Column
+          addState(new DriveStraightForward(this, .1, 2400));
           addState(new TurnLeft(this, .2, 1025));
-          addState(new DriveStraightForward(this, 0.2, 1300));
-          addState(new TurnRight(this,0.2,1025));
-          addState(new DriveStraightForward(this, 0.1, 500));
+          addState(new DriveStraightForward(this, 0.2, 3150));
+          addState(new TurnRight(this,0.2,1537));
           addState(new ExtendArm(this, 1, 1700));
-          addState(new LeftGrabber(this, 0.5, 500));
+          addState(new LeftGrabber(this, .5, 500));
+          addState(new RaiseArm(this, 1, 1950));
+          addState(new TurnRight(this, 0.2, 2050));
+          addState(new DriveStraightBackward(this, 0.1, 1000));
 
 
-        //Center Column
+
+        //left Column
   //      addState(new DriveStraightForward(this, .1, 2200));
   //      addState(new TurnLeft(this, .2, 1025));
   //      addState(new DriveStraightForward(this, 0.2, 1300)); // change to make smaller distance
