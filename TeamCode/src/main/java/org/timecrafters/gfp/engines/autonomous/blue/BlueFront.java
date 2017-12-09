@@ -3,11 +3,7 @@ package org.timecrafters.gfp.engines.autonomous.blue;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.timecrafters.engine.Engine;
-import org.timecrafters.gfp.state.Arm.ExtendArm;
-import org.timecrafters.gfp.state.Arm.RaiseArm;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
-import org.timecrafters.gfp.state.drive.TurnRight;
-import org.timecrafters.gfp.state.grabber.LeftGrabber;
 import org.timecrafters.gfp.state.ultrasonic.UltraSonic;
 
 /**

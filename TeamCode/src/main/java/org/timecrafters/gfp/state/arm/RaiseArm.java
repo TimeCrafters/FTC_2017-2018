@@ -1,4 +1,4 @@
-package org.timecrafters.gfp.state.Arm;
+package org.timecrafters.gfp.state.arm;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
