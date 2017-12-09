@@ -2,10 +2,9 @@ package org.timecrafters.Darcshadowz.Engines;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.timecrafters.Darcshadowz.State.VeeringRight;
 import org.timecrafters.engine.Engine;
-import org.timecrafters.gfp.state.Arm.ExtendArm;
-import org.timecrafters.gfp.state.Arm.RaiseArm;
+import org.timecrafters.gfp.state.arm.ExtendArm;
+import org.timecrafters.gfp.state.arm.RaiseArm;
 import org.timecrafters.gfp.state.drive.DriveStraightBackward;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
