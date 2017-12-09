@@ -1,6 +1,7 @@
 package org.timecrafters.gfp.config;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.I2cDevice;
@@ -37,6 +38,8 @@ public class Config extends State {
     public ModernRoboticsI2cRangeSensor frontRightDistanceSensor;
     public ModernRoboticsI2cRangeSensor backRightDistanceSensor;
     public ModernRoboticsI2cRangeSensor frontDistanceSensor;
+
+    public ColorSensor colorSensor;
 
     long time = 100;
 
@@ -80,6 +83,8 @@ public class Config extends State {
         winchTouch = engine.hardwareMap.touchSensor.get("winchTouch");
         frontRightDistanceSensor = engine.hardwareMap.get(ModernRoboticsI2cRangeSensor.class,
                 "frontRightDistanceSensor");
+
+        colorSensor = engine.hardwareMap.colorSensor.get("colorSensor");
 
     }
 
