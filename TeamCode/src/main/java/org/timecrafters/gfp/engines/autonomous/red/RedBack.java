@@ -3,7 +3,7 @@ package org.timecrafters.gfp.engines.autonomous.red;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.timecrafters.engine.Engine;
-import org.timecrafters.gfp.state.Arm.ExtendArm;
+import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.drive.DriveStraightBackward;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
