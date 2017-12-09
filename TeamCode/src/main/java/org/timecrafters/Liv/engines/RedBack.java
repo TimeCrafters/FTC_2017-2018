@@ -17,8 +17,10 @@ public class RedBack extends Engine{
     public void setProcesses() {
         addState(new DriveStraightForward(this, 0.2, 4085 ));
         addState(new TurnRight(this, 0.2, 1281));
+        addState(new RaiseArm(this, 0.5, 215));
         addState(new ExtendArm(this, 0.5, 1290));
         addState(new LeftGrabber(this, 0.5, 500));
+        addState(new DriveStraightForward(this, 0.5, 430));
 
 
 
