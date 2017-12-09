@@ -102,6 +102,7 @@ public abstract class Engine extends OpMode {
     //kills all processes running when program endes
     @Override
     public void stop() {
+        //end all states
         for (int x = 0; x < processes.length; x++) {
             for (int y = 0; y < processes.length; y++) {
                 if (processes[x][y] != null) {
@@ -109,7 +110,21 @@ public abstract class Engine extends OpMode {
                     processes[x][y].stop();
                     Log.i(TAG, "KILLED OP : " + "[" + Integer.toString(x) + "]" + "[" + Integer.toString(y) + "]");
                 } else {
-                    break;
+                }
+            }
+        }
+
+        //End all sub engines
+        for(int i = 0; i < subEngines.length; i++ ){
+            if(subEngines[i] != null){
+                State[][] subStates = subEngines[i].getProcesses();
+                for(int x = 0; x < subStates.length; x ++){
+                    for(int y = 0; y <subStates.length; y++){
+                        if(subStates[x][y] != null){
+                            subStates[x][y].setFinished(true);
+                            processes[x][y].stop();
+                        }
+                    }
                 }
             }
         }
