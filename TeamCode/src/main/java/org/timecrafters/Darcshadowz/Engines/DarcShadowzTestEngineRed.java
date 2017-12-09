@@ -28,7 +28,7 @@ public class DarcShadowzTestEngineRed extends Engine {
           addState(new DriveStraightForward(this, 0.15, 2400));
           addState(new TurnLeft(this, .2, 1000));//change from 1025 to 1000
           addState(new DriveStraightForward(this, 0.3, 3150));
-          addState(new TurnRight(this,0.2,1650));//change from 1537 to 1650
+          addState(new TurnRight(this,0.2,1625));//change from 1537 to 1625
           addState(new DriveStraightForward(this, 0.2, 1000));
           addState(new ExtendArm(this, 1, 1200));
           addState(new LeftGrabber(this, .5, 500));
