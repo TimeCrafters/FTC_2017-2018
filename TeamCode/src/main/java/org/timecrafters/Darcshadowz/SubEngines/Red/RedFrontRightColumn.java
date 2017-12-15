@@ -23,13 +23,13 @@ public class RedFrontRightColumn extends SubEngine {
     public void setProcesses() {
 
         addState(new TurnRight(engine,0.3,1725));//change from 1537 to 1650
-        addState(new DriveStraightForward(engine, 0.3, 1400));
+        addState(new DriveStraightForward(engine, 0.5, 1400));
         addState(new ExtendArm(engine, 1, 1200));
         addState(new LeftGrabber(engine, 0.5, 500));
         addState(new RaiseArm(engine, 1, 1950));
         addState(new TurnRight(engine, 0.3, 1750));//chancge from 2565 to 1700
-        addState(new DriveStraightBackward(engine, 0.3, 500));
-        addState(new DriveStraightForward(engine, 0.3, 400));
+        addState(new DriveStraightBackward(engine, 0.5, 650));
+        addState(new DriveStraightForward(engine, 0.5, 500));
         addState(new RaiseArm(engine,-1, 1950));
 
     }

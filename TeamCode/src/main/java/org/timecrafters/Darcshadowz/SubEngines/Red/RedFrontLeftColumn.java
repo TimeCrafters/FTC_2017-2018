@@ -20,14 +20,14 @@ public class RedFrontLeftColumn extends SubEngine {
     }
     @Override
     public void setProcesses() {
-        addState(new TurnRight(engine,0.2,1600));//change from 1537 to 1600
-        addState(new DriveStraightForward(engine, 0.2, 1000));
+        addState(new TurnRight(engine,0.3,1600));//change from 1537 to 1600
+        addState(new DriveStraightForward(engine, 0.5, 1000));
         addState(new ExtendArm(engine, 1, 1200));
-        addState(new LeftGrabber(engine, .5, 500));
+        addState(new LeftGrabber(engine, 0.5, 500));
         addState(new RaiseArm(engine, 1, 1950));
-        addState(new TurnRight(engine, 0.2, 2000));//chancge from 2565 to 2000
-        addState(new DriveStraightBackward(engine, 0.3, 950));
-        addState(new DriveStraightForward(engine, 0.1, 200));
+        addState(new TurnRight(engine, 0.3, 2000));//chancge from 2565 to 2000
+        addState(new DriveStraightBackward(engine, 0.5, 950));
+        addState(new DriveStraightForward(engine, 0.5, 200));
         addState(new RaiseArm(engine,-1, 1950));
 
     }
