@@ -36,6 +36,7 @@ public class RedFrontCenterColumn extends SubEngine {
         addState(new DriveStraightBackward(engine, 0.5, 950));
         addState(new DriveStraightForward(engine, 0.5, 200));
         addState(new RaiseArm(engine,-1, 1950));
+        addState(new ExtendArm(engine, 0, 0));
     }
 
     @Override
