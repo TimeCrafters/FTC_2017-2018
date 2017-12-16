@@ -27,11 +27,6 @@ public class DarcShadowzTestEngineRed extends Engine {
 
     public void setProcesses() {
 
-        //center Column
-          addState(new DriveStraightForward(this, 0.15, 2500));
-          addState(new TurnLeft(this, 0.3, 1000));//change from 1025 to 1000
-          addState(new DriveStraightForward(this, 0.5, 3150));
-
 
      //     addSubEngine(new RedFrontRightColumn(this));
 

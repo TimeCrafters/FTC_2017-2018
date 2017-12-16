@@ -6,6 +6,7 @@ import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
 import org.timecrafters.gfp.state.drive.DriveStraightBackward;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
+import org.timecrafters.gfp.state.drive.TurnLeft;
 import org.timecrafters.gfp.state.drive.TurnRight;
 import org.timecrafters.gfp.state.grabber.LeftGrabber;
 
@@ -23,7 +24,9 @@ public class RedFrontCenterColumn extends SubEngine {
     @Override
 
     public void setProcesses() {
-
+        addState(new DriveStraightForward(engine, 0.15, 2500));
+        addState(new TurnLeft(engine, 0.3, 1000));//change from 1025 to 1000
+        addState(new DriveStraightForward(engine, 0.5, 3150));
         addState(new TurnRight(engine,0.3,1600));//change from 1537 to 1600
         addState(new DriveStraightForward(engine, 0.5, 1000));
         addState(new ExtendArm(engine, 1, 1200));
