@@ -26,11 +26,11 @@ public class RedFrontLeftColumn extends SubEngine {
         addState(new DriveStraightForward(engine, 0.5, 3000));
         addState(new TurnRight(engine,0.3,1500));
         addState(new DriveStraightForward(engine, 0.5, 500));
-        addState(new ExtendArm(engine, 1, 2500));//changed from 3000
+        addState(new ExtendArm(engine, 1, 2100));//changed from 3000
         addState(new LeftGrabber(engine, 0.5, 500));
         addState(new RaiseArm(engine, 1, 1950));
         addState(new DriveStraightBackward(engine, 0.5, 300));
-        addState(new TurnRight(engine, 0.3, 1700));//changed from 2000
+        addState(new TurnRight(engine, 0.3, 1400));//changed from 2000
         addState(new DriveStraightBackward(engine, 0.5, 350));
         addState(new DriveStraightForward(engine, 0.5, 100));
         addState(new RaiseArm(engine,-1, 1950));
