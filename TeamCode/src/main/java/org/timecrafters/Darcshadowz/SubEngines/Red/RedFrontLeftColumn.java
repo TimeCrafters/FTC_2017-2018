@@ -21,7 +21,7 @@ public class RedFrontLeftColumn extends SubEngine {
     @Override
     public void setProcesses() {
         addState(new TurnRight(engine,0.3,1550));//change from 1537 to 1550
-        addState(new DriveStraightForward(engine, 0.5, 1000));
+        addState(new DriveStraightForward(engine, 0.5, 850));
         addState(new ExtendArm(engine, 1, 1200));
         addState(new LeftGrabber(engine, 0.5, 500));
         addState(new RaiseArm(engine, 1, 1950));
