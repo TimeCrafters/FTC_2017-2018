@@ -34,6 +34,7 @@ public class RedFrontRightColumn extends SubEngine {
         addState(new DriveStraightBackward(engine, 0.5, 650));
         addState(new DriveStraightForward(engine, 0.5, 500));
         addState(new RaiseArm(engine,-1, 1950));
+        addState(new ExtendArm(engine, 0, 0));
 
     }
 
