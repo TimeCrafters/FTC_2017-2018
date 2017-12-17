@@ -20,13 +20,14 @@ public class RedBack extends Engine{
         switch (1) {
             case 1:
                 // center glyph goal
-                addState(new DriveStraightForward(this, 0.3, 4530));
+                addState(new DriveStraightForward(this, 0.3, 4730));
                 addState(new TurnRight(this, 0.3, 1481));
-                addState(new RaiseArm(this, 1, 750));
+                addState(new RaiseArm(this, 1, 450));
+                addState(new DriveStraightForward(this, 0.3, 400));
                 addState(new ExtendArm(this, 0.5, 1290));
                 addState(new LeftGrabber(this, 0.5, 450));
                 addState(new DriveStraightForward(this, -0.5, 516));
-                addState(new TurnRight(this, 0.3, 1537));
+                addState(new TurnRight(this, 0.3, 1737));
                 addState(new DriveStraightForward(this, -0.3, 1000));
                 addState(new DriveStraightForward(this, 0.5, 860));
                 break;
