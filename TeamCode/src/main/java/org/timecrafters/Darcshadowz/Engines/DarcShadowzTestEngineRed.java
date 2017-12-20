@@ -20,9 +20,8 @@ import org.timecrafters.gfp.state.grabber.LeftGrabber;
  * Created by Dylan on 11/14/2017.
  */
 
-//1000Ticks = 23.5CM
 
-@Autonomous(name = "DYLAN TEST")
+@Autonomous(name = "DYLAN TEST RED")
 public class DarcShadowzTestEngineRed extends Engine {
 
     public void setProcesses() {
