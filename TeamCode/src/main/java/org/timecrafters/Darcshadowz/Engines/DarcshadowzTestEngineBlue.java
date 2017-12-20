@@ -15,11 +15,11 @@ public class DarcshadowzTestEngineBlue extends Engine {
 
     public void setProcesses(){
 
-    //    addSubEngine(new BlueFrontCenter(this));
+        addSubEngine(new BlueFrontCenter(this));
 
-        addSubEngine(new BlueFrontLeft(this));
-
-     //   addSubEngine(new BlueFrontRight);
+//        addSubEngine(new BlueFrontLeft(this));
+//
+//        addSubEngine(new BlueFrontRight(this));
     }
 
 
