@@ -2,6 +2,7 @@ package org.timecrafters.Liv.engines;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.timecrafters.Darcshadowz.State.RightGrabber;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.state.arm.*;
 import org.timecrafters.gfp.state.drive.DriveStraightBackward;
@@ -51,7 +52,7 @@ public class RedBack extends Engine{
                 addState(new TurnRight(this, 0.2, 513));
                 addState(new RaiseArm(this, 1, 1950));
                 addState(new ExtendArm(this, 0.5, 1290));
-                addState(new LeftGrabber(this, 0.5, 450));
+                addState(new RightGrabber(this, 0.5, 450));
 
 
 
