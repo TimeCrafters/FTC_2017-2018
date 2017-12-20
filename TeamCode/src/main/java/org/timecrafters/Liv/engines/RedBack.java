@@ -17,7 +17,7 @@ import org.timecrafters.gfp.state.grabber.LeftGrabber;
 public class RedBack extends Engine{
     @Override
     public void setProcesses() {
-        switch (2) {
+        switch (1) {
             case 1:
                 // center glyph goal (WORKING!!!!!)
                 addState(new DriveStraightForward(this, 0.3, 4730));
@@ -32,7 +32,7 @@ public class RedBack extends Engine{
                 addState(new DriveStraightForward(this, 0.5, 860));
                 break;
             case 2:
-                //left glyph goal
+                //Right glyph goal
                 addState(new DriveStraightForward(this, 0.2, 4930));
                 addState(new TurnRight(this, 0.2, 1610));
                 addState(new RaiseArm(this, 1, 450));
@@ -46,7 +46,7 @@ public class RedBack extends Engine{
             default:
                 break;
             case 3:
-                //right glyph goal
+                //Left glyph goal
                 addState(new DriveStraightForward(this, 0.2, 4930));
                 addState(new TurnRight(this, 0.2, 1481));
                 addState(new RaiseArm(this, 1, 1950));
@@ -57,6 +57,8 @@ public class RedBack extends Engine{
                 addState(new TurnRight(this, 0.3, 1537));
                 addState(new DriveStraightForward(this,  -0.3, 1000));
                 addState(new DriveStraightForward(this, 0.5, 860));
+
+
 
         }
     }
