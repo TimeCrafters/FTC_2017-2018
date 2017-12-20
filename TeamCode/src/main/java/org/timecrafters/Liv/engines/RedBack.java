@@ -50,7 +50,7 @@ public class RedBack extends Engine{
                 //Left glyph goal
                 addState(new DriveStraightForward(this, 0.2, 3530));
                 addState(new TurnRight(this, 0.2, 513));
-                addState(new RaiseArm(this, 1, 1950));
+                addState(new RaiseArm(this, 1, 450));
                 addState(new ExtendArm(this, 0.5, 1290));
                 addState(new RightGrabber(this, 0.5, 450));
 
