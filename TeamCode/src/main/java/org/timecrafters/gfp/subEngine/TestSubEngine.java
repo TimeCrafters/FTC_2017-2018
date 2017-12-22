@@ -1,7 +1,5 @@
 package org.timecrafters.gfp.subEngine;
 
-import android.util.Log;
-
 import org.timecrafters.engine.State;
 import org.timecrafters.engine.SubEngine;
 import org.timecrafters.gfp.state.TestState;
@@ -21,12 +19,12 @@ public class TestSubEngine extends SubEngine {
     @Override
     public void setProcesses() {
         addState(new TestState());
-        addStateProcesses(new TestState());
+        addThreadedState(new TestState());
     }
 
     @Override
     public void evaluate() {
-        Log.i(TAG, Boolean.toString(state.getIsFinished()));
+        //Log.i(TAG, Boolean.toString(state.getIsFinished()));
         setRunable(state.getIsFinished());
     }
 }

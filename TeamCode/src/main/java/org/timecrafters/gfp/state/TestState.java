@@ -21,7 +21,7 @@ public class TestState extends State {
 
     public void exec(){
         Log.i(TAG, "INSIDE EXEC");
-        sleep(1000);
+        sleep(5000);
         Log.i(TAG, "LEAVING EXEC");
         burger = true;
         setFinished(true);
