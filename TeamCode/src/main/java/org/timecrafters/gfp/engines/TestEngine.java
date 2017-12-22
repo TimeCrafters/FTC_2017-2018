@@ -22,6 +22,9 @@ public class TestEngine extends Engine {
 
         addState(testState);
         addSubEngine(new TestSubEngine(testState));
+        addState(new TestState());
+        //addState(testState);
+
 
         //addState(new ButtClass(this));
         //addState(new DriveTest(this));
