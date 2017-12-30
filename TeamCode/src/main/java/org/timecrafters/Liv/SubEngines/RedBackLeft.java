@@ -6,6 +6,7 @@ import org.timecrafters.engine.SubEngine;
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
+import org.timecrafters.gfp.state.drive.TurnLeft;
 import org.timecrafters.gfp.state.drive.TurnRight;
 
 /**
@@ -27,6 +28,7 @@ public class RedBackLeft extends SubEngine{
         addState(new ExtendArm(engine, 0.5, 1140));
         addState(new RightGrabber(engine, -0.5, 500));
         addState(new DriveStraightForward(engine, -0.5, 800));
+        addState(new TurnLeft(this, 0.3, 430,));
 
     }
 
