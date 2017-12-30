@@ -23,13 +23,11 @@ public class RedBack extends Engine{
     public void setProcesses() {
 
 
-                addSubEngine(new RedBackCenter(this));
-
-
-                addSubEngine(new RedBackRight(this));
-
 
                 addSubEngine(new RedBackLeft(this));
+
+
+
 
         }
     }
