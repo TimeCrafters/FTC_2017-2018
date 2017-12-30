@@ -29,6 +29,9 @@ public class RedBackLeft extends SubEngine{
         addState(new RightGrabber(engine, -0.5, 450));
         addState(new DriveStraightForward(engine, -0.5, 800));
         addState(new TurnLeft(engine, 0.3, 450));
+        addState(new DriveStraightForward(engine, 0.3, 500));
+        addState(new TurnLeft(engine, 0.3, 342));
+        addState(new DriveStraightForward(engine, 0.3, 430));
 
     }
 
