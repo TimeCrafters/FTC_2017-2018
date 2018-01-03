@@ -24,16 +24,15 @@ public class BlueFrontLeft extends SubEngine {
         addState(new DriveStraightBackward(engine, 0.15, 1700));
         addState(new TurnLeft(engine, 0.3, 800));
         addState(new DriveStraightForward(engine, 0.5, 3000));
-        addState(new TurnLeft(engine, 0.3, 1850));
-//        addState(new TurnLeft(engine, 0.3, 1725));
-//        addState(new DriveStraightForward(engine, 0.5, 1400));
-//        addState(new ExtendArm(engine, 1, 1200));
-//        addState(new RightGrabber(engine, 0.5, 500));
-//        addState(new RaiseArm(engine, 1, 1950));
-//        addState(new TurnLeft(engine, 0.3, 1750));
-//        addState(new DriveStraightBackward(engine, 0.5, 400));
-//        addState(new DriveStraightForward(engine, 0.5, 200));
-//        addState(new RaiseArm(engine, -1, 1950));
+        addState(new TurnLeft(engine, 0.3, 1780));
+        addState(new DriveStraightForward(engine, 0.5, 850));
+        addState(new ExtendArm(engine, 1, 2000));
+        addState(new RightGrabber(engine, -0.5, 500));
+        addState(new RaiseArm(engine, 1, 1950));
+        addState(new TurnLeft(engine, 0.3, 1750));
+        addState(new DriveStraightBackward(engine, 0.5, 400));
+        addState(new DriveStraightForward(engine, 0.5, 200));
+        addState(new RaiseArm(engine, -1, 1950));
     }
 
     @Override
