@@ -6,6 +6,7 @@ import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.SubEngine;
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
+import org.timecrafters.gfp.state.drive.DriveStraightBackward;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
 import org.timecrafters.gfp.state.drive.TurnRight;
@@ -24,7 +25,7 @@ public class BlueBackCenter extends SubEngine{
     @Override
     public void setProcesses() {
         // center glyph goal
-        addState(new DriveStraightForward(engine, -0.3, 4730));
+        addState(new DriveStraightBackward(engine, 0.3, 4730));
         addState(new TurnLeft(engine, 0.3, 1411));
         addState(new RaiseArm(engine, 1, 450));
         addState(new DriveStraightForward(engine, 0.3, 400));
