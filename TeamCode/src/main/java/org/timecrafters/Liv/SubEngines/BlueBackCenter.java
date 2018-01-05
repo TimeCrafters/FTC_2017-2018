@@ -25,7 +25,7 @@ public class BlueBackCenter extends SubEngine{
     public void setProcesses() {
         // center glyph goal
         addState(new DriveStraightForward(engine, 0.3, 4730));
-        addState(new TurnRight(engine, 0.3, 1411));
+        addState(new TurnLeft(engine, 0.3, 1411));
         addState(new RaiseArm(engine, 1, 450));
         addState(new DriveStraightForward(engine, 0.3, 400));
         addState(new ExtendArm(engine, 0.5, 1290));
