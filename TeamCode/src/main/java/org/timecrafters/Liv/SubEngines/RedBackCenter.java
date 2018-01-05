@@ -15,7 +15,7 @@ import org.timecrafters.gfp.state.grabber.LeftGrabber;
 
 public class RedBackCenter extends SubEngine{
     Engine engine;
-    public RedBackCenter(RedBack redBack) {
+    public RedBackCenter(Engine engine) {
         this.engine=engine;
     }
 
