@@ -22,19 +22,21 @@ public class BlueFrontCenter extends SubEngine {
     @Override
     public void setProcesses() {
 
-        addState(new DriveStraightBackward(engine, 0.15, 2500));
-        addState(new TurnLeft(engine, 0.3, 1000));//change from 1025 to 1000
-        addState(new DriveStraightForward(engine, 0.5, 3150));
-        addState(new TurnLeft(engine,0.3,1600));//change from 1537 to 1600
-        addState(new DriveStraightForward(engine, 0.5, 1000));
-        addState(new ExtendArm(engine, 1, 1200));
-        addState(new RightGrabber(engine, .5, 500));
+        addState(new DriveStraightBackward(engine, 0.2, 1700));
+        addState(new TurnLeft(engine, 0.3, 800));
+        addState(new DriveStraightForward(engine, 0.5, 3000));
+        addState(new TurnLeft(engine,0.3,1800));
+        addState(new DriveStraightForward(engine, 0.5, 700));
+        addState(new ExtendArm(engine, 1, 2000));
+        addState(new RightGrabber(engine, -0.5, 500));
         addState(new RaiseArm(engine, 1, 1950));
-        addState(new TurnLeft(engine, 0.3, 2000));//chancge from 2565 to 2000
-        addState(new DriveStraightBackward(engine, 0.5, 950));
+        addState(new DriveStraightBackward(engine, 0.5, 500));
+        addState(new TurnLeft(engine, 0.3, 1750));
+        addState(new DriveStraightBackward(engine, 0.5, 500));
         addState(new DriveStraightForward(engine, 0.5, 200));
         addState(new RaiseArm(engine,-1, 1950));
         addState(new ExtendArm(engine, 0, 0));
+        addState(new LeftGrabber(engine, 0.5, 500));
 
     }
 
