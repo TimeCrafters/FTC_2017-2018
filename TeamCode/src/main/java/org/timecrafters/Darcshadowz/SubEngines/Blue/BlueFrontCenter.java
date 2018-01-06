@@ -25,10 +25,10 @@ public class BlueFrontCenter extends SubEngine {
         addState(new DriveStraightBackward(engine, 0.2, 1700));
         addState(new TurnLeft(engine, 0.3, 800));
         addState(new DriveStraightForward(engine, 0.5, 3000));
-        addState(new TurnLeft(engine,0.3,1800));
-        addState(new DriveStraightForward(engine, 0.5, 700));
-        addState(new ExtendArm(engine, 1, 2000));
-        addState(new RightGrabber(engine, -0.5, 500));
+        addState(new TurnLeft(engine,0.3,1780));
+        addState(new DriveStraightForward(engine, 0.5, 200));
+        addState(new ExtendArm(engine, 1, 2800));
+        addState(new RightGrabber(engine, -0.5, 300));
         addState(new RaiseArm(engine, 1, 1950));
         addState(new DriveStraightBackward(engine, 0.5, 500));
         addState(new TurnLeft(engine, 0.3, 1750));
