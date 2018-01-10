@@ -2,6 +2,8 @@ package org.timecrafters.engine;
 
 import android.util.Log;
 
+import org.timecrafters.cyberarm.debug.Agent;
+
 /**
  * Created by goldfishpi on 12/2/17.
  */
@@ -98,15 +100,21 @@ public abstract class SubEngine {
     }
 
     public void initStates(){
+        Agent.setMilliseconds("Outer loop: InitStates", 0);
         for(int i = 0; i < processes.length; i ++){
+            Agent.setMilliseconds("Inner Loop: InitStates", 1);
             for(int y = 0; y < processes.length; y ++ ){
                 if(processes[i][y] != null){
                     String msg ="INTITALIZED SUBSTATE : " +"[" + Integer.toString(i) +"]" + "["+Integer.toString(y)+"]";
                     Log.i(TAG,msg );
+                    Agent.setMilliseconds("processes[i][y].init for "+this.getClass());
                     processes[i][y].init();
+                    Agent.reportMilliseconds();
                 }
             }
+            Agent.reportMilliseconds(1); // set to init
         }
+        Agent.reportMilliseconds(0); // set to init also
     }
 
     public void stop(){

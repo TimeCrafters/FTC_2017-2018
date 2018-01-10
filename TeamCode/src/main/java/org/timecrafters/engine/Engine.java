@@ -90,7 +90,9 @@ public abstract class Engine extends OpMode {
 
         //check if we are checking states
         if(checkingStates) {
+            Agent.setMilliseconds("checkStateFinished");
             checkStateFinished();
+            Agent.reportMilliseconds();
 
         //Check if we are checking states inside sub engines
         }else{
@@ -104,7 +106,9 @@ public abstract class Engine extends OpMode {
             if(subEngines[x].isRunable()) {
 
                 //check sub engines
+                Agent.setMilliseconds("checkSubEngine");
                 checkSubEngines();
+                Agent.reportMilliseconds();
             }else{
                 //if engine is not runnable than incrament x and switch to "checking states"
                 Log.i(TAG, "SUB ENGINE NOT RUNNABLE : " + "[" + Integer.toString(x) + "]" + "[0]");
@@ -207,17 +211,23 @@ public abstract class Engine extends OpMode {
         // Check if sub engines need to be initialized
         if(!isSubEngineinit){
             //Run set Proccesses on the sub engine
+            Agent.setMilliseconds("subEngines[x].setProcesses");
             subEngines[x].setProcesses();
+            Agent.reportMilliseconds();
 
             if(!subEngines[x].isPreInit()) {
+                Agent.setMilliseconds("subEngines[x].initStates");
                 subEngines[x].initStates();
+                Agent.reportMilliseconds();
             }
 
             //set subEngineInit to true so this only runs through once
             isSubEngineinit = true;
         }else if(!subEngines[x].isMachineFinished()){
             //Log.i(TAG,"STARTED CHECKING SUBSTATE PROCESS");
+            Agent.setMilliseconds("subEngine[x].checkStates");
             subEngines[x].checkStates();
+            Agent.reportMilliseconds();
             //Log.i(TAG, "FINISEHD CHECKING SUBSTATE PROCESSES");
         }else{
             Log.i(TAG,"FINISHED SUBENGINE");
