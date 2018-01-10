@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.timecrafters.cyberarm.debug.Agent;
+
 /**
  * Created by t420 on 9/29/2016.
  * First successful test was 5:00 6 thur oct 2016
@@ -58,9 +60,12 @@ public abstract class Engine extends OpMode {
     //sets processes
     public void init() {
         //Call Set Processes to fill arrays with states
+        Agent.setMilliseconds("SetProcesses");
         setProcesses();
+        Agent.reportMilliseconds();
 
         //Loop through to processes array and initialize states
+        Agent.setMilliseconds("Setup of Processes");
         for (int i = 0; i < processes.length; i++) {
             for (int y = 0; y < processes.length; y++) {
                 if (processes[i][y] != null) {
@@ -69,12 +74,15 @@ public abstract class Engine extends OpMode {
                 }
             }
         }
+        Agent.reportMilliseconds();
 
+        Agent.setMilliseconds("Setup of Subengines");
         for (int i = 0; i < subEngines.length; i++){
             if(subEngines[i] != null && subEngines[i].isPreInit()){
                 subEngines[i].initStates();
             }
         }
+        Agent.reportMilliseconds();
     }
 
     //checks if ops are finished
