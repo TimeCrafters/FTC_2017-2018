@@ -8,6 +8,7 @@ import org.timecrafters.gfp.state.arm.RaiseArm;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
 import org.timecrafters.gfp.state.drive.TurnRight;
+import org.timecrafters.gfp.state.grabber.LeftGrabber;
 
 /**
  * Created by Liv on 1/2/2018.
@@ -22,11 +23,10 @@ public class BlueBackLeft extends SubEngine{
     @Override
     public void setProcesses() {
         addState(new DriveStraightForward(engine, -0.3, 3510));
-        addState(new TurnLeft(engine, 0.2, 2583));
+        addState(new TurnLeft(engine, 0.3, 2583));
         addState(new RaiseArm(engine, 1, 450));
-        addState(new DriveStraightForward(engine, 0.2, 290));
         addState(new ExtendArm(engine, 0.5, 1140));
-        addState(new RightGrabber(engine, -0.5, 450));
+        addState(new LeftGrabber(engine, -0.5, 450));
         addState(new DriveStraightForward(engine, -0.5, 800));
         addState(new TurnLeft(engine, 0.3, 860));
         addState(new DriveStraightForward(engine, 0.3, 500));
