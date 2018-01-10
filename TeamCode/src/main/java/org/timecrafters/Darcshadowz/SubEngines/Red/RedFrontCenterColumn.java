@@ -41,6 +41,7 @@ public class RedFrontCenterColumn extends SubEngine {
 
     @Override
     public void evaluate() {
+        setPreInit(true);
         setRunable(true);
     }
 }

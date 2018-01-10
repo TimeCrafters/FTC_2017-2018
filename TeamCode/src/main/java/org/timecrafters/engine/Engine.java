@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 /**
  * Created by t420 on 9/29/2016.
- * First sucess ful test was 5:00 6 thur oct 2016
+ * First successful test was 5:00 6 thur oct 2016
  */
 /*
 
@@ -50,7 +50,7 @@ public abstract class Engine extends OpMode {
     private static String SUBTAG = "PROGRAM.SUBENGINE";
     private int x = 0;
     private boolean machineFinished = false;
-    private boolean opFininished = true;
+    private boolean opFinished = true;
 
     private boolean subProcessFinished = true;
 
@@ -69,6 +69,12 @@ public abstract class Engine extends OpMode {
                 }
             }
         }
+
+        for (int i = 0; i < subEngines.length; i++){
+            if(subEngines[i] != null && subEngines[i].isPreInit()){
+                subEngines[i].initStates();
+            }
+        }
     }
 
     //checks if ops are finished
@@ -82,7 +88,9 @@ public abstract class Engine extends OpMode {
         }else{
 
             //Run evaluate on sub engines
-            subEngines[x].evaluate();
+            if(!subEngines[x].isRunable()) {
+                subEngines[x].evaluate();
+            }
 
             //Check if sub engine is runnable
             if(subEngines[x].isRunable()) {
@@ -128,12 +136,17 @@ public abstract class Engine extends OpMode {
                 }
             }
         }
+        for(int i = 0; i < subEngines.length; i ++){
+            if(subEngines[i]!= null){
+                subEngines[i].stop();
+            }
+        }
     }
 
     public void checkStateFinished(){
 
         //check to make sure the current state or whole machine isnt finished
-        if (!opFininished && !machineFinished) {
+        if (!opFinished && !machineFinished) {
 
             //Loop through to check if all sections of the current
             // state are finished, if so set opFinsished to true
@@ -141,17 +154,17 @@ public abstract class Engine extends OpMode {
 
                 if (processes[x][y] != null) {
                     if (processes[x][y].getIsFinished()) {
-                        opFininished = true;
+                        opFinished = true;
                         Log.i(TAG, "FINISHED OP : " + "[" + Integer.toString(x) + "]" + "[" + Integer.toString(y) + "]");
                     } else {
-                        opFininished = false;
+                        opFinished = false;
                         break;
                     }
                 } else {
                     break;
                 }
             }
-            if (opFininished) {
+            if (opFinished) {
                 x++;
             }
 
@@ -164,7 +177,7 @@ public abstract class Engine extends OpMode {
                     threads[i] = new Thread(processes[x][i]);
                     threads[i].start();
                 }
-                opFininished = false;
+                opFinished = false;
                 Log.i(TAG, "Started State : " + Integer.toString(x));
 
 
@@ -188,62 +201,21 @@ public abstract class Engine extends OpMode {
             //Run set Proccesses on the sub engine
             subEngines[x].setProcesses();
 
-            //Add all the processes of the sub engine to the subProcesses array
-            subProcesses = subEngines[x].getProcesses();
-
-            Log.i(TAG, "CREATED SUB ENGINE : " + "[" + Integer.toString(x) + "]" + "[0]");
-
-            //Loop through all the sub processes and initialize them
-            for(int i = 0; i < subProcesses.length; i ++){
-                for(int y = 0; y < subProcesses.length; y ++ ){
-                    if(subProcesses[i][y] != null){
-                        String msg ="INTITALIZED SUBSTATE : " +"[" + Integer.toString(i) +"]" + "["+Integer.toString(y)+"]";
-                        Log.i(SUBTAG,msg );
-                        subProcesses[i][y].init();
-                    }
-                }
+            if(!subEngines[x].isPreInit()) {
+                subEngines[x].initStates();
             }
 
             //set subEngineInit to true so this only runs through once
             isSubEngineinit = true;
-        }
-
-        //if the sub processes is finished then set up next sub state
-        if(subProcessFinished){
-            if(subProcesses[subX][0] != null){
-
-                for (int i = 0; i < subProcesses.length; i++) {
-                    threads[i] = new Thread(subProcesses[subX][i]);
-                    threads[i].start();
-                }
-                subProcessFinished = false;
-                Log.i(SUBTAG, "STARTED SUB STATE : " + Integer.toString(subX));
-
-            }else{
-                x++;
-                checkingStates = true;
-            }
+        }else if(!subEngines[x].isMachineFinished()){
+            //Log.i(TAG,"STARTED CHECKING SUBSTATE PROCESS");
+            subEngines[x].checkStates();
+            //Log.i(TAG, "FINISEHD CHECKING SUBSTATE PROCESSES");
         }else{
-
-            //looping through sub processes to check if they are finished
-            for(int i = 0; i < subProcesses.length; i ++){
-                if(subProcesses[subX][i]!= null){
-                    if(subProcesses[subX][i].getIsFinished()){
-                        subProcessFinished = true;
-                        Log.i(SUBTAG, "FINISHED SUB OP : " + "[" + Integer.toString(subX) + "]" + "[" + Integer.toString(i) + "]");
-                    }else{
-                        subProcessFinished = false;
-                    }
-                }else{
-                    break;
-                }
-
-                if(subProcessFinished){
-                    subX++;
-                }
-            }
+            Log.i(TAG,"FINISHED SUBENGINE");
+            this.x++;
+            checkingStates = true;
         }
-
     }
 
     //set processes in extended classes

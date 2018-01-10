@@ -39,7 +39,9 @@ public class BlueFrontLeft extends SubEngine {
     }
 
     @Override
-    public void evaluate() {setRunable(true);
+    public void evaluate() {
+        setPreInit(true);
+        setRunable(true);
 
     }
 }
