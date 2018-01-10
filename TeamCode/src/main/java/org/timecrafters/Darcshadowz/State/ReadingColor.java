@@ -47,16 +47,16 @@ public class ReadingColor extends Config{
     @Override
     public void exec() {
         super.exec();
-        servoWinch.setPosition(0.1);
-        pause(800);
-        servoWinch.setPosition(0);
-        servoBlade.setPosition(0.1);
-        while (!touchSensorBlade.isPressed()) {
-        }
-        servoBlade.setPosition(0);
-        servoWinch.setPosition(0.1);
-        pause(1200);
-        servoWinch.setPosition(0);
+//        servoWinch.setPosition(0.1);
+//        pause(800);
+//        servoWinch.setPosition(0);
+//        servoBlade.setPosition(0.1);
+//        while (!touchSensorBlade.isPressed()) {
+//        }
+//        servoBlade.setPosition(0);
+//        servoWinch.setPosition(0.1);
+//        pause(1200);
+//        servoWinch.setPosition(0);
 
         boolean isblue = false;
 
