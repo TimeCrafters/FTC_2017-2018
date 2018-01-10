@@ -76,13 +76,13 @@ public abstract class Engine extends OpMode {
         }
         Agent.reportMilliseconds();
 
-        Agent.setMilliseconds("Setup of Subengines");
+        Agent.setMilliseconds("Setup of Subengines", 12);
         for (int i = 0; i < subEngines.length; i++){
             if(subEngines[i] != null && subEngines[i].isPreInit()){
                 subEngines[i].initStates();
             }
         }
-        Agent.reportMilliseconds();
+        Agent.reportMilliseconds(12);
     }
 
     //checks if ops are finished
