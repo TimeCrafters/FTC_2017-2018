@@ -21,8 +21,8 @@ public class BlueBackLeft extends SubEngine{
 
     @Override
     public void setProcesses() {
-        addState(new DriveStraightForward(engine, 0.3, 3510));
-        addState(new TurnRight(engine, 0.2, 533));
+        addState(new DriveStraightForward(engine, -0.3, 3510));
+        addState(new TurnLeft(engine, 0.2, 2583));
         addState(new RaiseArm(engine, 1, 450));
         addState(new DriveStraightForward(engine, 0.2, 290));
         addState(new ExtendArm(engine, 0.5, 1140));
