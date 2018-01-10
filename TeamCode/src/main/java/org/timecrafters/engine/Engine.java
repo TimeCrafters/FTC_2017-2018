@@ -130,7 +130,7 @@ public abstract class Engine extends OpMode {
                     for(int y = 0; y <subStates.length; y++){
                         if(subStates[x][y] != null){
                             subStates[x][y].setFinished(true);
-                            processes[x][y].stop();
+                            subStates[x][y].stop();
                         }
                     }
                 }
