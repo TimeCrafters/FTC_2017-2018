@@ -23,7 +23,7 @@ public class BlueFrontRight extends SubEngine {
         addState(new DriveStraightBackward(engine, 0.2, 1700));
         addState(new TurnLeft(engine, 0.3, 800));
         addState(new DriveStraightForward(engine, 0.5, 3000));
-        addState(new TurnLeft(engine, 0.3, 2100));
+        addState(new TurnLeft(engine, 0.3, 1730));
         addState(new DriveStraightForward(engine, 0.5, 500));
         addState(new ExtendArm(engine, 1, 2000));
         addState(new RightGrabber(engine, -0.5, 500));
@@ -38,7 +38,9 @@ public class BlueFrontRight extends SubEngine {
     }
 
     @Override
-    public void evaluate() {setRunable(true);
+    public void evaluate() {
+//        setPreInit(true);
+        setRunable(true);
 
     }
 }
