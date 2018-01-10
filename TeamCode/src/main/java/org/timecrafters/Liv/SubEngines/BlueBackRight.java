@@ -1,41 +1,44 @@
 package org.timecrafters.Liv.SubEngines;
 
-import org.timecrafters.Liv.engines.RedBack;
+import org.timecrafters.Darcshadowz.State.RightGrabber;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.SubEngine;
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
+import org.timecrafters.gfp.state.drive.TurnLeft;
 import org.timecrafters.gfp.state.drive.TurnRight;
 import org.timecrafters.gfp.state.grabber.LeftGrabber;
 
 /**
- * Created by Liv on 12/21/2017.
+ * Created by Liv on 1/2/2018.
  */
 
-public class RedBackCenter extends SubEngine{
+public class BlueBackRight extends SubEngine {
     Engine engine;
-    public RedBackCenter(Engine engine) {
+    public BlueBackRight(Engine engine) {
         this.engine=engine;
     }
 
     @Override
     public void setProcesses() {
-        // center glyph goal
-        addState(new DriveStraightForward(engine, 0.3, 4730));
-        addState(new TurnRight(engine, 0.3, 1411));
+        //Right glyph goal
+        addState(new DriveStraightForward(engine, 0.2, 4930));
+        addState(new TurnLeft(engine, 0.2, 1580));
         addState(new RaiseArm(engine, 1, 450));
-        addState(new DriveStraightForward(engine, 0.3, 400));
+        addState(new DriveStraightForward(engine, 0.3, 430));
         addState(new ExtendArm(engine, 0.5, 1290));
-        addState(new LeftGrabber(engine, 0.5, 450));
+        addState(new RightGrabber(engine, 0.5, 450));
         addState(new DriveStraightForward(engine, -0.5, 516));
-        addState(new TurnRight(engine, 0.3, 1737));
-        addState(new DriveStraightForward(engine, -0.3, 1000));
+        addState(new TurnLeft(engine, 0.3, 1537));
+        addState(new DriveStraightForward(engine,  -0.3, 1000));
         addState(new DriveStraightForward(engine, 0.5, 860));
+
     }
 
     @Override
-    public void evaluate() {
-        setRunable(true);
+    public void evaluate() {setRunable(true);
+
     }
 }
+
