@@ -106,14 +106,16 @@ public abstract class SubEngine {
                 if(processes[i][y] != null){
                     String msg ="INTITALIZED SUBSTATE : " +"[" + Integer.toString(i) +"]" + "["+Integer.toString(y)+"]";
                     Log.i(TAG,msg );
-                    Agent.setMilliseconds("processes[i][y].init for "+this.getClass());
+                    Agent.setMilliseconds("processes["+i+"]["+y+"].init for "+processes[i][y].getClass());
                     processes[i][y].init();
                     Agent.reportMilliseconds();
+                } else {
+                     break; // Does this break things?
                 }
             }
-            Agent.reportMilliseconds(1); // set to init
+            Agent.reportMilliseconds(1); // Inner Loop
         }
-        Agent.reportMilliseconds(0); // set to init also
+        Agent.reportMilliseconds(0); // Outer Loop
     }
 
     public void stop(){
