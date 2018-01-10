@@ -101,6 +101,10 @@ public abstract class SubEngine {
     public void initStates(){
         Agent.setMilliseconds("Outer loop: InitStates", 0);
         for(int i = 0; i < processes.length; i ++){
+            if(processes[i][0] == null){
+                break; // Does this break things?
+            }
+
             Agent.setMilliseconds("Inner Loop: InitStates", 1);
             for(int y = 0; y < processes.length; y ++ ){
                 if(processes[i][y] != null){
