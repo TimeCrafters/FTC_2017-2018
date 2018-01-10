@@ -79,8 +79,11 @@ public abstract class SubEngine {
             if (processes[currentX][0] != null) {
                 //set next state
                 for (int i = 0; i < processes.length; i++) {
+                    if (processes[currentX][i] == null) { break; }
+                    Agent.setMilliseconds("Creating thread for "+currentX+"/"+i, 50);
                     threads[i] = new Thread(processes[currentX][i]);
                     threads[i].start();
+                    Agent.reportMilliseconds(50);
                 }
                 opFininished = false;
                 Log.i(TAG, "Started State : " + Integer.toString(currentX));
@@ -110,9 +113,9 @@ public abstract class SubEngine {
                 if(processes[i][y] != null){
                     String msg ="INTITALIZED SUBSTATE : " +"[" + Integer.toString(i) +"]" + "["+Integer.toString(y)+"]";
                     Log.i(TAG,msg );
-                    Agent.setMilliseconds("processes["+i+"]["+y+"].init for "+processes[i][y].getClass());
+                    Agent.setMilliseconds("processes["+i+"]["+y+"].init for "+processes[i][y].getClass(), 3);
                     processes[i][y].init();
-                    Agent.reportMilliseconds();
+                    Agent.reportMilliseconds(3);
                 } else {
                      break; // Does this break things?
                 }
