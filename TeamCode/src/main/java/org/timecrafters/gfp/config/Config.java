@@ -39,6 +39,8 @@ public class Config extends State {
     public ModernRoboticsI2cRangeSensor backRightDistanceSensor;
     public ModernRoboticsI2cRangeSensor frontDistanceSensor;
 
+    public TouchSensor flipperTouch;
+
     public ColorSensor colorSensor;
 
     long time = 100;
@@ -85,6 +87,8 @@ public class Config extends State {
                 "frontRightDistanceSensor");
 
         colorSensor = engine.hardwareMap.colorSensor.get("colorSensor");
+
+
 
     }
 

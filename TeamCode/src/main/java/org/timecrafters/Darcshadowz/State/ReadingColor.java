@@ -59,6 +59,7 @@ public class ReadingColor extends Config{
         servoWinch.setPosition(0);
 
         boolean isblue = false;
+
         if (colorSensor.blue() >= 0.4) {
 
             isblue = true;
