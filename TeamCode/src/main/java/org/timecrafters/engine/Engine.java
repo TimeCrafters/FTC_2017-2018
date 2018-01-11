@@ -211,12 +211,12 @@ public abstract class Engine extends OpMode {
         // Check if sub engines need to be initialized
         if(!isSubEngineinit){
             //Run set Proccesses on the sub engine
-            Agent.setMilliseconds("subEngines[x].setProcesses", 18);
+            Agent.setMilliseconds("subEngines["+x+"].setProcesses", 18);
             subEngines[x].setProcesses();
             Agent.reportMilliseconds(18);
 
             if(!subEngines[x].isPreInit()) {
-                Agent.setMilliseconds("subEngines[x].initStates", 20);
+                Agent.setMilliseconds("subEngines["+x+"].initStates", 20);
                 subEngines[x].initStates();
                 Agent.reportMilliseconds(20);
             }
@@ -225,7 +225,7 @@ public abstract class Engine extends OpMode {
             isSubEngineinit = true;
         }else if(!subEngines[x].isMachineFinished()){
             //Log.i(TAG,"STARTED CHECKING SUBSTATE PROCESS");
-            Agent.setMilliseconds("subEngine[x].checkStates", 22);
+            Agent.setMilliseconds("subEngine["+x+"].checkStates", 22);
             subEngines[x].checkStates();
             Agent.reportMilliseconds(22);
             //Log.i(TAG, "FINISEHD CHECKING SUBSTATE PROCESSES");
