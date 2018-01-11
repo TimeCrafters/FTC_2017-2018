@@ -53,7 +53,7 @@ public class Config extends State {
 
         dcLeftGrabber = engine.hardwareMap.dcMotor.get("dcLeftGrabber");
 
-        sleep(time);
+//        sleep(time);
 
         //Drive Train
         dcFrontLeft  = engine.hardwareMap.dcMotor.get("dcFrontLeft");
