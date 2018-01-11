@@ -77,6 +77,7 @@ public abstract class SubEngine {
             if (processes[currentX][0] != null) {
                 //set next state
                 for (int i = 0; i < processes.length; i++) {
+                    if (processes[currentX][i] == null) { break; }
                     threads[i] = new Thread(processes[currentX][i]);
                     threads[i].start();
                 }

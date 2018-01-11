@@ -42,7 +42,7 @@ public class BlueFrontCenter extends SubEngine {
 
     @Override
     public void evaluate() {
-        setPreInit(true);
+//        setPreInit(true);
         setRunable(true);
 
     }
