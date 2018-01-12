@@ -19,11 +19,11 @@ public class BlueBackRight extends SubEngine {
     public BlueBackRight(Engine engine) {
         this.engine=engine;
     }
-
+                                                                             //SIDE NOTE THIS THE RIGHT COLUMN FROM INSIDE THE RANK AS IS THE LEFT
     @Override
     public void setProcesses() {
         //Right glyph goal
-        addState(new DriveStraightForward(engine, 0.2, 4930));
+        addState(new DriveStraightForward(engine, -0.3, 4930));
         addState(new TurnLeft(engine, 0.2, 1580));
         addState(new RaiseArm(engine, 1, 450));
         addState(new DriveStraightForward(engine, 0.3, 430));
