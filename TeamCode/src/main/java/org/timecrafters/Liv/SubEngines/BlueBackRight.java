@@ -5,6 +5,7 @@ import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.SubEngine;
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
+import org.timecrafters.gfp.state.drive.DriveStraightBackward;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
 import org.timecrafters.gfp.state.drive.TurnRight;
@@ -19,20 +20,21 @@ public class BlueBackRight extends SubEngine {
     public BlueBackRight(Engine engine) {
         this.engine=engine;
     }
-                                                                             //SIDE NOTE THIS THE RIGHT COLUMN FROM INSIDE THE RANK AS IS THE LEFT
+
     @Override
     public void setProcesses() {
         //Right glyph goal
         addState(new DriveStraightForward(engine, -0.3, 4930));
-        addState(new TurnLeft(engine, 0.2, 1580));
+        addState(new TurnRight(engine, 0.2, 390));
         addState(new RaiseArm(engine, 1, 450));
         addState(new DriveStraightForward(engine, 0.3, 430));
         addState(new ExtendArm(engine, 0.5, 1290));
         addState(new RightGrabber(engine, 0.5, 450));
-        addState(new DriveStraightForward(engine, -0.5, 516));
-        addState(new TurnLeft(engine, 0.3, 1537));
-        addState(new DriveStraightForward(engine,  -0.3, 1000));
-        addState(new DriveStraightForward(engine, 0.5, 860));
+        addState(new DriveStraightBackward(engine, 0.3, 500));
+        addState(new TurnLeft(engine, 0.3, 2050));
+        addState(new DriveStraightForward(engine, -0.3, 490));
+        addState(new DriveStraightForward(engine, 0.3, 250));
+
 
     }
 
