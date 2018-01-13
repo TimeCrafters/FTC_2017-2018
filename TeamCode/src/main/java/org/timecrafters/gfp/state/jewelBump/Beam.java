@@ -9,7 +9,7 @@ import org.timecrafters.gfp.config.Config;
 
 public class Beam extends Config {
     double power;
-    boolean runTime;
+    boolean runTime = false;
     int timems;
     public Beam(Engine engine, double power) {
         super(engine);
