@@ -7,31 +7,34 @@ import org.timecrafters.Liv.SubEngines.BlueBackLeft;
 import org.timecrafters.Liv.SubEngines.BlueBackRight;
 import org.timecrafters.Liv.SubEngines.RedBackLeft;
 import org.timecrafters.engine.Engine;
+import org.timecrafters.gfp.state.cam.ReadCam;
 
 /**
  * Created by Liv on 12/21/2017.
  */
 
-@Autonomous(name="Blue Back")
-public class BlueBack extends Engine {
-    @Override
+  @Autonomous(name="Blue Back")
+  public class BlueBack extends Engine {
+
+
+    ReadCam readCam = new ReadCam(this);
+
     public void setProcesses() {
-        switch (1) {
-            case 1:
-                addSubEngine(new BlueBackRight(this));
-                break;
-            case 2:
-                addSubEngine(new BlueBackLeft(this));
-                break;
-            case 3:
-                addSubEngine(new BlueBackCenter(this));
-                break;
+
+        addState(readCam);
+
+        addSubEngine(new BlueBackRight(this,readCam));
+
+        addSubEngine(new BlueBackLeft(this,readCam));
+
+        addSubEngine(new BlueBackCenter(this,readCam));
+
 
 
         }
 
     }
-}
+
 
 
 

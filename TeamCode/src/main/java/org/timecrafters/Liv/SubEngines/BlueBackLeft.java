@@ -1,9 +1,11 @@
 package org.timecrafters.Liv.SubEngines;
 
+import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.SubEngine;
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
+import org.timecrafters.gfp.state.cam.ReadCam;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
 import org.timecrafters.gfp.state.grabber.LeftGrabber;
@@ -14,12 +16,15 @@ import org.timecrafters.gfp.state.grabber.LeftGrabber;
 
 public class BlueBackLeft extends SubEngine{
     Engine engine;
-    public BlueBackLeft(Engine engine) {
+    ReadCam readCam;
+    public BlueBackLeft(Engine engine, ReadCam readCam) {
         this.engine=engine;
+        this.readCam = readCam;
     }
 
     @Override
     public void setProcesses() {
+
         addState(new DriveStraightForward(engine, -0.3, 3510));
         addState(new TurnLeft(engine, 0.3, 2565));
         addState(new RaiseArm(engine, 1, 750));
@@ -35,6 +40,8 @@ public class BlueBackLeft extends SubEngine{
 
     @Override
     public void evaluate() {
-        setRunable(true);
+        if(readCam.getVuMark() == RelicRecoveryVuMark.LEFT) {
+            setRunable(true);
+        }
     }
 }

@@ -9,6 +9,7 @@ import org.timecrafters.Liv.SubEngines.RedBackLeft;
 import org.timecrafters.Liv.SubEngines.RedBackRight;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.state.arm.*;
+import org.timecrafters.gfp.state.cam.ReadCam;
 import org.timecrafters.gfp.state.drive.DriveStraightBackward;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
@@ -24,23 +25,17 @@ import org.timecrafters.gfp.state.grabber.LeftGrabber;
 public class RedBack extends Engine {
 
 
+    ReadCam readCam = new ReadCam(this);
+
     public void setProcesses() {
 
-        switch (1) {
-            case 1:
-                addSubEngine(new RedBackLeft(this));
-                break;
-            case 2:
-                addSubEngine(new RedBackCenter(this));
-                break;
-            case 3:
-                addSubEngine(new RedBackRight(this));
+            addState(readCam);
 
+            addSubEngine(new RedBackLeft(this,readCam));
 
+            addSubEngine(new RedBackCenter(this,readCam));
 
-
-
-        }
+            addSubEngine(new RedBackRight(this,readCam));
 
         }
     }
