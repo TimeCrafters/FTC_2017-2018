@@ -1,9 +1,13 @@
 package org.timecrafters.Darcshadowz.SubEngines.Red;
 
+import android.support.annotation.RequiresPermission;
+
+import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.SubEngine;
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
+import org.timecrafters.gfp.state.cam.ReadCam;
 import org.timecrafters.gfp.state.drive.DriveStraightBackward;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
@@ -16,10 +20,12 @@ import org.timecrafters.gfp.state.grabber.LeftGrabber;
 
 public class RedFrontCenterColumn extends SubEngine {
     Engine engine;
-    public RedFrontCenterColumn(Engine engine) {
-        this.engine = engine;
-    }
+    ReadCam readCam;
 
+    public RedFrontCenterColumn(Engine engine, ReadCam readCam) {
+        this.engine = engine;
+        this.readCam = readCam;
+    }
 
     @Override
 
@@ -28,7 +34,7 @@ public class RedFrontCenterColumn extends SubEngine {
         addState(new TurnLeft(engine, 0.3, 1000));
         addState(new DriveStraightForward(engine, 0.5, 3150));
 
-        addState(new TurnRight(engine,0.3,1550));
+        addState(new TurnRight(engine, 0.3, 1550));
         addState(new DriveStraightForward(engine, 0.5, 700));
 
         addState(new ExtendArm(engine, 1, 2800));
@@ -38,13 +44,15 @@ public class RedFrontCenterColumn extends SubEngine {
         addState(new TurnRight(engine, 0.3, 1750));
         addState(new DriveStraightBackward(engine, 0.5, 700));
         addState(new DriveStraightForward(engine, 0.5, 100));
-        addState(new RaiseArm(engine,-1, 1950));
+        addState(new RaiseArm(engine, -1, 1950));
         addState(new ExtendArm(engine, 0, 0));
     }
 
     @Override
     public void evaluate() {
-    //    setPreInit(true);
-        setRunable(true);
+        //    setPreInit(true);
+        if (readCam.getVuMark() == RelicRecoveryVuMark.CENTER) {
+            setRunable(true);
+        }
     }
 }
