@@ -8,8 +8,10 @@ import org.timecrafters.gfp.config.Config;
  */
 
 public class Beam extends Config {
-    int power;
-    public Beam(Engine engine, int power) {
+    double power;
+    boolean runTime;
+    int timems;
+    public Beam(Engine engine, double power) {
         super(engine);
         this.power = power;
     }
@@ -22,9 +24,20 @@ public class Beam extends Config {
     @Override
     public void exec() {
         crBeam.setPower(power);
-        if(beamTouch.isPressed()){
-            crBeam.setPower(0);
+        if(runTime){
+            sleep(timems);
+            crFlipper.setPower(0);
             setFinished(true);
+        }else {
+            if (beamTouch.isPressed()) {
+                crBeam.setPower(0);
+                setFinished(true);
+            }
         }
+    }
+
+    public void setRunTime(int timems){
+        runTime = true;
+        this.timems = timems;
     }
 }

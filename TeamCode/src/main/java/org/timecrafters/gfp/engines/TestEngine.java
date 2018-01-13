@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.state.TestState;
+import org.timecrafters.gfp.state.jewelBump.Beam;
 import org.timecrafters.gfp.subEngine.TestSubEngine;
 
 
@@ -18,11 +19,9 @@ public class TestEngine extends Engine {
         //addThreadedState(driveStraightForward);
         /*addState(new TestState());
         addThreadedState(new TestState());*/
-        TestState testState = new TestState();
-
-        addState(testState);
-        addSubEngine(new TestSubEngine(testState));
-        addState(new TestState());
+        Beam beam = new Beam(this,0.1);
+        beam.setRunTime(200);
+        addState(beam);
         //addState(testState);
 
 
