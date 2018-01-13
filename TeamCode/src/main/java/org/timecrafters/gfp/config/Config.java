@@ -89,8 +89,8 @@ public class Config extends State {
         flipperTouch = engine.hardwareMap.touchSensor.get("flipperTouch");
         beamTouch = engine.hardwareMap.touchSensor.get("beamTouch");
 
-        frontRightDistanceSensor = engine.hardwareMap.get(ModernRoboticsI2cRangeSensor.class,
-                "frontRightDistanceSensor");
+        //frontRightDistanceSensor = engine.hardwareMap.get(ModernRoboticsI2cRangeSensor.class,
+        //        "frontRightDistanceSensor");
 
         colorSensor = engine.hardwareMap.colorSensor.get("colorSensor");
 
