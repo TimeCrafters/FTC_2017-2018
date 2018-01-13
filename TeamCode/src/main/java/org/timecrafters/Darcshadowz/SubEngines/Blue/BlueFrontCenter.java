@@ -21,7 +21,7 @@ public class BlueFrontCenter extends SubEngine {
     Engine engine;
     ReadCam readCam;
 
-    public BlueFrontCenter(Engine engine) {
+    public BlueFrontCenter(Engine engine,ReadCam readCam) {
         this.engine = engine;
 
         this.engine = engine;
