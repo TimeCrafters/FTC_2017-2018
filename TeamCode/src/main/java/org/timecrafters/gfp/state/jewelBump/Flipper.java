@@ -9,7 +9,8 @@ import org.timecrafters.gfp.config.Config;
 
 public class Flipper extends Config {
     int power;
-    boolean unpressed = true;
+    boolean runTime;
+    int timems;
     public Flipper(Engine engine, int power) {
         super(engine);
         this.power = power;
@@ -23,9 +24,12 @@ public class Flipper extends Config {
     @Override
     public void exec() {
         crFlipper.setPower(power);
-        if(flipperTouch.isPressed()){
+
+
+        if (flipperTouch.isPressed()) {
             crFlipper.setPower(0);
             setFinished(true);
         }
+
     }
 }
