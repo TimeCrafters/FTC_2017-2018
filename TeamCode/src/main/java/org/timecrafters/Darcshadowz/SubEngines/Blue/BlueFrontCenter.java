@@ -19,10 +19,15 @@ import org.timecrafters.gfp.state.grabber.LeftGrabber;
 
 public class BlueFrontCenter extends SubEngine {
     Engine engine;
+    ReadCam readCam;
 
-    public BlueFrontCenter(Engine engine){this.engine = engine;}
+    public BlueFrontCenter(Engine engine) {
+        this.engine = engine;
 
-    ReadCam read = new ReadCam(engine);
+        this.engine = engine;
+        this.readCam = readCam;
+    }
+
     @Override
     public void setProcesses() {
 
@@ -47,7 +52,7 @@ public class BlueFrontCenter extends SubEngine {
     @Override
     public void evaluate() {
 //        setPreInit(true);
-        if(read.getVuMark() == RelicRecoveryVuMark.CENTER) {
+        if(readCam.getVuMark() == RelicRecoveryVuMark.CENTER) {
             setRunable(true);
         }
 

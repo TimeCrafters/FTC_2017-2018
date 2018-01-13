@@ -2,38 +2,31 @@ package org.timecrafters.Darcshadowz.Engines;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.timecrafters.Darcshadowz.State.RightGrabber;
-import org.timecrafters.Darcshadowz.State.VeeringRight;
 import org.timecrafters.Darcshadowz.SubEngines.Red.RedFrontCenterColumn;
 import org.timecrafters.Darcshadowz.SubEngines.Red.RedFrontLeftColumn;
 import org.timecrafters.Darcshadowz.SubEngines.Red.RedFrontRightColumn;
 import org.timecrafters.engine.Engine;
-import org.timecrafters.gfp.state.arm.ExtendArm;
-import org.timecrafters.gfp.state.arm.RaiseArm;
-import org.timecrafters.gfp.state.drive.DriveStraightBackward;
-import org.timecrafters.gfp.state.drive.DriveStraightForward;
-import org.timecrafters.gfp.state.drive.TurnLeft;
-import org.timecrafters.gfp.state.drive.TurnRight;
-import org.timecrafters.gfp.state.grabber.LeftGrabber;
+import org.timecrafters.gfp.state.cam.ReadCam;
 
 /**
  * Created by Dylan on 11/14/2017.
  */
 
 
-@Autonomous(name = "DYLAN TEST RED")
+@Autonomous(name = "DYLAN RED FRONT")
 public class DarcShadowzTestEngineRed extends Engine {
 
+    ReadCam readCam = new ReadCam(this);
 
     public void setProcesses() {
 
+        addState(readCam);
 
+        addSubEngine(new RedFrontRightColumn(this));
 
-          addSubEngine(new RedFrontRightColumn(this));
+        addSubEngine(new RedFrontCenterColumn(this, readCam));
 
-     //     addSubEngine(new RedFrontCenterColumn(this));
-
-     //     addSubEngine(new RedFrontLeftColumn(this));
+        addSubEngine(new RedFrontLeftColumn(this));
 
     }
 

@@ -1,9 +1,13 @@
 package org.timecrafters.Darcshadowz.SubEngines.Red;
 
+import android.support.annotation.RequiresPermission;
+
+import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.SubEngine;
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
+import org.timecrafters.gfp.state.cam.ReadCam;
 import org.timecrafters.gfp.state.drive.DriveStraightBackward;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
@@ -16,10 +20,14 @@ import org.timecrafters.gfp.state.grabber.LeftGrabber;
 
 public class RedFrontRightColumn extends SubEngine {
     Engine engine;
+    ReadCam readCam;
+
     public RedFrontRightColumn(Engine engine) {
         this.engine = engine;
+        this.readCam = readCam;
     }
 
+    ReadCam read = new ReadCam(engine);
     @Override
     public void setProcesses() {
         addState(new DriveStraightForward(engine, 0.15, 2500));
@@ -44,6 +52,7 @@ public class RedFrontRightColumn extends SubEngine {
     @Override
     public void evaluate() {
     //    setPreInit(true);
+        if (readCam.getVuMark() == RelicRecoveryVuMark.RIGHT)
         setRunable(true);
     }
 }
