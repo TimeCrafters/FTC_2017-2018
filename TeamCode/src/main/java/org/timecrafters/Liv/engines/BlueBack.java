@@ -17,9 +17,10 @@ import org.timecrafters.gfp.state.cam.ReadCam;
   public class BlueBack extends Engine {
 
 
-    ReadCam readCam = new ReadCam(this);
+
 
     public void setProcesses() {
+        ReadCam readCam = new ReadCam(this);
 
         addState(readCam);
 
