@@ -27,7 +27,7 @@ public class DarcShadowzTestEngineRed extends Engine {
     public void setProcesses() {
 
 
-     //     addSubEngine(new RedFrontRightColumn(this));
+          addSubEngine(new RedFrontRightColumn(this));
 
      //     addSubEngine(new RedFrontCenterColumn(this));
 
