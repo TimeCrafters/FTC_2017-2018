@@ -16,17 +16,19 @@ import org.timecrafters.gfp.state.cam.ReadCam;
 @Autonomous(name = "DYLAN RED FRONT")
 public class DarcShadowzTestEngineRed extends Engine {
 
-    ReadCam readCam = new ReadCam(this);
+
 
     public void setProcesses() {
 
+        ReadCam readCam = new ReadCam(this);
+
         addState(readCam);
 
-        addSubEngine(new RedFrontRightColumn(this));
+        //addSubEngine(new RedFrontRightColumn(this));
 
         addSubEngine(new RedFrontCenterColumn(this, readCam));
 
-        addSubEngine(new RedFrontLeftColumn(this));
+        //addSubEngine(new RedFrontLeftColumn(this));
 
     }
 

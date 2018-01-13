@@ -20,7 +20,7 @@ public class BlueFrontRight extends SubEngine {
     Engine engine;
     ReadCam readCam;
 
-    public BlueFrontRight(Engine engine){
+    public BlueFrontRight(Engine engine,ReadCam readCam){
         this.engine = engine;
         this.readCam = readCam;
 
