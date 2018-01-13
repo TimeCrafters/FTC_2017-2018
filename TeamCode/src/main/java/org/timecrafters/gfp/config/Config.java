@@ -1,11 +1,10 @@
 package org.timecrafters.gfp.config;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.I2cDevice;
-import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.timecrafters.engine.Engine;
@@ -34,12 +33,16 @@ public class Config extends State {
     public DcMotor dcWinch;
 
     public TouchSensor winchTouch;
+    public TouchSensor flipperTouch;
+    public TouchSensor beamTouch;
 
     public ModernRoboticsI2cRangeSensor frontRightDistanceSensor;
     public ModernRoboticsI2cRangeSensor backRightDistanceSensor;
     public ModernRoboticsI2cRangeSensor frontDistanceSensor;
 
-    public TouchSensor flipperTouch;
+    public CRServo crFlipper;
+
+    public CRServo crBeam;
 
     public ColorSensor colorSensor;
 
@@ -83,11 +86,16 @@ public class Config extends State {
         dcArm.setDirection(DcMotorSimple.Direction.FORWARD);
 
         winchTouch = engine.hardwareMap.touchSensor.get("winchTouch");
+        flipperTouch = engine.hardwareMap.touchSensor.get("flipperTouch");
+        beamTouch = engine.hardwareMap.touchSensor.get("beamTouch");
+
         frontRightDistanceSensor = engine.hardwareMap.get(ModernRoboticsI2cRangeSensor.class,
                 "frontRightDistanceSensor");
 
         colorSensor = engine.hardwareMap.colorSensor.get("colorSensor");
 
+        crFlipper = engine.hardwareMap.crservo.get("crFlipper");
+        crBeam = engine.hardwareMap.crservo.get("crBeam");
 
 
     }
