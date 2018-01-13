@@ -34,7 +34,7 @@ public class BlueBackRight extends SubEngine {
         addState(new RaiseArm(engine, 1, 560));
         addState(new DriveStraightForward(engine, 0.3, 430));
         addState(new ExtendArm(engine, 0.5, 1390));
-        addState(new RightGrabber(engine, 0.5, 450));
+        addState(new RightGrabber(engine, -0.5, 500));
         addState(new DriveStraightBackward(engine, 0.3, 500));
         addState(new TurnLeft(engine, 0.3, 2050));
         addState(new DriveStraightForward(engine, -0.3, 490));

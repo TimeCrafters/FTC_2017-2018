@@ -25,10 +25,10 @@ public class RedBackLeft extends SubEngine{
 
     @Override
     public void setProcesses() {
-        addState(new DriveStraightForward(engine, 0.3, 3511));
-        addState(new TurnRight(engine, 0.2, 533));
+        addState(new DriveStraightForward(engine, 0.3, 3820));
+        addState(new TurnRight(engine, 0.2, 1025));
         addState(new RaiseArm(engine, 1, 450));
-        addState(new ExtendArm(engine, 0.5, 140));
+        addState(new ExtendArm(engine, 0.5, 1140));
         addState(new RightGrabber(engine, -0.5, 450));
         addState(new DriveStraightForward(engine, -0.5, 800));
         addState(new TurnLeft(engine, 0.3, 860));
