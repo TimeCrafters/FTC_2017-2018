@@ -16,13 +16,19 @@ import org.timecrafters.engine.Engine;
 public class BlueBack extends Engine {
     @Override
     public void setProcesses() {
+        switch (1) {
+            case 1:
+                addSubEngine(new BlueBackRight(this));
+                break;
+            case 2:
+                addSubEngine(new BlueBackLeft(this));
+                break;
+            case 3:
+                addSubEngine(new BlueBackCenter(this));
+                break;
 
-       addSubEngine(new BlueBackRight(this));
 
-
-
-
-
+        }
 
     }
 }

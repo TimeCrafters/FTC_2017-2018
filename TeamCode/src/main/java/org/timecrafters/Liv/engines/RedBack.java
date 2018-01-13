@@ -26,17 +26,21 @@ public class RedBack extends Engine {
 
     public void setProcesses() {
 
+        switch (1) {
+            case 1:
+                addSubEngine(new RedBackLeft(this));
+                break;
+            case 2:
+                addSubEngine(new RedBackCenter(this));
+                break;
+            case 3:
+                addSubEngine(new RedBackRight(this));
 
 
 
 
-        addSubEngine(new RedBackLeft(this));
 
-
-
-
-
-
+        }
 
         }
     }
