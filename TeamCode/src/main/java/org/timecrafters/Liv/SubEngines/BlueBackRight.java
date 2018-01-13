@@ -25,7 +25,7 @@ public class BlueBackRight extends SubEngine {
     public void setProcesses() {
         //Right glyph goal
         addState(new DriveStraightForward(engine, -0.3, 4925));
-        addState(new TurnRight(engine, 0.2, 375));
+        addState(new TurnRight(engine, 0.2, 370));
         addState(new RaiseArm(engine, 1, 560));
         addState(new DriveStraightForward(engine, 0.3, 430));
         addState(new ExtendArm(engine, 0.5, 1390));
