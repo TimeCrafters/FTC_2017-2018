@@ -20,7 +20,7 @@ public class TestEngine extends Engine {
         /*addState(new TestState());
         addThreadedState(new TestState());*/
         Beam beam = new Beam(this,0.1);
-        beam.setRunTime(200);
+        //beam.setRunTime(200);
         addState(beam);
         //addState(testState);
 
