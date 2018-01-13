@@ -4,13 +4,12 @@ import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.Config;
 
 /**
- * Created by goldfishpi on 1/9/18.
+ * Created by goldfishpi on 1/12/18.
  */
 
-public class Flipper extends Config {
+public class Beam extends Config {
     int power;
-    boolean unpressed = true;
-    public Flipper(Engine engine, int power) {
+    public Beam(Engine engine, int power) {
         super(engine);
         this.power = power;
     }
@@ -22,9 +21,9 @@ public class Flipper extends Config {
 
     @Override
     public void exec() {
-        crFlipper.setPower(power);
-        if(flipperTouch.isPressed()){
-            crFlipper.setPower(0);
+        crBeam.setPower(power);
+        if(beamTouch.isPressed()){
+            crBeam.setPower(0);
             setFinished(true);
         }
     }
