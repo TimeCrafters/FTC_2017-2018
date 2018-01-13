@@ -42,7 +42,7 @@ public class ReadCam extends Config {
         parameters.vuforiaLicenseKey = LICENSE_KEY;
 
         //specify camera
-        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.FRONT;
 
         //create vuforia
         vuforia = ClassFactory.createVuforiaLocalizer(parameters);
