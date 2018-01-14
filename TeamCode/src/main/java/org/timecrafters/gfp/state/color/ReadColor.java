@@ -1,5 +1,7 @@
 package org.timecrafters.gfp.state.color;
 
+import android.util.Log;
+
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.Config;
 
@@ -19,11 +21,16 @@ public class ReadColor extends Config {
 
     int sleepms;
 
-    public ReadColor(Engine engine,int reads,int colorIntensity,int sleemms) {
+    public ReadColor(Engine engine,int reads,int colorIntensity,int sleepms) {
         super(engine);
         this.reads = reads;
         this.colorIntensity = colorIntensity;
-        this.sleepms = sleemms;
+        this.sleepms = sleepms;
+    }
+
+    public void init(){
+        super.init();
+        colorSensor.enableLed(true);
     }
 
     public void exec(){
@@ -45,9 +52,11 @@ public class ReadColor extends Config {
 
     public double getBlueAverage() {
         return blueAverage;
+
     }
 
     public double getRedAverage() {
+        Log.i(TAG,Double.toString(redAverage));
         return redAverage;
     }
 }

@@ -11,9 +11,17 @@ public class Beam extends Config {
     double power;
     boolean runTime = false;
     int timems;
+
     public Beam(Engine engine, double power) {
         super(engine);
         this.power = power;
+    }
+
+    public Beam(Engine engine, double power, int timems){
+        super(engine);
+        this.power=power;
+        this.timems = timems;
+        this.runTime = true;
     }
 
     @Override
@@ -26,7 +34,7 @@ public class Beam extends Config {
         crBeam.setPower(power);
         if(runTime){
             sleep(timems);
-            crFlipper.setPower(0);
+            crBeam.setPower(0);
             setFinished(true);
         }else {
             if (beamTouch.isPressed()) {

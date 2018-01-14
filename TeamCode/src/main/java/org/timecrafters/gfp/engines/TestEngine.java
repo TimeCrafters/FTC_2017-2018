@@ -4,7 +4,10 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.state.TestState;
+import org.timecrafters.gfp.state.cam.ReadCam;
+import org.timecrafters.gfp.state.color.ReadColor;
 import org.timecrafters.gfp.state.jewelBump.Beam;
+import org.timecrafters.gfp.state.jewelBump.Flipper;
 import org.timecrafters.gfp.subEngine.TestSubEngine;
 
 
@@ -14,19 +17,13 @@ import org.timecrafters.gfp.subEngine.TestSubEngine;
 @TeleOp(name = "Test")
 public class TestEngine extends Engine {
 
+
     @Override
     public void setProcesses(){
-        //addThreadedState(driveStraightForward);
-        /*addState(new TestState());
-        addThreadedState(new TestState());*/
-        Beam beam = new Beam(this,0.1);
-        //beam.setRunTime(200);
-        addState(beam);
-        //addState(testState);
 
-
-        //addState(new ButtClass(this));
-        //addState(new DriveTest(this));
+        ReadColor readColor = new ReadColor(this,3,5,0);
+        addState(readColor);
+        addSubEngine(new TestSubEngine(readColor));
     }
 
 }

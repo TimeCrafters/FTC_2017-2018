@@ -41,8 +41,8 @@ public class Config extends State {
     public ModernRoboticsI2cRangeSensor frontDistanceSensor;
 
     public CRServo crFlipper;
-
     public CRServo crBeam;
+    public CRServo crGrabber;
 
     public ColorSensor colorSensor;
 
@@ -92,10 +92,11 @@ public class Config extends State {
         //frontRightDistanceSensor = engine.hardwareMap.get(ModernRoboticsI2cRangeSensor.class,
         //        "frontRightDistanceSensor");
 
-        //colorSensor = engine.hardwareMap.colorSensor.get("colorSensor");
+        colorSensor = engine.hardwareMap.colorSensor.get("colorSensor");
 
         crFlipper = engine.hardwareMap.crservo.get("crFlipper");
         crBeam = engine.hardwareMap.crservo.get("crBeam");
+        crGrabber = engine.hardwareMap.crservo.get("crGrabber");
 
 
     }
