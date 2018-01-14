@@ -17,6 +17,7 @@ public class TestSubEngine extends SubEngine {
 
     public TestSubEngine(ReadColor readColor) {
         this.readColor = readColor;
+        setPreInit(true);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class TestSubEngine extends SubEngine {
         /*if(readCam.getVuMark() == RelicRecoveryVuMark.CENTER) {
             setRunable(state.getIsFinished());
         }*/
-        if(readColor.getRedAverage() >= 20) {
+        if(readColor.getRedAverage() >= 2.0) {
             setRunable(true);
         }
     }
