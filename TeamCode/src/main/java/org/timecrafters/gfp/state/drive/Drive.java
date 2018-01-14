@@ -9,12 +9,12 @@ import org.timecrafters.engine.State;
 import org.timecrafters.gfp.config.Config;
 
 /**
- * Created by t420 on 11/2/2017.
+ * Created by GoldfishPi on 11/2/2017.
  */
 
 public abstract class Drive extends Config {
 
-    public int distance;
+    int distance;
     public double power;
 
     private int frontRight;
@@ -26,7 +26,6 @@ public abstract class Drive extends Config {
     private DcMotor[] motors;
 
     private double powerInc = 0.05;
-    private int powerChanges;
 
     private int rampDistance;
     private int rampChangeDistances;
@@ -34,26 +33,21 @@ public abstract class Drive extends Config {
     private double currentPower;
     private int lastChangePosition = 0;
 
-    private int frontRightStart;
-    private int frontLeftStart;
-    private int backRightStart;
-    private int backLeftStart;
-
     private boolean runUntillStateFinished = false;
     private volatile State finishedState;
 
     private boolean[] finished = new boolean[4];
 
 
-    public Drive(Engine engine){
+    Drive(Engine engine){
         super(engine);
     }
 
     public void init(){
         super.init();
         rampDistance = (int)(distance *.20);
-        powerChanges = (int)(power/powerInc);
-        rampChangeDistances = (int)rampDistance/powerChanges;
+        int powerChanges = (int) (power / powerInc);
+        rampChangeDistances = rampDistance/ powerChanges;
     }
 
     public void exec(){
@@ -130,29 +124,18 @@ public abstract class Drive extends Config {
             }
 
         }else {
-            if (dcFrontRightEncoder >= distance) {
-                finished[0] = true;
+
+            dcFrontRight.setPower(power*frontRight);
+            dcFrontLeft.setPower(power*frontLeft);
+            dcBackRight.setPower(power*backRight);
+            dcBackLeft.setPower(power*backLeft);
+
+            if(motorTickAverage >= distance){
                 dcFrontRight.setPower(0);
-            } else {
-                dcFrontRight.setPower(power * frontRight);
-            }
-            if (dcFrontLeftEncoder >= distance) {
-                finished[1] = true;
                 dcFrontLeft.setPower(0);
-            } else {
-                dcFrontLeft.setPower(power * frontLeft);
-            }
-            if (dcBackRightEncoder >= distance) {
-                finished[2] = true;
                 dcBackRight.setPower(0);
-            } else {
-                dcBackRight.setPower(power * backRight);
-            }
-            if (dcBackLeftEncoder >= distance) {
-                finished[3] = true;
                 dcBackLeft.setPower(0);
-            } else {
-                dcBackLeft.setPower(power * backLeft);
+                setFinished(true);
             }
         }
 
@@ -166,14 +149,14 @@ public abstract class Drive extends Config {
 
         Log.i(TAG+".DRIVEMOTORS","---------");
 
-        boolean finishedReturn = true;
-        for(int i = 0; i < finished.length; i ++){
-            if(finished[i] == false){
+        /*boolean finishedReturn = true;
+        for (boolean aFinished : finished) {
+            if (!aFinished) {
                 finishedReturn = false;
                 break;
             }
         }
-        setFinished(finishedReturn);
+        setFinished(finishedReturn);*/
 
     }
 
@@ -182,16 +165,16 @@ public abstract class Drive extends Config {
         finishedState = state;
     }
 
-    public void setMotors(int frontLeft, int backLeft, int frontRight, int backRight){
-        this.frontRight = -frontRight;
-        this.frontLeft = -frontLeft;
+    void setMotors(int frontLeft, int backLeft, int frontRight, int backRight){
+        this.frontRight = frontRight;
+        this.frontLeft = frontLeft;
 
-        this.backRight = -backRight;
-        this.backLeft = -backLeft;
+        this.backRight = backRight;
+        this.backLeft = backLeft;
 
     }
 
-    public void setReadMotors(DcMotor[] motors){
+    void setReadMotors(DcMotor[] motors){
         this.motors = motors;
 
     }

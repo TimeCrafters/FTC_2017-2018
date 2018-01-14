@@ -1,9 +1,10 @@
 package org.timecrafters.gfp.config;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.I2cDevice;
-import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.timecrafters.engine.Engine;
@@ -32,10 +33,18 @@ public class Config extends State {
     public DcMotor dcWinch;
 
     public TouchSensor winchTouch;
+    public TouchSensor flipperTouch;
+    public TouchSensor beamTouch;
 
-    public OpticalDistanceSensor frontRightDistanceSensor;
-    public OpticalDistanceSensor backRightDistanceSensor;
-    public OpticalDistanceSensor frontDistanceSensor;
+    public ModernRoboticsI2cRangeSensor frontRightDistanceSensor;
+    public ModernRoboticsI2cRangeSensor backRightDistanceSensor;
+    public ModernRoboticsI2cRangeSensor frontDistanceSensor;
+
+    public CRServo crFlipper;
+    public CRServo crBeam;
+    public CRServo crGrabber;
+
+    public ColorSensor colorSensor;
 
     long time = 100;
 
@@ -47,7 +56,7 @@ public class Config extends State {
 
         dcLeftGrabber = engine.hardwareMap.dcMotor.get("dcLeftGrabber");
 
-        sleep(time);
+//        sleep(time);
 
         //Drive Train
         dcFrontLeft  = engine.hardwareMap.dcMotor.get("dcFrontLeft");
@@ -56,9 +65,11 @@ public class Config extends State {
 
         dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
         dcFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        dcFrontRight.setDirection(DcMotorSimple.Direction.FORWARD);
 
         dcBackRight  = engine.hardwareMap.dcMotor.get("dcBackRight");
         dcBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        dcBackRight.setDirection(DcMotorSimple.Direction.FORWARD);
 
 
         dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
@@ -74,21 +85,24 @@ public class Config extends State {
         dcArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         dcArm.setDirection(DcMotorSimple.Direction.FORWARD);
 
-        winchTouch = engine.hardwareMap.touchSensor.get("winchTouch");
-        //frontRightDistanceSensor = engine.hardwareMap.get(OpticalDistanceSensor.class, "frontRightDistanceSensor");
+        //winchTouch = engine.hardwareMap.touchSensor.get("winchTouch");
+        flipperTouch = engine.hardwareMap.touchSensor.get("flipperTouch");
+        beamTouch = engine.hardwareMap.touchSensor.get("beamTouch");
+
+        //frontRightDistanceSensor = engine.hardwareMap.get(ModernRoboticsI2cRangeSensor.class,
+        //        "frontRightDistanceSensor");
+
+        colorSensor = engine.hardwareMap.colorSensor.get("colorSensor");
+
+        crFlipper = engine.hardwareMap.crservo.get("crFlipper");
+        crBeam = engine.hardwareMap.crservo.get("crBeam");
+        crGrabber = engine.hardwareMap.crservo.get("crGrabber");
+
 
     }
 
     public void exec(){
         setFinished(true);
-    }
-
-    public void sleep(long timems){
-        try {
-            Thread.sleep(timems);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
 }
