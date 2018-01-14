@@ -10,6 +10,7 @@ import org.timecrafters.gfp.state.cam.ReadCam;
 import org.timecrafters.gfp.state.color.ReadColor;
 import org.timecrafters.gfp.state.jewelBump.Beam;
 import org.timecrafters.gfp.state.jewelBump.Flipper;
+import org.timecrafters.gfp.state.util.Sleep;
 import org.timecrafters.gfp.subEngine.TestSubEngine;
 
 
@@ -24,6 +25,9 @@ public class TestEngine extends Engine {
     public void setProcesses(){
 
         ReadColor readColor = new ReadColor(this,3,5,0);
+        addState(new Beam(this,-1.0,1500));
+        addState(new Flipper(this,1.0,600));
+        addState(new Beam(this, -1.0, 2500));
         addState(readColor);
         addSubEngine(new RedBumpLeft(this, readColor));
         addSubEngine(new RedBumpRight(this, readColor));

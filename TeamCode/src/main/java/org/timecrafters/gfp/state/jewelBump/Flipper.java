@@ -45,5 +45,7 @@ public class Flipper extends Config {
             crFlipper.setPower(0);
             setFinished(true);
         }
+
+
     }
 }
