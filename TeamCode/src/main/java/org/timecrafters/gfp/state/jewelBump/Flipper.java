@@ -1,5 +1,7 @@
 package org.timecrafters.gfp.state.jewelBump;
 
+import android.util.Log;
+
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.Config;
 
@@ -8,12 +10,18 @@ import org.timecrafters.gfp.config.Config;
  */
 
 public class Flipper extends Config {
-    int power;
+    double power;
     boolean runTime;
     int timems;
-    public Flipper(Engine engine, int power) {
+    public Flipper(Engine engine, double power) {
         super(engine);
         this.power = power;
+    }
+    public Flipper(Engine engine, double power,int timems) {
+        super(engine);
+        this.power = power;
+        this.runTime = true;
+        this.timems = timems;
     }
 
     @Override
@@ -25,11 +33,17 @@ public class Flipper extends Config {
     public void exec() {
         crFlipper.setPower(power);
 
+        if (!runTime){
+            if (flipperTouch.isPressed()) {
+                crFlipper.setPower(0);
+                setFinished(true);
+            }
+        }else{
 
-        if (flipperTouch.isPressed()) {
+            crFlipper.setPower(power);
+            sleep(timems);
             crFlipper.setPower(0);
             setFinished(true);
         }
-
     }
 }
