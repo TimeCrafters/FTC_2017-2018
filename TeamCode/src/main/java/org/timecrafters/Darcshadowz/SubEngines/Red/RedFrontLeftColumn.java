@@ -19,7 +19,7 @@ import org.timecrafters.gfp.state.grabber.LeftGrabber;
 public class RedFrontLeftColumn extends SubEngine {
     Engine engine;
     ReadCam readCam;
-    public RedFrontLeftColumn(Engine engine){
+    public RedFrontLeftColumn(Engine engine, ReadCam readCam){
         this.engine = engine;
         this.readCam = readCam;
     }

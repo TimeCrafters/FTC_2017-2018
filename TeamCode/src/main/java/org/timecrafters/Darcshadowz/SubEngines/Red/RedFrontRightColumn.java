@@ -22,7 +22,7 @@ public class RedFrontRightColumn extends SubEngine {
     Engine engine;
     ReadCam readCam;
 
-    public RedFrontRightColumn(Engine engine) {
+    public RedFrontRightColumn(Engine engine, ReadCam readCam) {
         this.engine = engine;
         this.readCam = readCam;
     }
