@@ -24,11 +24,11 @@ package org.timecrafters.Liv.SubEngines;
 
 public class BlueBackCenter extends SubEngine{
     Engine engine;
-    ReadCam readCam;
+    //ReadCam readCam;
 
     public BlueBackCenter(Engine engine, ReadCam readCam) {
         this.engine=engine;
-        this.readCam = readCam;
+        //this.readCam = readCam;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class BlueBackCenter extends SubEngine{
 
     @Override
     public void evaluate() {
-        Log.i(TAG, Objects.toString(this)+":"+Objects.toString(readCam.getVuMark()));
+        //Log.i(TAG, Objects.toString(this)+":"+Objects.toString(readCam.getVuMark()));
        /* if (readCam.getVuMark() == RelicRecoveryVuMark.CENTER) {
             setRunable(true);
         }*/

@@ -9,13 +9,14 @@ import org.timecrafters.gfp.state.jewelBump.Flipper;
  * Created by Liv on 1/14/2018.
  */
 
-public class BumpLeft extends SubEngine {
+public class BlueBumpRight extends SubEngine{
     Engine engine;
     ReadColor readColor;
 
-    public BumpLeft(Engine engine,ReadColor readColor) {
+    public BlueBumpRight(Engine engine, ReadColor readColor) {
         this.engine = engine;
         this.readColor = readColor;
+
     }
 
     @Override
@@ -25,9 +26,9 @@ public class BumpLeft extends SubEngine {
 
     @Override
     public void evaluate() {
-        if (readColor.getBlueAverage() >=2.0){
+        if(readColor.getRedAverage() >=0.0){
             setRunable(true);
         }
-
     }
 }
+
