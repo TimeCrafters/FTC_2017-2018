@@ -32,7 +32,7 @@ import org.timecrafters.gfp.state.jewelBump.Flipper;
         ReadCam readCam = new ReadCam(this);
         addState(readCam);
         addState(new Beam(this,-1.0,1500));
-        addState(new Flipper(this,1.0,1000));
+        addState(new Flipper(this,1.0,725));
         addState(new Beam(this, -1.0, 2500));
         addState(readColor);
         addSubEngine(new BumpLeft(this, readColor));
