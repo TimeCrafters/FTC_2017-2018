@@ -31,8 +31,9 @@ import org.timecrafters.gfp.state.util.Sleep;
 
     public void setProcesses() {
 
-        ReadColor readColor = new ReadColor(this,3,5,0);
 
+        ReadColor readColor = new ReadColor(this,3,5,0);
+        readCam = new ReadCam(this);
         addState(new Beam(this,-1.0,1500));
         addState(new Flipper(this,1.0,725));
         addState(new Beam(this, -1.0, 2500));
