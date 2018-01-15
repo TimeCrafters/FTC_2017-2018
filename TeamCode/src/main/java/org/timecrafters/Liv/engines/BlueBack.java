@@ -43,7 +43,7 @@ import org.timecrafters.gfp.state.util.Sleep;
 
         addState(new Beam(this, 1, 2500));
         addState(new Flipper(this, -1, 750));
-        addState(new Beam(this, 1, 1701));
+        addState(new Beam(this, 1, 1700));
 
         addState(new Sleep(this,50));
 
