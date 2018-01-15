@@ -1,9 +1,12 @@
 package org.timecrafters.Liv.SubEngines;
 
+import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
+import org.timecrafters.Darcshadowz.State.RightGrabber;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.SubEngine;
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
+import org.timecrafters.gfp.state.cam.ReadCam;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnRight;
 import org.timecrafters.gfp.state.grabber.LeftGrabber;
@@ -12,10 +15,13 @@ import org.timecrafters.gfp.state.grabber.LeftGrabber;
  * Created by Liv on 12/21/2017.
  */
 
-public class RedBackRight extends SubEngine {
+public class RedBackRight  extends SubEngine{
     Engine engine;
-    public RedBackRight(Engine engine) {
+    ReadCam readCam;
+
+    public RedBackRight (Engine engine, ReadCam readCam) {
         this.engine=engine;
+        this.readCam = readCam;
     }
 
     @Override
@@ -35,7 +41,8 @@ public class RedBackRight extends SubEngine {
     }
 
     @Override
-    public void evaluate() {setRunable(true);
-
-    }
-}
+    public void evaluate() {
+        if (readCam.getVuMark() == RelicRecoveryVuMark.RIGHT) {
+            setRunable(true);
+        }
+    }}

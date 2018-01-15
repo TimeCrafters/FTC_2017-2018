@@ -26,11 +26,15 @@ public class TestEngine extends Engine {
 
         ReadColor readColor = new ReadColor(this,3,5,0);
         addState(new Beam(this,-1.0,1500));
-        addState(new Flipper(this,1.0,600));
+        //addState(new Flipper(this,1.0,530));
+        addState(new Flipper(this,1.0,610));
         addState(new Beam(this, -1.0, 2500));
         addState(readColor);
         addSubEngine(new RedBumpLeft(this, readColor));
         addSubEngine(new RedBumpRight(this, readColor));
+        addState(new Beam(this, 1, 2500));
+        addState(new Flipper(this, -1, 410));
+        addState(new Beam(this, 1, 1500));
     }
 
 }

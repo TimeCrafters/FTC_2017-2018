@@ -21,12 +21,13 @@ public class RedBumpRight extends SubEngine {
 
     @Override
     public void setProcesses() {
-        addState(new Flipper(engine,-0.5,200));
+        addState(new Flipper(engine,-0.5,120));
+        //addState(new Flipper(engine, 0.5, 150));
     }
 
     @Override
     public void evaluate() {
-        if(readColor.getBlueAverage() >=2.0){
+        if(readColor.getBlueAverage() >=0.0){
             setRunable(true);
         }
     }
