@@ -47,8 +47,8 @@ import org.timecrafters.gfp.state.util.Sleep;
 
         addState(new Sleep(this,50));
 
-        readCam = new ReadCam(this);
-        addState(readCam);
+        //readCam = new ReadCam(this);
+        //addState(readCam);
 
         /*addSubEngine(new BlueBackLeft(this,readCam));
         addSubEngine(new BlueBackRight(this,readCam));*/
