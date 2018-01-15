@@ -2,13 +2,12 @@ package org.timecrafters.Darcshadowz.Engines;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.timecrafters.Darcshadowz.SubEngines.Red.RedFrontCenterColumn;
-import org.timecrafters.Darcshadowz.SubEngines.Red.RedFrontLeftColumn;
-import org.timecrafters.Darcshadowz.SubEngines.Red.RedFrontRightColumn;
+import org.timecrafters.Liv.SubEngines.RedBumpLeft;
+import org.timecrafters.Liv.SubEngines.RedBumpRight;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.HardWareConfig;
-import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpLeft;
-import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpRight;
+import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.BlueBumpLeft;
+import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.BlueBumpRight;
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
 import org.timecrafters.gfp.state.cam.ReadCam;
@@ -58,8 +57,8 @@ public class DarcShadowzTestEngineRed extends Engine {
         addState(new DriveStraightForward(this, 0.15, 2500));
         addState(new TurnLeft(this, 0.3, 1000));
         addState(new DriveStraightForward(this, 0.5, 3150));
-        addState(new TurnRight(this, 0.3, 1550));
-        addState(new DriveStraightForward(this, 0.5, 700));
+        addState(new TurnRight(this, 0.3, 1650));
+        addState(new DriveStraightForward(this, 0.5, 500));
         addState(new ExtendArm(this, 1, 2800));
         addState(new LeftGrabber(this, 0.5, 500));
         addState(new RaiseArm(this, 1, 1950));
