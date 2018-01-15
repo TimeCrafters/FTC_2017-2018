@@ -15,9 +15,7 @@ import org.timecrafters.gfp.config.Config;
 
 public class ReadCam extends Config {
 
-    public ReadCam(Engine engine){
-        super(engine);
-    }
+
 
     VuforiaLocalizer vuforia;
 
@@ -33,7 +31,15 @@ public class ReadCam extends Config {
 
     private RelicRecoveryVuMark vuMark;
 
-    int count = 0;
+    int sleepms = 0;
+
+    public ReadCam(Engine engine){
+        super(engine);
+    }
+    public ReadCam(Engine engine,int sleepms){
+        super(engine);
+        this.sleepms=sleepms;
+    }
 
     public void init(){
         super.init();
@@ -60,19 +66,18 @@ public class ReadCam extends Config {
 
         vuMark = RelicRecoveryVuMark.from(relicTemplate);
 
+        sleep(sleepms);
 
         if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
 
             engine.telemetry.addData("VuMark", "%s visible", vuMark);
-            setFinished(true);
+
 
         }else {
             engine.telemetry.addData("VuMark", "not visible");
         }
 
-
-
-        engine.telemetry.update();
+        setFinished(true);
     }
 
 
@@ -82,9 +87,15 @@ public class ReadCam extends Config {
     }
 
     public VuforiaTrackable getRelicTemplate(){return relicTemplate; }
+
     public RelicRecoveryVuMark getVuMark() {
-        return vuMark;
+        if(vuMark != RelicRecoveryVuMark.UNKNOWN) {
+            return vuMark;
+        }else{
+            return RelicRecoveryVuMark.CENTER;
+        }
     }
+
     public int getMarcInt(){
         if(vuMark == RelicRecoveryVuMark.RIGHT){
             return 0;
