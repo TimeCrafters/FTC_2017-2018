@@ -60,7 +60,7 @@ import org.timecrafters.gfp.state.util.Sleep;
         addState(new DriveStraightForward(this, -0.5, 516));
         addState(new TurnLeft(this, 0.3, 1737));
         addState(new DriveStraightForward(this, -0.5, 850));
-        addState(new DriveStraightForward(this, 0.5, 861));
+        addState(new DriveStraightForward(this, 0.5, 860));
 
         //readCam = new ReadCam(this);
         //addState(readCam);
