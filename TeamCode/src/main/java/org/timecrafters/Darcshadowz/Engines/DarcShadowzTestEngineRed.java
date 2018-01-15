@@ -6,6 +6,7 @@ import org.timecrafters.Darcshadowz.SubEngines.Red.RedFrontCenterColumn;
 import org.timecrafters.Darcshadowz.SubEngines.Red.RedFrontLeftColumn;
 import org.timecrafters.Darcshadowz.SubEngines.Red.RedFrontRightColumn;
 import org.timecrafters.engine.Engine;
+import org.timecrafters.gfp.config.HardWareConfig;
 import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpLeft;
 import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpRight;
 import org.timecrafters.gfp.state.arm.ExtendArm;
@@ -34,21 +35,23 @@ public class DarcShadowzTestEngineRed extends Engine {
     public void setProcesses() {
 
         readCam = new ReadCam(this);
+        hardWareConfig = new HardWareConfig(this);
+        addState(hardWareConfig);
         addState(readCam);
 
         ReadColor readColor = new ReadColor(this, 3, 5, 0);
 
-        addState(new Beam(this, -1, 1500));
+        addState(new Beam(this, 1, 1500));
         addState(new Flipper(this, 1, 725));
-        addState(new Beam(this, -1, 2500));
+        addState(new Beam(this, 1, 2500));
         addState(readColor);
 
         addSubEngine(new RedBumpLeft(this, readColor));
         addSubEngine(new RedBumpRight(this, readColor));
 
-        addState(new Beam(this, 1, 2500));
+        addState(new Beam(this, -1, 2500));
         addState(new Flipper(this, -1, 750));
-        addState(new Beam(this, 1, 1700));
+        addState(new Beam(this, -1, 1700));
 
         addState(new Sleep(this, 50));
 

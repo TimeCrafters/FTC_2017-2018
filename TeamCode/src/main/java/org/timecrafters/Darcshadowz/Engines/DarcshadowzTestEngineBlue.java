@@ -9,6 +9,7 @@ import org.timecrafters.Darcshadowz.SubEngines.Blue.BlueFrontRight;
 import org.timecrafters.Liv.SubEngines.BlueBumpLeft;
 import org.timecrafters.Liv.SubEngines.BlueBumpRight;
 import org.timecrafters.engine.Engine;
+import org.timecrafters.gfp.config.HardWareConfig;
 import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpLeft;
 import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpRight;
 import org.timecrafters.gfp.state.arm.ExtendArm;
@@ -34,6 +35,7 @@ public class DarcshadowzTestEngineBlue extends Engine {
     public void setProcesses(){
 
         readCam = new ReadCam(this);
+        HardWareConfig hardWareConfig = new HardWareConfig(this);
         addState(readCam);
 
         ReadColor readColor = new ReadColor(this, 3, 5, 0);

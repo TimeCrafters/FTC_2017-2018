@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.timecrafters.gfp.config.HardWareConfig;
+
 /**
  * Created by t420 on 9/29/2016.
  * First successful test was 5:00 6 thur oct 2016
@@ -53,6 +55,10 @@ public abstract class Engine extends OpMode {
     private boolean opFinished = true;
 
     private boolean subProcessFinished = true;
+
+
+    //TODO remove this
+    public HardWareConfig hardWareConfig;
 
 
     //sets processes
