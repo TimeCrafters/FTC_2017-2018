@@ -3,11 +3,17 @@ package org.timecrafters.gfp.engines;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.timecrafters.engine.Engine;
-import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.BlueBumpLeft;
-import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.BlueBumpRight;
+import org.timecrafters.gfp.config.HardWareConfig;
+import org.timecrafters.gfp.state.TestState;
+import org.timecrafters.gfp.state.cam.ReadCam;
 import org.timecrafters.gfp.state.color.ReadColor;
 import org.timecrafters.gfp.state.jewelBump.Beam;
 import org.timecrafters.gfp.state.jewelBump.Flipper;
+import org.timecrafters.gfp.state.util.Sleep;
+import org.timecrafters.gfp.subEngine.TestCamCenter;
+import org.timecrafters.gfp.subEngine.TestCamLeft;
+import org.timecrafters.gfp.subEngine.TestCamRight;
+import org.timecrafters.gfp.subEngine.TestSubEngine;
 
 
 /**
@@ -16,21 +22,17 @@ import org.timecrafters.gfp.state.jewelBump.Flipper;
 @TeleOp(name = "Test")
 public class TestEngine extends Engine {
 
+    ReadCam readCam;
 
     @Override
     public void setProcesses(){
+        hardWareConfig = new HardWareConfig(this);
+        readCam= new ReadCam(this);
+        addState(readCam);
 
-        ReadColor readColor = new ReadColor(this,3,5,0);
-        addState(new Beam(this,-1.0,1500));
-        //addState(new Flipper(this,1.0,530));
-        addState(new Flipper(this,1.0,610));
-        addState(new Beam(this, -1.0, 2500));
-        addState(readColor);
-        addSubEngine(new BlueBumpLeft(this, readColor));
-        addSubEngine(new BlueBumpRight(this, readColor));
-        addState(new Beam(this, 1, 2500));
-        addState(new Flipper(this, -1, 410));
-        addState(new Beam(this, 1, 1500));
+        addSubEngine(new TestCamLeft(this,readCam));
+        addSubEngine(new TestCamCenter(this,readCam));
+        addSubEngine(new TestCamRight(this,readCam));
     }
 
 }

@@ -1,7 +1,5 @@
 package org.timecrafters.gfp.state.cam;
 
-import android.util.Log;
-
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
@@ -9,15 +7,15 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import org.timecrafters.engine.Engine;
+import org.timecrafters.engine.State;
+import org.timecrafters.gfp.config.BlankConfig;
 import org.timecrafters.gfp.config.Config;
-
-import java.util.Objects;
 
 /**
  * Created by t420 on 9/16/2017.
  */
 
-public class ReadCam extends Config {
+public class ReadCam extends BlankConfig {
 
 
 
@@ -66,6 +64,7 @@ public class ReadCam extends Config {
         //Load data set containing VuMarks for relic recovery tracking
 
     }
+    @Override
     public void exec(){
 
         vuMark = RelicRecoveryVuMark.from(relicTemplate);
@@ -81,6 +80,7 @@ public class ReadCam extends Config {
             engine.telemetry.addData("VuMark", "not visible");
         }
 
+        relicTrackables.deactivate();
         setFinished(true);
     }
 

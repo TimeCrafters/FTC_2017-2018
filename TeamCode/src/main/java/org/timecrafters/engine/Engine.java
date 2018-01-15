@@ -95,8 +95,10 @@ public abstract class Engine extends OpMode {
 
             //Run evaluate on sub engines
             if(!subEngines[x].evaluated) {
+                Log.i(TAG,"EVALUATING SUB ENGINE : "+Integer.toString(x));
                 subEngines[x].evaluate();
                 subEngines[x].setEvaluated(true);
+                Log.i(TAG,"FINISHED EVALUATING SUB ENGINE : " + Integer.toString(x));
             }
 
             //Check if sub engine is runnable
