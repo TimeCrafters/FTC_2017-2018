@@ -31,8 +31,9 @@ import org.timecrafters.gfp.state.util.Sleep;
 
     public void setProcesses() {
 
-        ReadColor readColor = new ReadColor(this,3,5,0);
 
+        ReadColor readColor = new ReadColor(this,3,5,0);
+        readCam = new ReadCam(this);
         addState(new Beam(this,-1.0,1500));
         addState(new Flipper(this,1.0,725));
         addState(new Beam(this, -1.0, 2500));
@@ -48,15 +49,15 @@ import org.timecrafters.gfp.state.util.Sleep;
         addState(new Sleep(this,50));
 
         addState(new DriveStraightBackward(this, 0.5, 3305));
-        addState(new TurnRight(this, 0.3, 410));
-        addState(new RaiseArm(this, 1, 650));
-        addState(new DriveStraightForward(this, 0.5, 400));
-        addState(new ExtendArm(this, 0.5, 1290));
-        addState(new RightGrabber(this, -0.5, 500));
-        addState(new DriveStraightForward(this, -0.5, 516));
-        addState(new TurnLeft(this, 0.3, 1737));
-        addState(new DriveStraightForward(this, -0.5, 850));
-        addState(new DriveStraightForward(this, 0.5, 860));
+        //addState(new TurnRight(this, 0.3, 410));
+        //addState(new RaiseArm(this, 1, 650));
+        //addState(new DriveStraightForward(this, 0.5, 400));
+        //addState(new ExtendArm(this, 0.5, 1290));
+        //addState(new RightGrabber(this, -0.5, 500));
+        //addState(new DriveStraightForward(this, -0.5, 516));
+        //addState(new TurnLeft(this, 0.3, 1737));
+        //addState(new DriveStraightForward(this, -0.5, 850));
+        //addState(new DriveStraightForward(this, 0.5, 860));
 
         //readCam = new ReadCam(this);
         //addState(readCam);

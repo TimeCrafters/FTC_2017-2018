@@ -98,6 +98,7 @@ public class Config extends State {
         crBeam = engine.hardwareMap.crservo.get("crBeam");
         crGrabber = engine.hardwareMap.crservo.get("crGrabber");
 
+        crGrabber.setPower(0);
 
     }
 
