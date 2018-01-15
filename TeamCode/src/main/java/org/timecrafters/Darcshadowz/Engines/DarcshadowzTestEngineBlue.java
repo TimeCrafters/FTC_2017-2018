@@ -35,6 +35,8 @@ public class DarcshadowzTestEngineBlue extends Engine {
     public void setProcesses(){
 
         readCam = new ReadCam(this);
+        hardWareConfig = new HardWareConfig(this);
+        addState(hardWareConfig);
         HardWareConfig hardWareConfig = new HardWareConfig(this);
         addState(readCam);
 

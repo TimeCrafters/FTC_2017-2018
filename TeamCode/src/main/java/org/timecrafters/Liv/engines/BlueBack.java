@@ -6,6 +6,7 @@ import org.timecrafters.Darcshadowz.State.RightGrabber;
 import org.timecrafters.Liv.SubEngines.BlueBumpLeft;
 import org.timecrafters.Liv.SubEngines.BlueBumpRight;
 import org.timecrafters.engine.Engine;
+import org.timecrafters.gfp.config.HardWareConfig;
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
 import org.timecrafters.gfp.state.cam.ReadCam;
@@ -34,6 +35,8 @@ import org.timecrafters.gfp.state.util.Sleep;
 
         ReadColor readColor = new ReadColor(this,3,5,0);
         readCam = new ReadCam(this);
+        hardWareConfig = new HardWareConfig(this);
+        addState(hardWareConfig);
         addState(new Beam(this,-1.0,1500));
         addState(new Flipper(this,1.0,725));
         addState(new Beam(this, -1.0, 2500));
