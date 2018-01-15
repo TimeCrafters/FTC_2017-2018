@@ -25,7 +25,7 @@ public class BlueFrontLeft extends SubEngine {
         this.readCam = readCam;
     }
 
-    ReadCam read = new ReadCam(engine);
+
     @Override
     public void setProcesses() {
 

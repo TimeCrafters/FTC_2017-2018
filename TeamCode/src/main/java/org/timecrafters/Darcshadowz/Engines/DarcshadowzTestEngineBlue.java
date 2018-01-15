@@ -23,12 +23,10 @@ public class DarcshadowzTestEngineBlue extends Engine {
         addState(readCam);
 
         addSubEngine(new BlueFrontCenter(this,readCam));
+
         addSubEngine(new BlueFrontLeft(this, readCam));
 
-        //addSubEngine(new BlueFrontRight(this,readCam));
+        addSubEngine(new BlueFrontRight(this,readCam));
     }
 
-
 }
-
-
