@@ -2,19 +2,13 @@ package org.timecrafters.Liv.engines;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.timecrafters.Darcshadowz.State.RightGrabber;
-import org.timecrafters.Liv.SubEngines.BlueBumpLeft;
-import org.timecrafters.Liv.SubEngines.BlueBumpRight;
+import org.timecrafters.Liv.SubEngines.RedBumpLeft;
+import org.timecrafters.Liv.SubEngines.RedBumpRight;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.HardWareConfig;
-import org.timecrafters.gfp.state.arm.ExtendArm;
-import org.timecrafters.gfp.state.arm.RaiseArm;
 import org.timecrafters.gfp.state.cam.ReadCam;
 import org.timecrafters.gfp.state.color.ReadColor;
 import org.timecrafters.gfp.state.drive.DriveStraightBackward;
-import org.timecrafters.gfp.state.drive.DriveStraightForward;
-import org.timecrafters.gfp.state.drive.TurnLeft;
-import org.timecrafters.gfp.state.drive.TurnRight;
 import org.timecrafters.gfp.state.jewelBump.Beam;
 import org.timecrafters.gfp.state.jewelBump.Flipper;
 import org.timecrafters.gfp.state.util.Sleep;
@@ -42,8 +36,8 @@ import org.timecrafters.gfp.state.util.Sleep;
         addState(new Beam(this, -1.0, 2500));
         addState(readColor);
 
-        addSubEngine(new BlueBumpLeft(this, readColor));
-        addSubEngine(new BlueBumpRight(this, readColor));
+        addSubEngine(new RedBumpLeft(this, readColor));
+        addSubEngine(new RedBumpRight(this, readColor));
 
         addState(new Beam(this, 1, 2500));
         addState(new Flipper(this, -1, 750));

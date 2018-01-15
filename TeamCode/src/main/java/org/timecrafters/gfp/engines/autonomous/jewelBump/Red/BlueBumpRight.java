@@ -1,4 +1,4 @@
-package org.timecrafters.Liv.SubEngines;
+package org.timecrafters.gfp.engines.autonomous.jewelBump.Red;
 
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.SubEngine;
@@ -6,10 +6,10 @@ import org.timecrafters.gfp.state.color.ReadColor;
 import org.timecrafters.gfp.state.jewelBump.Flipper;
 
 /**
- * Created by Liv on 1/14/2018.
+ * Created by goldfishpi on 1/14/18.
  */
 
-public class BlueBumpRight extends SubEngine{
+public class BlueBumpRight extends SubEngine {
     Engine engine;
     ReadColor readColor;
 
@@ -21,7 +21,8 @@ public class BlueBumpRight extends SubEngine{
 
     @Override
     public void setProcesses() {
-        addState(new Flipper(engine, 0.2, 200));
+        addState(new Flipper(engine,-0.5,120));
+        //addState(new Flipper(engine, 0.5, 150));
     }
 
     @Override
@@ -31,4 +32,3 @@ public class BlueBumpRight extends SubEngine{
         }
     }
 }
-
