@@ -29,6 +29,8 @@ public abstract class SubEngine {
 
     public static String TAG = "PROGRAM.SUBENGINE.CLEAN";
 
+    boolean evaluated = false;
+
     public abstract void setProcesses();
 
     public abstract void evaluate();
@@ -151,5 +153,13 @@ public abstract class SubEngine {
 
     public void setRunable(boolean runable) {
         this.runable = runable;
+    }
+
+    public boolean isEvaluated() {
+        return evaluated;
+    }
+
+    public void setEvaluated(boolean evaluated) {
+        this.evaluated = evaluated;
     }
 }

@@ -40,7 +40,7 @@ public class RedBackLeft extends SubEngine{
 
     @Override
     public void evaluate() {
-        if(readCam.getVuMark() == RelicRecoveryVuMark.RIGHT) {
+        if(readCam.getVuMark() == RelicRecoveryVuMark.LEFT) {
             setRunable(true);
         }
     }

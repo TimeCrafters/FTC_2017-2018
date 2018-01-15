@@ -41,7 +41,7 @@ public class RedBackCenter extends SubEngine{
 
     @Override
     public void evaluate() {
-        if (readCam.getVuMark() == RelicRecoveryVuMark.RIGHT) {
+        if (readCam.getVuMark() == RelicRecoveryVuMark.CENTER) {
             setRunable(true);
         }
     }}

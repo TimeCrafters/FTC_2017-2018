@@ -1,5 +1,7 @@
 package org.timecrafters.Liv.SubEngines;
 
+import android.util.Log;
+
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.timecrafters.Darcshadowz.State.RightGrabber;
 import org.timecrafters.engine.Engine;
@@ -11,6 +13,8 @@ import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
 import org.timecrafters.gfp.state.drive.TurnRight;
 import org.timecrafters.gfp.state.grabber.LeftGrabber;
+
+import java.util.Objects;
 
 /**
  * Created by Liv on 1/2/2018.
@@ -42,6 +46,7 @@ public class BlueBackLeft extends SubEngine{
 
     @Override
     public void evaluate() {
+        Log.i(TAG, Objects.toString(this)+":"+Objects.toString(readCam.getVuMark()));
         if(readCam.getVuMark() == RelicRecoveryVuMark.LEFT) {
             setRunable(true);
         }

@@ -1,5 +1,7 @@
 package org.timecrafters.gfp.state.cam;
 
+import android.util.Log;
+
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
@@ -8,6 +10,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.Config;
+
+import java.util.Objects;
 
 /**
  * Created by t420 on 9/16/2017.

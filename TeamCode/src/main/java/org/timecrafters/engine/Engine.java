@@ -88,8 +88,9 @@ public abstract class Engine extends OpMode {
         }else{
 
             //Run evaluate on sub engines
-            if(!subEngines[x].isRunable()) {
+            if(!subEngines[x].evaluated) {
                 subEngines[x].evaluate();
+                subEngines[x].setEvaluated(true);
             }
 
             //Check if sub engine is runnable
@@ -207,7 +208,8 @@ public abstract class Engine extends OpMode {
 
             //set subEngineInit to true so this only runs through once
             isSubEngineinit = true;
-        }else if(!subEngines[x].isMachineFinished()){
+        }
+        if(!subEngines[x].isMachineFinished()){
             //Log.i(TAG,"STARTED CHECKING SUBSTATE PROCESS");
             subEngines[x].checkStates();
             //Log.i(TAG, "FINISEHD CHECKING SUBSTATE PROCESSES");

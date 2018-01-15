@@ -50,8 +50,9 @@ public class BlueFrontRight extends SubEngine {
     @Override
     public void evaluate() {
 //        setPreInit(true);
-        if (readCam.getVuMark() == RelicRecoveryVuMark.RIGHT)
-        setRunable(true);
+        if (readCam.getVuMark() == RelicRecoveryVuMark.RIGHT) {
+            setRunable(true);
+        }
 
     }
 }
