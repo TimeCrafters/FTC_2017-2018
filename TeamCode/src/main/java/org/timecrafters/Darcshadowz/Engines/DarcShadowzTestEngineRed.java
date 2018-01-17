@@ -2,12 +2,11 @@ package org.timecrafters.Darcshadowz.Engines;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.timecrafters.Liv.SubEngines.RedBumpLeft;
-import org.timecrafters.Liv.SubEngines.RedBumpRight;
+import org.timecrafters.Liv.SubEngines.BlueBumpRight;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.HardWareConfig;
-import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.BlueBumpLeft;
-import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.BlueBumpRight;
+import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpLeft;
+import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpRight;
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
 import org.timecrafters.gfp.state.cam.ReadCam;
@@ -40,17 +39,17 @@ public class DarcShadowzTestEngineRed extends Engine {
 
         ReadColor readColor = new ReadColor(this, 3, 5, 0);
 
-        addState(new Beam(this, 1, 1500));
+        addState(new Beam(this, -1, 1500));
         addState(new Flipper(this, 1, 725));
-        addState(new Beam(this, 1, 2500));
+        addState(new Beam(this, -1, 2500));
         addState(readColor);
 
         addSubEngine(new RedBumpLeft(this, readColor));
         addSubEngine(new RedBumpRight(this, readColor));
 
-        addState(new Beam(this, -1, 2500));
+        addState(new Beam(this, 1, 2500));
         addState(new Flipper(this, -1, 750));
-        addState(new Beam(this, -1, 1700));
+        addState(new Beam(this, 1, 1700));
 
         addState(new Sleep(this, 50));
 
