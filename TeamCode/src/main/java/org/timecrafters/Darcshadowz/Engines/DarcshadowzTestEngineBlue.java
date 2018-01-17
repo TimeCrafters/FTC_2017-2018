@@ -3,11 +3,8 @@ package org.timecrafters.Darcshadowz.Engines;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.timecrafters.Darcshadowz.State.RightGrabber;
-<<<<<<< Updated upstream
 import org.timecrafters.Liv.SubEngines.BlueBumpLeft;
 import org.timecrafters.Liv.SubEngines.BlueBumpRight;
-=======
->>>>>>> Stashed changes
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.HardWareConfig;
 import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpLeft;

@@ -27,7 +27,7 @@ public class RedBumpRight extends SubEngine {
 
     @Override
     public void evaluate() {
-        if(readColor.getRedAverage() >=0.0){
+        if(readColor.getRedAverage() >=2.0 && readColor.getBlueAverage() <=5.0){
             setRunable(true);
         }
     }

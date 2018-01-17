@@ -34,7 +34,7 @@ public class ReadColor extends Config {
     }
 
     public void exec(){
-        engine.telemetry.addData("ColorSensor", colorSensor.toString());
+        engine.telemetry.addData("ColorSensor", "Blue "+colorSensor.blue()+" Red: "+colorSensor.red());
         if(currentReads <= reads){
 
             blueAverage += colorSensor.blue();
