@@ -27,12 +27,13 @@ public class TestEngine extends Engine {
     @Override
     public void setProcesses(){
         hardWareConfig = new HardWareConfig(this);
+        addState(hardWareConfig);
         readCam= new ReadCam(this);
         addState(readCam);
 
         addSubEngine(new TestCamLeft(this,readCam));
         addSubEngine(new TestCamCenter(this,readCam));
-        addSubEngine(new TestCamRight(  this,readCam));
+        addSubEngine(new TestCamRight(this,readCam));
     }
 
 }
