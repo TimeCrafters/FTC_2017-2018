@@ -32,7 +32,7 @@ public class TestEngine extends Engine {
 
         addSubEngine(new TestCamLeft(this,readCam));
         addSubEngine(new TestCamCenter(this,readCam));
-        addSubEngine(new TestCamRight(this,readCam));
+        addSubEngine(new TestCamRight(  this,readCam));
     }
 
 }
