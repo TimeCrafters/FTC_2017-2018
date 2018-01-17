@@ -5,8 +5,11 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.timecrafters.Liv.SubEngines.BlueBumpRight;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.HardWareConfig;
+<<<<<<< Updated upstream
 import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpLeft;
 import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpRight;
+=======
+>>>>>>> Stashed changes
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
 import org.timecrafters.gfp.state.cam.ReadCam;
@@ -45,7 +48,7 @@ public class DarcShadowzTestEngineRed extends Engine {
         addState(readColor);
 
         addSubEngine(new RedBumpLeft(this, readColor));
-        addSubEngine(new RedBumpRight(this, readColor));
+        addSubEngine(new BlueBumpRight(this, readColor));
 
         addState(new Beam(this, 1, 2500));
         addState(new Flipper(this, -1, 750));

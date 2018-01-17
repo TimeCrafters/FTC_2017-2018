@@ -31,9 +31,9 @@ import org.timecrafters.gfp.state.util.Sleep;
         readCam = new ReadCam(this);
         hardWareConfig = new HardWareConfig(this);
         addState(hardWareConfig);
-        addState(new Beam(this,-1.0,1500));
+        addState(new Beam(this,-1.0,1450));
         addState(new Flipper(this,1.0,725));
-        addState(new Beam(this, -1.0, 2500));
+        addState(new Beam(this, -1.0, 2450));
         addState(readColor);
 
         addSubEngine(new BlueBumpLeft(this, readColor));
