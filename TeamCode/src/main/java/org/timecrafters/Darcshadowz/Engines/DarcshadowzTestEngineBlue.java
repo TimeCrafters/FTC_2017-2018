@@ -3,12 +3,12 @@ package org.timecrafters.Darcshadowz.Engines;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.timecrafters.Darcshadowz.State.RightGrabber;
-import org.timecrafters.Liv.SubEngines.RedBumpLeft;
-import org.timecrafters.Liv.SubEngines.RedBumpRight;
+import org.timecrafters.Liv.SubEngines.BlueBumpLeft;
+import org.timecrafters.Liv.SubEngines.BlueBumpRight;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.HardWareConfig;
-import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.BlueBumpLeft;
-import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.BlueBumpRight;
+import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpLeft;
+import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpRight;
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
 import org.timecrafters.gfp.state.cam.ReadCam;
