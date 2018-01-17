@@ -13,6 +13,8 @@ public class Flipper extends Config {
     double power;
     boolean runTime;
     int timems;
+    boolean firstRun = true;
+    long startTime;
     public Flipper(Engine engine, double power) {
         super(engine);
         this.power = power;
@@ -34,18 +36,23 @@ public class Flipper extends Config {
         crFlipper.setPower(power);
 
         if (!runTime){
+            if(firstRun){
+                startTime = System.currentTimeMillis();
+                firstRun = false;
+            }
+
             if (flipperTouch.isPressed()) {
+                crFlipper.setPower(0);
+                setFinished(true);
+            }else if(System.currentTimeMillis() - startTime >= 1000){
                 crFlipper.setPower(0);
                 setFinished(true);
             }
         }else{
-
             crFlipper.setPower(power);
             sleep(timems);
             crFlipper.setPower(0);
             setFinished(true);
         }
-
-
     }
 }
