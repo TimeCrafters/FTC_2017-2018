@@ -44,8 +44,8 @@ public class DarcshadowzTestEngineBlue extends Engine {
         addState(new Beam(this, -1, 2500));
         addState(readColor);
 
-        addSubEngine(new RedBumpLeft(this, readColor));
-        addSubEngine(new RedBumpRight(this, readColor));
+        addSubEngine(new BlueBumpLeft(this, readColor));
+//        addSubEngine(new BlueBumpRight(this, readColor));
 
         addState(new Beam(this, 1, 2500));
         addState(new Flipper(this, -1, 750));
