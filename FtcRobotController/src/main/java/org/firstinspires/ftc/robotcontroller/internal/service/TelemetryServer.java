@@ -97,16 +97,14 @@ public class TelemetryServer {
                     indexPage(out);
                 } else {
                     attemptHardwareSetup();
-                    if (lookupFaulty != false) {
+                    if (!lookupFaulty) {
                         try {
-                            telemetryJSON();
+                            telemetryJSON(out);
                         } catch (NullPointerException e) {
                             out.write("{\"error\":\""+e.getMessage()+"\"}");
                         }
-                    } else if (lookupFaulty) {
+                    } else {
                         out.write("{\"error\":\"Lookup was Faulty check lookup names!\"}");
-                    } else if(hardwareMap == null) {
-                        out.write("{\"error\":\"Hardware map not initialized or not ready.\"}");
                     }
                 }
                 out.close();
@@ -121,7 +119,9 @@ public class TelemetryServer {
     public void haltServer() {
         allowServer = false;
         try {
-            server.close();
+            if (server != null) {
+                server.close();
+            }
         } catch(IOException e) {
             // Failed to close server!
         }
@@ -172,7 +172,7 @@ public class TelemetryServer {
         return hardwareMap.servo.get(servo);
     }
 
-    void telemetryJSON() throws NullPointerException {
+    void telemetryJSON(BufferedWriter out) throws NullPointerException,IOException {
         String json = "{\"motors\":[" +
                 "{\"name\":\"dcFrontLeft\",\"power\":"+dcFrontLeft.getPower()+",\"encoder\":"+dcFrontLeft.getCurrentPosition()+"}," +
                 "{\"name\":\"dcFrontRight\",\"power\":"+dcFrontRight.getPower()+",\"encoder\":"+dcFrontRight.getCurrentPosition()+"}," +
@@ -191,6 +191,8 @@ public class TelemetryServer {
                 "{\"name\":\"beamTouch\",\"value\":"+beamTouch.isPressed()+"}," +
                 "{\"name\":\"flipperTouch\",\"value\":"+flipperTouch.isPressed()+"}," +
                 "{\"name\":\"winchTouch\",\"value\":"+winchTouch.isPressed()+"}]}";
+        out.write(json);
+        System.out.println("TeleMetry");
     }
 
     void indexPage(BufferedWriter out) throws IOException {
@@ -204,7 +206,14 @@ public class TelemetryServer {
         out.write("request.onload = function() {\n");
         out.write("if (request.status >= 200 && request.status < 400) {\n");
         out.write("// Success!\n");
-        out.write("var data = JSON.parse(request.responseText);\n");
+        out.write("var data = null;\n");
+        out.write("var manual_error = false;\n");
+        out.write("if (request.responseText.length >= 2) {\n");
+        out.write("data = JSON.parse(request.responseText)\n");
+        out.write("} else {\n");
+        out.write("manual_error = true;\n");
+        out.write("document.getElementById(\"error\").textContent=(\"Server returned empty data!\")\n");
+        out.write("}\n");
         out.write("if (data && data.motors) {\n");
         out.write("data.motors.forEach(function(motor, index) {\n");
         out.write("document.getElementById(motor.name+\"_encoder\").textContent=(motor.encoder);\n");
@@ -214,7 +223,7 @@ public class TelemetryServer {
         out.write("document.getElementById(servo.name).textContent=(servo.position)\n");
         out.write("})\n");
         out.write("data.sensors.forEach(function(sensor, index) {\n");
-        out.write("if (sensor.value.red) {\n");
+        out.write("if (typeof(sensor.value.red) === 'number') {\n");
         out.write("// Color Sensor\n");
         out.write("document.getElementById(sensor.name+\"_red\").textContent=(sensor.value.red)\n");
         out.write("document.getElementById(sensor.name+\"_green\").textContent=(sensor.value.green)\n");
@@ -226,13 +235,15 @@ public class TelemetryServer {
         out.write("})\n");
         out.write("} else {\n");
         out.write("// No or broken data\n");
-        out.write("console.log(\"Data Error: \"+data)\n");
         out.write("}\n");
-        out.write("if (data && data.error.length) {\n");
+        out.write("if (data && data.error) {\n");
         out.write("document.getElementById(\"error\").textContent=(data.error)\n");
         out.write("console.log(\"Data: \"+data)\n");
         out.write("} else {\n");
+        out.write("if (manual_error) {\n");
+        out.write("} else {\n");
         out.write("document.getElementById(\"error\").textContent=\"\"\n");
+        out.write("}\n");
         out.write("}\n");
         out.write("} else {\n");
         out.write("// We reached our target server, but it returned an error\n");
