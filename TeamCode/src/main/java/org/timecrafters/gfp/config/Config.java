@@ -52,7 +52,6 @@ public class Config extends State {
 
 
     public void init(){
-        super.init();
 
         hardWareConfig = engine.hardWareConfig;
         dcRightGrabber = hardWareConfig.dcRightGrabber;
@@ -75,7 +74,7 @@ public class Config extends State {
         crGrabber = hardWareConfig.crGrabber;
 
         colorSensor = hardWareConfig.colorSensor;
-
+        super.init();
     }
 
     public void exec(){

@@ -32,9 +32,9 @@ public class RedBack extends Engine {
         hardWareConfig = new HardWareConfig(this);
         addState(hardWareConfig);
         addState(readCam);
-        addState(new Beam(this,-1.0,1500));
+        addState(new Beam(this,-1.0,1450));
         addState(new Flipper(this,1.0,1000));
-        addState(new Beam(this, -1.0, 2500));
+        addState(new Beam(this, -1.0, 2650));
         addState(readColor);
         addSubEngine(new RedBumpLeft(this, readColor));
         addSubEngine(new RedBumpRight(this, readColor));
