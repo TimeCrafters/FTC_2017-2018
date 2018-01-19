@@ -54,6 +54,10 @@ public class DarcShadowzTestEngineRed extends Engine {
         addState(new Flipper(this, -1, 750));
         addThreadedState(new Beam(this, 1, 1700));
 
+        addThreadedState(new DriveStraightForward(this, 0.15, 2500));
+        addState(new TurnLeft(this, 0.3, 1000));
+        addState(new DriveStraightForward(this, 0.5, 3150));
+
         addSubEngine(new RedFrontCenterColumn(this, readCam));
 
         addSubEngine(new RedFrontRightColumn(this, readCam));
