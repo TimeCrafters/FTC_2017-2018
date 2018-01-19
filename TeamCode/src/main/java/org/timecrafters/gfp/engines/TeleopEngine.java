@@ -15,6 +15,7 @@ import org.timecrafters.gfp.Teleop.Winch;
 public class TeleopEngine extends Engine {
 
     public void setProcesses(){
+        addState(new HardwareConfig(this));
         addState(new DriveTrain(this));
         addThreadedState(new Grabbers(this,0.3));
         addThreadedState(new Winch(this,1.0));
