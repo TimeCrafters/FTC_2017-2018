@@ -3,6 +3,9 @@ package org.timecrafters.Darcshadowz.Engines;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.timecrafters.Darcshadowz.State.RightGrabber;
+import org.timecrafters.Darcshadowz.SubEngines.Blue.BlueFrontCenter;
+import org.timecrafters.Darcshadowz.SubEngines.Blue.BlueFrontLeft;
+import org.timecrafters.Darcshadowz.SubEngines.Blue.BlueFrontRight;
 import org.timecrafters.Liv.SubEngines.BlueBumpLeft;
 import org.timecrafters.Liv.SubEngines.BlueBumpRight;
 import org.timecrafters.engine.Engine;
@@ -53,25 +56,8 @@ public class DarcshadowzTestEngineBlue extends Engine {
 
         addState(new Sleep(this, 50));
 
-        addState(new DriveStraightBackward(this, 0.2, 1700));
-        addState(new TurnLeft(this, 0.3, 800));
-        addState(new DriveStraightForward(this, 0.5, 3000));
-        addState(new TurnLeft(this,0.3,1780));
-        addState(new DriveStraightForward(this, 0.5, 200));
-        addState(new ExtendArm(this, 1, 2800));
-        addState(new RightGrabber(this, -0.5, 300));
-        addState(new RaiseArm(this, 1, 1950));
-        addState(new DriveStraightBackward(this, 0.5, 500));
-        addState(new TurnLeft(this, 0.3, 1750));
-        addState(new DriveStraightBackward(this, 0.5, 500));
-        addState(new DriveStraightForward(this, 0.5, 200));
-        addState(new RaiseArm(this,-1, 1950));
-        addState(new ExtendArm(this, 0, 0));
-        addState(new LeftGrabber(this, 0.5, 500));
+        addSubEngine(new BlueFrontCenter(this,readCam));
 
-
-//        addSubEngine(new BlueFrontCenter(this,readCam));
-//
 //        addSubEngine(new BlueFrontLeft(this, readCam));
 //
 //        addSubEngine(new BlueFrontRight(this,readCam));
