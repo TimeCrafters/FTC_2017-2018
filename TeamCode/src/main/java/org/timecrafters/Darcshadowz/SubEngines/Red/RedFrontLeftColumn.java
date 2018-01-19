@@ -29,9 +29,6 @@ public class RedFrontLeftColumn extends SubEngine {
 
 
     public void setProcesses() {
-        addState(new DriveStraightForward(engine, 0.15, 2500));
-        addState(new TurnLeft(engine, 0.3, 1000));
-        addState(new DriveStraightForward(engine, 0.5, 3000));
 
         addState(new TurnRight(engine,0.3,1500));
         addState(new DriveStraightForward(engine, 0.5, 500));

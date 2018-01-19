@@ -16,8 +16,7 @@ import org.timecrafters.gfp.config.HardWareConfig;
 public class TeleopEngine extends Engine {
 
     public void setProcesses(){
-        hardWareConfig = new HardWareConfig(this);
-        addState(hardWareConfig);
+        addState(new HardWareConfig(this));
         addState(new DriveTrain(this));
         addThreadedState(new Grabbers(this,0.3));
         addThreadedState(new Winch(this,1.0));
