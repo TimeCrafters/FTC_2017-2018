@@ -112,7 +112,10 @@ public class TelemetryServer {
                 client.close();
 
 
-            } catch(IOException e) {}
+            } catch(IOException e) {
+                System.out.println("RunServer IOException");
+                System.out.println(e);
+            }
         }
     }
 
@@ -137,22 +140,32 @@ public class TelemetryServer {
                 dcFrontRight = getMotor("dcFrontRight");
                 dcBackLeft = getMotor("dcBackLeft");
                 dcBackRight = getMotor("dcBackRight");
+//                System.out.println("Drive Train A.O.K.");
+
                 dcArm = getMotor("dcArm");
                 dcWinch = getMotor("dcWinch");
+//                System.out.println("Winch A.O.K.");
+
                 dcLeftGrabber = getMotor("dcLeftGrabber");
                 dcRightGrabber = getMotor("dcRightGrabber");
+//                System.out.println("Grabbers A.O.K.");
 
                 crBeam = getcrServo("crBeam");
                 crFlipper = getcrServo("crFlipper");
-                crRelic = getcrServo("crRelic");
+                crRelic = getcrServo("crGrabber");
+//                System.out.println("Servos A.O.K.");
 
                 colorSensor = hardwareMap.colorSensor.get("colorSensor");
+//                System.out.println("ColorSensor A.O.K.");
+
                 beamTouch = hardwareMap.touchSensor.get("beamTouch");
                 flipperTouch = hardwareMap.touchSensor.get("flipperTouch");
                 winchTouch = hardwareMap.touchSensor.get("winchTouch");
+//                System.out.println("TouchSensors A.O.K.");
                 lookupFaulty = false;
             }
         } catch (IllegalArgumentException e) {
+            System.out.println(e);
             badLookup();
             hardwareMap = null;
         }
@@ -264,7 +277,7 @@ public class TelemetryServer {
         out.write("console.log(\"Ready\")\n");
         out.write("window.setInterval(function() {\n");
         out.write("refreshTelemetry();\n");
-        out.write("}, 250);\n");
+        out.write("}, 5);\n");
         out.write("}\n");
         out.write("}\n");
         out.write("</script>\n");
@@ -305,32 +318,32 @@ public class TelemetryServer {
         out.write("#robotBase {\n");
         out.write("width: 170pt;\n");
         out.write("height: 180pt;\n");
-        out.write("background: #999;\n");
+        out.write("background: #444;\n");
         out.write("margin: 1em;\n");
         out.write("padding: 0.5em;\n");
         out.write("}\n");
         out.write("#robotWinch {\n");
         out.write("width: 50pt;\n");
         out.write("height: 180pt;\n");
-        out.write("background: #999;\n");
+        out.write("background: #444;\n");
         out.write("margin: 1em;\n");
         out.write("padding: 0.5em;\n");
         out.write("}\n");
         out.write("#robotGrabbers {\n");
         out.write("width: 150pt;\n");
         out.write("height: 50pt;\n");
-        out.write("background: #999;\n");
+        out.write("background: #444;\n");
         out.write("margin: 1em;\n");
         out.write("padding: 0.5em;\n");
         out.write("}\n");
         out.write("#robotSensors {\n");
-        out.write("background: #999;\n");
+        out.write("background: #444;\n");
         out.write("margin: 1em;\n");
         out.write("padding: 0.5em;\n");
         out.write("float: left;\n");
         out.write("}\n");
         out.write("#robotServos {\n");
-        out.write("background: #999;\n");
+        out.write("background: #444;\n");
         out.write("margin: 1em;\n");
         out.write("padding: 0.5em;\n");
         out.write("}\n");
