@@ -50,7 +50,7 @@ import org.timecrafters.gfp.state.util.Sleep;
 
         addState(new Beam(this, 1, 2500));
         addThreadedState(new Flipper(this, -1, 750));
-        addThreadedState(new Beam(this, 1, 1711));
+        addThreadedState(new Beam(this, 1, 1710));
 
         addState(new Sleep(this,50));
 
