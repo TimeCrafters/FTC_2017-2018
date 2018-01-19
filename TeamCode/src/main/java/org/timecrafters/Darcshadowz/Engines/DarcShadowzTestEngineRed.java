@@ -43,23 +43,16 @@ public class DarcShadowzTestEngineRed extends Engine {
         ReadColor readColor = new ReadColor(this, 3, 5, 0);
 
         addState(new Beam(this, -1, 1500));
-        addState(new Flipper(this, 1, 725));
+        addThreadedState(new Flipper(this, 1, 725));
         addState(new Beam(this, -1, 2500));
 
-//        addState(new ReadColor(this, 3, 5, 0));
         addState(readColor);
-//        this.telemetry.addData("ColorSensor", "Blue "+this.hardwareMap.colorSensor.get("colorSensor").blue()+" Red: "+this.hardwareMap.colorSensor.get("colorSensor").red());
-
-//        addState(new ReadColor(this, 3, 5, 0));
-//        this.telemetry.addData("ColorSensor", "Blue "+this.hardwareMap.colorSensor.get("colorSensor").blue()+" Red: "+this.hardwareMap.colorSensor.get("colorSensor").red());
 
         addSubEngine(new RedBumpLeft(this, readColor));
- //       addSubEngine(new BlueBumpRight(this, readColor));
 
         addState(new Beam(this, 1, 2500));
         addState(new Flipper(this, -1, 750));
-        addState(new Beam(this, 1, 1700));
-        addState(new Sleep(this, 50));
+        addThreadedState(new Beam(this, 1, 1700));
 
         addSubEngine(new RedFrontCenterColumn(this, readCam));
 
