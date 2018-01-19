@@ -5,11 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.timecrafters.Liv.SubEngines.BlueBumpRight;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.HardWareConfig;
-<<<<<<< Updated upstream
 import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpLeft;
 import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpRight;
-=======
->>>>>>> Stashed changes
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
 import org.timecrafters.gfp.state.cam.ReadCam;
@@ -45,10 +42,16 @@ public class DarcShadowzTestEngineRed extends Engine {
         addState(new Beam(this, -1, 1500));
         addState(new Flipper(this, 1, 725));
         addState(new Beam(this, -1, 2500));
+
+//        addState(new ReadColor(this, 3, 5, 0));
         addState(readColor);
+//        this.telemetry.addData("ColorSensor", "Blue "+this.hardwareMap.colorSensor.get("colorSensor").blue()+" Red: "+this.hardwareMap.colorSensor.get("colorSensor").red());
+
+//        addState(new ReadColor(this, 3, 5, 0));
+//        this.telemetry.addData("ColorSensor", "Blue "+this.hardwareMap.colorSensor.get("colorSensor").blue()+" Red: "+this.hardwareMap.colorSensor.get("colorSensor").red());
 
         addSubEngine(new RedBumpLeft(this, readColor));
-        addSubEngine(new BlueBumpRight(this, readColor));
+ //       addSubEngine(new BlueBumpRight(this, readColor));
 
         addState(new Beam(this, 1, 2500));
         addState(new Flipper(this, -1, 750));

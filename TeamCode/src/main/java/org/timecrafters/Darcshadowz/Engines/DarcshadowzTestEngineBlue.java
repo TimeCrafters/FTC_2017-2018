@@ -3,11 +3,8 @@ package org.timecrafters.Darcshadowz.Engines;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.timecrafters.Darcshadowz.State.RightGrabber;
-<<<<<<< Updated upstream
 import org.timecrafters.Liv.SubEngines.BlueBumpLeft;
 import org.timecrafters.Liv.SubEngines.BlueBumpRight;
-=======
->>>>>>> Stashed changes
 import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.HardWareConfig;
 import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpLeft;
@@ -47,8 +44,8 @@ public class DarcshadowzTestEngineBlue extends Engine {
         addState(new Beam(this, -1, 2500));
         addState(readColor);
 
-        addSubEngine(new RedBumpLeft(this, readColor));
-        addSubEngine(new RedBumpRight(this, readColor));
+        addSubEngine(new BlueBumpLeft(this, readColor));
+//        addSubEngine(new BlueBumpRight(this, readColor));
 
         addState(new Beam(this, 1, 2500));
         addState(new Flipper(this, -1, 750));
