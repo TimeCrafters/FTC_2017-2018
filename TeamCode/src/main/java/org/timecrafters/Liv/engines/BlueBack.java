@@ -42,7 +42,7 @@ import org.timecrafters.gfp.state.util.Sleep;
         addState(hardWareConfig);
         addState(new Beam(this,-1.0,1450));
         addThreadedState(new Flipper(this,1.0,725));
-        addThreadedState(new Beam(this, -1.0, 2450));
+        addState(new Beam(this, -1.0, 2450));
         addState(readColor);
 
         addSubEngine(new BlueBumpLeft(this, readColor));
