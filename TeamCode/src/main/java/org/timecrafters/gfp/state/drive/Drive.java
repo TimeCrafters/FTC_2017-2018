@@ -38,6 +38,8 @@ public abstract class Drive extends Config {
 
     private boolean[] finished = new boolean[4];
 
+    public boolean haltOnComplete = true;
+
 
     Drive(Engine engine){
         super(engine);
@@ -106,10 +108,12 @@ public abstract class Drive extends Config {
         if(runUntillStateFinished){
 
             if(finishedState.getIsFinished()){
-                dcFrontRight.setPower(0);
-                dcFrontLeft.setPower(0);
-                dcBackRight.setPower(0);
-                dcBackLeft.setPower(0);
+//                if (haltOnComplete) {
+                    dcFrontRight.setPower(0);
+                    dcFrontLeft.setPower(0);
+                    dcBackRight.setPower(0);
+                    dcBackLeft.setPower(0);
+//                }
 
                 for(int i = 0; i < finished.length; i ++){
                     finished[i] = true;
@@ -131,10 +135,12 @@ public abstract class Drive extends Config {
             dcBackLeft.setPower(power*backLeft);
 
             if(motorTickAverage >= distance){
-                dcFrontRight.setPower(0);
-                dcFrontLeft.setPower(0);
-                dcBackRight.setPower(0);
-                dcBackLeft.setPower(0);
+//                if (haltOnComplete) {
+                    dcFrontRight.setPower(0);
+                    dcFrontLeft.setPower(0);
+                    dcBackRight.setPower(0);
+                    dcBackLeft.setPower(0);
+//                }
                 setFinished(true);
             }
         }

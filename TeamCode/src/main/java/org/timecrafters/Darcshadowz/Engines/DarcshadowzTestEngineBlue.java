@@ -55,7 +55,7 @@ public class DarcshadowzTestEngineBlue extends Engine {
         addState(new Flipper(this, -1, 750));
         addThreadedState(new Beam(this, 1, 1700));
 
-        addThreadedState(new DriveStraightBackward(this, 0.2, 1700));
+        addThreadedState(new DriveStraightBackward(this, 0.3, 1700));
         addState(new TurnLeft(this, 0.3, 800));
         addState(new DriveStraightForward(this, 0.5, 3000));
 
