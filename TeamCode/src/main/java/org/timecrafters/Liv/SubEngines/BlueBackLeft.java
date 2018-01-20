@@ -32,23 +32,30 @@ public class BlueBackLeft extends SubEngine{
     @Override
     public void setProcesses() {
 
-        addState(new DriveStraightBackward(engine, 0.3, 4128));
-        addState(new TurnRight(engine, 0.3, 1025));
-        addState(new RaiseArm(engine, 1, 550));
-        addState(new ExtendArm(engine, 0.5, 700));
-        addState(new RightGrabber(engine, -0.5, 500));
-        addState(new DriveStraightBackward(engine,   0.5, 500));
-        addState(new TurnLeft(engine, 0.3, 2050));
-        addState(new DriveStraightBackward(engine, 0.3, 300));
         addState(new DriveStraightForward(engine, 0.3, 100));
-        addState(new RaiseArm(engine, -1, 550));
+        addState(new TurnRight(engine, 0.3, 900)); //1025 too much
+        addState(new RaiseArm(engine, 1, 500));
+        addThreadedState(new DriveStraightBackward(engine, 0.5, 800));
+        addState(new ExtendArm(engine, 0.5, 2000));
+        addState(new DriveStraightForward(engine, 0.5, 300));
+        addState(new RaiseArm(engine, -1, 500));
+        addState(new RightGrabber(engine, -0.5, 500));
+        addState(new RaiseArm(engine, 1, 1950));
+        addState(new DriveStraightBackward(engine,   0.5, 500));
+        addState(new TurnLeft(engine, 0.3, 1800));
+        addState(new DriveStraightBackward(engine, 0.3, 1200));
+        addState(new DriveStraightForward(engine, 0.3, 100));
+        addState(new RaiseArm(engine, -1, 1950));
 
+    }
+
+    public ReadCam getReadCam() {
+        return readCam;
     }
 
     @Override
     public void evaluate() {
-        Log.i(TAG, Objects.toString(this)+":"+Objects.toString(readCam.getVuMark()));
-        if(readCam.getVuMark() == RelicRecoveryVuMark.LEFT) {
+        if (readCam.getVuMark() == RelicRecoveryVuMark.LEFT) {
             setRunable(true);
         }
     }

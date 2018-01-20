@@ -47,7 +47,7 @@ import org.timecrafters.gfp.state.util.Sleep;
         addState(readCam);
 
         addState(new Beam(this, -1, 1500));
-        addThreadedState(new Flipper(this, 1, 726));
+        addThreadedState(new Flipper(this, 1, 700)); //726 is to much
         addState(new Beam(this, -1, 2500));
 
         addState(readColor);
@@ -57,6 +57,8 @@ import org.timecrafters.gfp.state.util.Sleep;
         addState(new Beam(this, 1, 2500));
         addState(new Flipper(this, -1, 750));
         addThreadedState(new Beam(this, 1, 1700));
+
+        addThreadedState(new DriveStraightBackward(this, 0.3, 1700));
 
         addSubEngine(new BlueBackLeft(this,readCam));
         addSubEngine(new BlueBackCenter(this,readCam));
