@@ -23,6 +23,8 @@ public abstract class SubEngine {
     private boolean machineFinished = false;
     private boolean opFininished = true;
 
+    private boolean isInitalized = false;
+
     private boolean runable = false;
 
     private boolean preInit= false;
@@ -161,5 +163,13 @@ public abstract class SubEngine {
 
     public void setEvaluated(boolean evaluated) {
         this.evaluated = evaluated;
+    }
+
+    public boolean isInitalized() {
+        return isInitalized;
+    }
+
+    public void setInitalized(boolean initalized) {
+        isInitalized = initalized;
     }
 }

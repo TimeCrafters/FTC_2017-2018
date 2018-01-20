@@ -206,7 +206,7 @@ public abstract class Engine extends OpMode {
 
 
         // Check if sub engines need to be initialized
-        if(!isSubEngineinit){
+        if(!subEngines[x].isInitalized()){
             //Run set Proccesses on the sub engine
             subEngines[x].setProcesses();
 
