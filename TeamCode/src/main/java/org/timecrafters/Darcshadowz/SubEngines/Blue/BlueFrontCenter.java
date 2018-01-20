@@ -32,9 +32,10 @@ public class BlueFrontCenter extends SubEngine {
     public void setProcesses() {
 
         addState(new TurnLeft(engine,0.3,1780));
-        addState(new RaiseArm(engine, 1, 100));
+        addState(new RaiseArm(engine, 1, 500));
         addThreadedState(new DriveStraightForward(engine, 0.5, 200));
         addThreadedState(new ExtendArm(engine, 1, 2800));
+        addState(new RaiseArm(engine, -1, 500));
         addState(new RightGrabber(engine, -0.5, 500));
         addState(new RaiseArm(engine, 1, 1950));
         addState(new DriveStraightBackward(engine, 0.5, 500));
