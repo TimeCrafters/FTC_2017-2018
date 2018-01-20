@@ -37,6 +37,8 @@ public abstract class SubEngine {
 
     public abstract void evaluate();
 
+    private String name = "";
+
 
     public void checkStates(){
 
@@ -164,6 +166,14 @@ public abstract class SubEngine {
 
     public void setEvaluated(boolean evaluated) {
         this.evaluated = evaluated;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 
     public boolean isInitalized() {
