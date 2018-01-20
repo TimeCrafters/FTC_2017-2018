@@ -37,18 +37,6 @@ public abstract class SubEngine {
 
     public abstract void evaluate();
 
-    public void addState(State state){
-        stateY = 0;
-        processes[stateX][stateY] = state;
-        Log.i(TAG, "CREATED NEW STATE : " + "["+stateX + "]" + "[" + stateY +"]" );
-        stateX ++;
-    }
-
-    public void addThreadedState(State state){
-        stateY ++;
-        processes[stateX-1][stateY] = state;
-        Log.i(TAG, "ADDED PROCCES TO STATE : " + "["+stateX + "]" + "[" + stateY +"]" );
-    }
 
     public void checkStates(){
 
@@ -123,6 +111,19 @@ public abstract class SubEngine {
             }
 
         }
+    }
+
+    public void addState(State state){
+        stateY = 0;
+        processes[stateX][stateY] = state;
+        Log.i(TAG, "CREATED NEW STATE : " + "["+stateX + "]" + "[" + stateY +"]" );
+        stateX ++;
+    }
+
+    public void addThreadedState(State state){
+        stateY ++;
+        processes[stateX-1][stateY] = state;
+        Log.i(TAG, "ADDED PROCCES TO STATE : " + "["+stateX + "]" + "[" + stateY +"]" );
     }
 
     public boolean isPreInit() {
