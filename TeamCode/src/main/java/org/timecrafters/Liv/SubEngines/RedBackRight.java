@@ -33,7 +33,7 @@ public class RedBackRight  extends SubEngine{
         addState(new DriveStraightForward(engine, 0.3, 430));
         addState(new ExtendArm(engine, 0.5, 1290));
         addState(new LeftGrabber(engine, 0.5, 450));
-        addState(new DriveStraightForward(engine, -0.5, 516));
+        addState(new DriveStraightForward(engine, -0.5, 515));
         addState(new TurnRight(engine, 0.3, 1537));
         addState(new DriveStraightForward(engine,  -0.3, 1000));
         addState(new DriveStraightForward(engine, 0.5, 860));
