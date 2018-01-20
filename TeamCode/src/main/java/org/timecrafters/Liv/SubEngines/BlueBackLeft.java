@@ -33,7 +33,7 @@ public class BlueBackLeft extends SubEngine{
 
         addState(new DriveStraightForward(engine, -0.3, 4128));
         addState(new TurnRight(engine, 0.3, 1025));
-        addState(new RaiseArm(engine, 1, 650));
+        addState(new RaiseArm(engine, 1, 550));
         addState(new ExtendArm(engine, 0.5, 1140));
         addState(new RightGrabber(engine, -0.5, 500));
         addState(new DriveStraightForward(engine,   -0.5, 800));
