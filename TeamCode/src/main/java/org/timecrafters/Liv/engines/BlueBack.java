@@ -47,7 +47,7 @@ import org.timecrafters.gfp.state.util.Sleep;
         addState(readCam);
 
         addState(new Beam(this, -1, 1500));
-        addThreadedState(new Flipper(this, 1, 725));
+        addThreadedState(new Flipper(this, 1, 726));
         addState(new Beam(this, -1, 2500));
 
         addState(readColor);
