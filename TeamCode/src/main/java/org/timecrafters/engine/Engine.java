@@ -206,7 +206,7 @@ public abstract class Engine extends OpMode {
 
 
         // Check if sub engines need to be initialized
-        if(!subEngines[x].isInitalized()){
+        if(!isSubEngineinit){
             //Run set Proccesses on the sub engine
             subEngines[x].setProcesses();
 
@@ -215,7 +215,7 @@ public abstract class Engine extends OpMode {
             }
 
             //set subEngineInit to true so this only runs through once
-            subEngines[x].setInitalized(true);
+            isSubEngineinit = true;
         }
         if(!subEngines[x].isMachineFinished()){
             //Log.i(TAG,"STARTED CHECKING SUBSTATE PROCESS");
@@ -262,7 +262,7 @@ public abstract class Engine extends OpMode {
         processesY++;
         processesX++;
 
-        Log.i(TAG, "ADDED NEW STATE : " + Integer.toString(processesX) );
+        Log.i(TAG, "ADDED NEW STATE AT : " + Integer.toString(processesX) );
 
     }
 
@@ -274,7 +274,6 @@ public abstract class Engine extends OpMode {
     public void addSubEngine(SubEngine subEngine){
         subEngines[processesX] = subEngine;
         processesX++;
-        Log.i(TAG, "ADDED NEW SUB ENGINE : " + Integer.toString(processesX) );
     }
 
 }
