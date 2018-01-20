@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.timecrafters.gfp.config.HardWareConfig;
 
+import java.util.Objects;
+
 /**
  * Created by t420 on 9/29/2016.
  * First successful test was 5:00 6 thur oct 2016
@@ -81,6 +83,12 @@ public abstract class Engine extends OpMode {
                 subEngines[i].initStates();
             }
         }
+
+        for(int i=0; i < subEngines.length; i++){
+            if(subEngines[i] != null) {
+                Log.i(TAG, Integer.toString(i) + Objects.toString(subEngines[i]) + subEngines[i].getName());
+            }
+        }
     }
 
     //checks if ops are finished
@@ -100,6 +108,7 @@ public abstract class Engine extends OpMode {
                 subEngines[processIndex].setEvaluated(true);
                 Log.i(TAG,"FINISHED EVALUATING SUB ENGINE : "+ subEngines[processIndex].getName()+
                         Integer.toString(processIndex));
+                Log.i(TAG,Boolean.toString(subEngines[processIndex].isMachineFinished()));
 
             }
 
@@ -220,10 +229,11 @@ public abstract class Engine extends OpMode {
             isSubEngineinit = true;
         }
         if(!subEngines[processIndex].isMachineFinished()){
-            //Log.i(TAG,"STARTED CHECKING SUBSTATE PROCESS");
+            Log.i(TAG,"STARTED CHECKING SUBSTATE PROCESS");
             subEngines[processIndex].checkStates();
-            //Log.i(TAG, "FINISEHD CHECKING SUBSTATE PROCESSES");
+            Log.i(TAG, "FINISEHD CHECKING SUBSTATE PROCESSES");
         }else{
+            isSubEngineinit = false;
             Log.i(TAG,"FINISHED SUBENGINE");
             this.processIndex++;
             checkingStates = true;

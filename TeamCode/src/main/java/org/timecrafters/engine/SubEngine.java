@@ -79,13 +79,12 @@ public abstract class SubEngine {
                 Log.i(TAG, "Started State : " + Integer.toString(currentX));
 
 
-            }else if(subEngines[currentX] != null){
-                checkingStates = false;
-            }
-            else if (processes[currentX][0] == null && !machineFinished) {
+            }else if (processes[currentX][0] == null && !machineFinished) {
                 Log.i(TAG, "MACHINE TERMINATED");
                 machineFinished = true;
                 stop();
+            }else{
+
             }
 
         }

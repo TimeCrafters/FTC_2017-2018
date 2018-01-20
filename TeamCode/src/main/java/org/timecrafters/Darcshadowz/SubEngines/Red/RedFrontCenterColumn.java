@@ -50,6 +50,6 @@ public class RedFrontCenterColumn extends SubEngine {
         /*if (readCam.getVuMark() == RelicRecoveryVuMark.CENTER) {
             setRunable(true);
         }*/
-        setRunable(true);
+
     }
 }

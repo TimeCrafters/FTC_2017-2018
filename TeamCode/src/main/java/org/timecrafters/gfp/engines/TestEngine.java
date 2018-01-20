@@ -22,18 +22,25 @@ import org.timecrafters.gfp.subEngine.TestSubEngine;
 @TeleOp(name = "Test")
 public class TestEngine extends Engine {
 
-    ReadCam readCam;
 
     @Override
     public void setProcesses(){
         hardWareConfig = new HardWareConfig(this);
         addState(hardWareConfig);
-        readCam= new ReadCam(this);
-        addState(readCam);
 
-        addSubEngine(new TestCamLeft(this,readCam));
-        addSubEngine(new TestCamCenter(this,readCam));
-        addSubEngine(new TestCamRight(this,readCam));
+        addState(new TestState("state 1"));
+        addState(new TestState("state 2"));
+
+        addSubEngine(new TestSubEngine("state 3"));
+        addSubEngine(new TestSubEngine("state 3.5"));
+
+        addState(new TestState("state 4"));
+        addState(new TestState("state 5"));
+
+        addSubEngine(new TestSubEngine("state 6"));
+
+        addState(new TestState("state 7"));
+        addSubEngine(new TestSubEngine("state 8"));
     }
 
 }
