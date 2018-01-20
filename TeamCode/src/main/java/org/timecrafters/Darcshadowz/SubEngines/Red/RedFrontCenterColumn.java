@@ -1,6 +1,7 @@
 package org.timecrafters.Darcshadowz.SubEngines.Red;
 
 import android.support.annotation.RequiresPermission;
+import android.util.Log;
 
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.timecrafters.engine.Engine;
@@ -42,6 +43,7 @@ public class RedFrontCenterColumn extends SubEngine {
         addState(new DriveStraightForward(engine, 0.5, 100));
         addState(new RaiseArm(engine, -1, 1950));
         addState(new ExtendArm(engine, 0, 0));
+        Log.i("Hello", "You should see me!");
     }
 
     @Override

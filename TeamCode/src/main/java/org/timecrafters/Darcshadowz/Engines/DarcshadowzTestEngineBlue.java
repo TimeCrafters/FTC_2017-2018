@@ -49,7 +49,6 @@ public class DarcshadowzTestEngineBlue extends Engine {
         addState(readColor);
 
         addSubEngine(new BlueBumpLeft(this, readColor));
-//        addSubEngine(new BlueBumpRight(this, readColor));
 
         addState(new Beam(this, 1, 2500));
         addState(new Flipper(this, -1, 750));
@@ -59,19 +58,10 @@ public class DarcshadowzTestEngineBlue extends Engine {
         addState(new TurnLeft(this, 0.3, 800));
         addState(new DriveStraightForward(this, 0.5, 3000));
 
-        BlueFrontCenter blueFrontCenter= new BlueFrontCenter(this,readCam);
-        BlueFrontLeft blueFrontLeft = new BlueFrontLeft(this,readCam);
-        BlueFrontRight blueFrontRight = new BlueFrontRight(this,readCam);
+        addSubEngine(new BlueFrontCenter(this, readCam));
+        addSubEngine(new BlueFrontRight(this, readCam));
+        addSubEngine(new BlueFrontLeft(this, readCam));
 
-        blueFrontCenter.setName("blue front center uno blueno");
-        blueFrontRight.setName("blue front right uno blueno");
-        blueFrontLeft.setName("blue front left uno blueno");
-
-        addSubEngine(blueFrontCenter);
-
-        addSubEngine(blueFrontLeft);
-
-        addSubEngine(blueFrontRight);
     }
 
 }
