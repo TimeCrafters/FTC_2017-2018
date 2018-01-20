@@ -7,6 +7,7 @@ import org.timecrafters.gfp.Teleop.Arm;
 import org.timecrafters.gfp.Teleop.JewelBump;
 import org.timecrafters.gfp.Teleop.DriveTrain;
 import org.timecrafters.gfp.Teleop.Grabbers;
+import org.timecrafters.gfp.Teleop.RelicGrabber;
 import org.timecrafters.gfp.Teleop.Winch;
 import org.timecrafters.gfp.config.HardWareConfig;
 
@@ -25,6 +26,7 @@ public class TeleopEngine extends Engine {
         addThreadedState(new Winch(this,1.0));
         addThreadedState(new Arm(this,1.0,0.3));
         addThreadedState(new JewelBump(this,1.0,1.0));
+        addThreadedState(new RelicGrabber(this,1.0));
 
     }
 
