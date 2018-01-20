@@ -28,28 +28,29 @@ public class RedBack extends Engine {
 
     public void setProcesses() {
 
-        ReadColor readColor = new ReadColor(this,3,5,0);
         ReadCam readCam = new ReadCam(this);
         hardWareConfig = new HardWareConfig(this);
         addState(hardWareConfig);
+
+        ReadColor readColor = new ReadColor(this,3,5,0);
+
         addState(readCam);
-        addState(new Beam(this,-1.0,1450));
-        addThreadedState(new Flipper(this,1.0,1000));
-        addThreadedState(new Beam(this, -1.0, 2650));
+
+        addState(new Beam(this, -1, 1500));
+        addThreadedState(new Flipper(this, 1, 725));
+        addState(new Beam(this, -1, 2500));
+
         addState(readColor);
 
-        //addSubEngine(new RedBumpLeft(this, readColor));
-        addSubEngine(new RedBumpRight(this, readColor));
+        addSubEngine(new RedBumpLeft(this, readColor));
 
         addState(new Beam(this, 1, 2500));
-        addThreadedState(new Flipper(this, -1, 431));
+        addState(new Flipper(this, -1, 750));
         addThreadedState(new Beam(this, 1, 1700));
 
-        addState(new Sleep(this,50));
-
-        addSubEngine(new RedBackLeft(this,readCam));
-        addSubEngine(new RedBackCenter(this,readCam));
-        addSubEngine(new RedBackRight(this,readCam));
+        addSubEngine(new RedBackLeft(this, readCam));
+        addSubEngine(new RedBackCenter(this, readCam));
+        addSubEngine(new RedBackRight(this, readCam));
 
         }
     }
