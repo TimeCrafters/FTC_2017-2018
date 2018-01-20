@@ -9,6 +9,7 @@ import org.timecrafters.engine.SubEngine;
 import org.timecrafters.gfp.state.arm.ExtendArm;
 import org.timecrafters.gfp.state.arm.RaiseArm;
 import org.timecrafters.gfp.state.cam.ReadCam;
+import org.timecrafters.gfp.state.drive.DriveStraightBackward;
 import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
 import org.timecrafters.gfp.state.drive.TurnRight;
@@ -31,7 +32,7 @@ public class BlueBackLeft extends SubEngine{
     @Override
     public void setProcesses() {
 
-        addState(new DriveStraightForward(engine, -0.3, 4128));
+        addState(new DriveStraightBackward(engine, 0.3, 4128));
         addState(new TurnRight(engine, 0.3, 1025));
         addState(new RaiseArm(engine, 1, 550));
         addState(new ExtendArm(engine, 0.5, 1140));

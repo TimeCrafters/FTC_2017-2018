@@ -34,7 +34,7 @@ public class RedFrontCenterColumn extends SubEngine {
     public void setProcesses() {
 
         addState(new TurnRight(engine,0.3,1780));
-        addThreadedState(new RaiseArm(engine, 1, 100));
+        addState(new RaiseArm(engine, 1, 100));
         addThreadedState(new DriveStraightForward(engine, 0.5, 200));
         addThreadedState(new ExtendArm(engine, 1, 2800));
         addState(new LeftGrabber(engine, 0.5, 500));

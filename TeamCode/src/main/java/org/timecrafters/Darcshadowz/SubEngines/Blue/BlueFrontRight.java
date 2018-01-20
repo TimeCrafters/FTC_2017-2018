@@ -31,12 +31,12 @@ public class BlueFrontRight extends SubEngine {
     public void setProcesses() {
 
         addState(new TurnLeft(engine, 0.3, 1630));
-        addThreadedState(new RaiseArm(engine, 1, 100));
+        addState(new RaiseArm(engine, 1, 100));
         addThreadedState(new DriveStraightForward(engine, 0.5, 0));
         addThreadedState(new ExtendArm(engine, 1, 2000));
         addState(new RightGrabber(engine, -0.5, 500));
         addState(new RaiseArm(engine, 1, 1950));
-        addThreadedState(new DriveStraightBackward(engine, 0.5, 500));
+        addState(new DriveStraightBackward(engine, 0.5, 500));
         addState(new TurnLeft(engine, 0.3, 1750));
         addState(new DriveStraightBackward(engine, 0.5, 700));
         addState(new DriveStraightForward(engine, 0.5, 100));

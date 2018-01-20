@@ -31,7 +31,7 @@ public class RedFrontLeftColumn extends SubEngine {
     public void setProcesses() {
 
         addState(new TurnRight(engine, 0.3, 1630));
-        addThreadedState(new RaiseArm(engine, 1, 100));
+        addState(new RaiseArm(engine, 1, 100));
         addThreadedState(new DriveStraightForward(engine, 0.5, 0));
         addThreadedState(new ExtendArm(engine, 1, 2000));
         addState(new LeftGrabber(engine, -0.5, 500));
@@ -43,7 +43,6 @@ public class RedFrontLeftColumn extends SubEngine {
         addThreadedState(new RaiseArm(engine, -1, 1950));
 
     }
-    @Override
     public void evaluate() {
   //      setPreInit(true);
         if(readCam.getVuMark() == RelicRecoveryVuMark.LEFT)
