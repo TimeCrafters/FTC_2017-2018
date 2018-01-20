@@ -106,9 +106,8 @@ public abstract class Engine extends OpMode {
                 Log.i(TAG,"EVALUATING SUB ENGINE : "+Integer.toString(processIndex));
                 subEngines[processIndex].evaluate();
                 subEngines[processIndex].setEvaluated(true);
-                Log.i(TAG,"FINISHED EVALUATING SUB ENGINE : "+ subEngines[processIndex].getName()+
-                        Integer.toString(processIndex));
-                Log.i(TAG,Boolean.toString(subEngines[processIndex].isMachineFinished()));
+                /*Log.i(TAG,"FINISHED EVALUATING SUB ENGINE : "+ subEngines[processIndex].getName()+
+                        Integer.toString(processIndex));*/
 
             }
 
@@ -229,9 +228,9 @@ public abstract class Engine extends OpMode {
             isSubEngineinit = true;
         }
         if(!subEngines[processIndex].isMachineFinished()){
-            Log.i(TAG,"STARTED CHECKING SUBSTATE PROCESS");
+            //Log.i(TAG,"STARTED CHECKING SUBSTATE PROCESS");
             subEngines[processIndex].checkStates();
-            Log.i(TAG, "FINISEHD CHECKING SUBSTATE PROCESSES");
+            //Log.i(TAG, "FINISEHD CHECKING SUBSTATE PROCESSES");
         }else{
             isSubEngineinit = false;
             Log.i(TAG,"FINISHED SUBENGINE");
