@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.robotcontroller.internal.service;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.EventLoop;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -71,6 +72,10 @@ public class TelemetryServer {
         }
     }
 
+    void log(String string) {
+        Log.d("TelemetryServer", string);
+    }
+
     void runServer() {
         while(allowServer) {
             try {
@@ -113,8 +118,8 @@ public class TelemetryServer {
 
 
             } catch(IOException e) {
-                System.out.println("RunServer IOException");
-                System.out.println(e);
+                log("RunServer IOException");
+                log(e.toString());
             }
         }
     }
@@ -126,6 +131,7 @@ public class TelemetryServer {
                 server.close();
             }
         } catch(IOException e) {
+            log("Halt Server error: "+e);
             // Failed to close server!
         }
     }
@@ -140,32 +146,32 @@ public class TelemetryServer {
                 dcFrontRight = getMotor("dcFrontRight");
                 dcBackLeft = getMotor("dcBackLeft");
                 dcBackRight = getMotor("dcBackRight");
-//                System.out.println("Drive Train A.O.K.");
+//                log("Drive Train A.O.K.");
 
                 dcArm = getMotor("dcArm");
                 dcWinch = getMotor("dcWinch");
-//                System.out.println("Winch A.O.K.");
+//                log("Winch A.O.K.");
 
                 dcLeftGrabber = getMotor("dcLeftGrabber");
                 dcRightGrabber = getMotor("dcRightGrabber");
-//                System.out.println("Grabbers A.O.K.");
+//                log("Grabbers A.O.K.");
 
                 crBeam = getcrServo("crBeam");
                 crFlipper = getcrServo("crFlipper");
                 crRelic = getcrServo("crGrabber");
-//                System.out.println("Servos A.O.K.");
+//                log("Servos A.O.K.");
 
                 colorSensor = hardwareMap.colorSensor.get("colorSensor");
-//                System.out.println("ColorSensor A.O.K.");
+//                log("ColorSensor A.O.K.");
 
                 beamTouch = hardwareMap.touchSensor.get("beamTouch");
                 flipperTouch = hardwareMap.touchSensor.get("flipperTouch");
                 winchTouch = hardwareMap.touchSensor.get("winchTouch");
-//                System.out.println("TouchSensors A.O.K.");
+//                log("TouchSensors A.O.K.");
                 lookupFaulty = false;
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(e);
+            log(e.toString());
             badLookup();
             hardwareMap = null;
         }
@@ -205,7 +211,7 @@ public class TelemetryServer {
                 "{\"name\":\"flipperTouch\",\"value\":"+flipperTouch.isPressed()+"}," +
                 "{\"name\":\"winchTouch\",\"value\":"+winchTouch.isPressed()+"}]}";
         out.write(json);
-        System.out.println("TeleMetry");
+//        log("TeleMetry");
     }
 
     void indexPage(BufferedWriter out) throws IOException {
@@ -265,6 +271,7 @@ public class TelemetryServer {
         out.write("\n");
         out.write("request.onerror = function() {\n");
         out.write("// There was a connection error of some sort\n");
+        out.write("document.getElementById(\"error\").innerHTML=\"Connection Error Occurred. <br />Server might not be running or you're not connected to the phones wi-fi network.\"\n");
         out.write("};\n");
         out.write("\n");
         out.write("request.send();\n");
@@ -277,7 +284,7 @@ public class TelemetryServer {
         out.write("console.log(\"Ready\")\n");
         out.write("window.setInterval(function() {\n");
         out.write("refreshTelemetry();\n");
-        out.write("}, 5);\n");
+        out.write("}, 100);\n");
         out.write("}\n");
         out.write("}\n");
         out.write("</script>\n");
