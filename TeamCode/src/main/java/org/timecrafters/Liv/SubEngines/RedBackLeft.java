@@ -38,9 +38,9 @@ public class RedBackLeft extends SubEngine{
         addState(new RaiseArm(engine, 1, 1950));
         addState(new DriveStraightBackward(engine,   0.5, 500));
         addState(new TurnRight(engine, 0.3, 1800));
-        addState(new DriveStraightBackward(engine, 0.3, 1500));
+        addState(new DriveStraightBackward(engine, 0.5, 1700));
         addState(new DriveStraightForward(engine, 0.3, 100));
-        addState(new RaiseArm(engine, -1, 1950));
+        addThreadedState(new RaiseArm(engine, -1, 1950));
 
     }
 
