@@ -60,11 +60,12 @@ import org.timecrafters.gfp.state.util.Sleep;
 
         addThreadedState(new DriveStraightBackward(this, 0.3, 1700));
 
-        addSubEngine(new BlueBackLeft(this,readCam));
         addSubEngine(new BlueBackCenter(this,readCam));
         addSubEngine(new BlueBackRight(this,readCam));
+        addSubEngine(new BlueBackLeft(this,readCam));
 
-        }
+
+    }
 
     }
 

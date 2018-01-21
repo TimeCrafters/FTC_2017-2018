@@ -55,7 +55,7 @@ public class BlueBackLeft extends SubEngine{
 
     @Override
     public void evaluate() {
-        if (readCam.getVuMark() == RelicRecoveryVuMark.LEFT) {
+        if (readCam.getVuMark() == RelicRecoveryVuMark.LEFT || readCam.getVuMark() == RelicRecoveryVuMark.UNKNOWN) {
             setRunable(true);
         }
     }

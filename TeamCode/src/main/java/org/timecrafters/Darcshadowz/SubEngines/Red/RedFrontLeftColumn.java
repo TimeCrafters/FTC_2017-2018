@@ -46,7 +46,7 @@ public class RedFrontLeftColumn extends SubEngine {
     }
     public void evaluate() {
   //      setPreInit(true);
-        if(readCam.getVuMark() == RelicRecoveryVuMark.LEFT) {
+        if(readCam.getVuMark() == RelicRecoveryVuMark.LEFT || readCam.getVuMark() == RelicRecoveryVuMark.UNKNOWN) {
             setRunable(true);
         }
     }
