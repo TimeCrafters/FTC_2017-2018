@@ -11,6 +11,7 @@ import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpLeft;
 import org.timecrafters.gfp.engines.autonomous.jewelBump.Red.RedBumpRight;
 import org.timecrafters.gfp.state.cam.ReadCam;
 import org.timecrafters.gfp.state.color.ReadColor;
+import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.jewelBump.Beam;
 import org.timecrafters.gfp.state.jewelBump.Flipper;
 import org.timecrafters.gfp.state.util.Sleep;
@@ -47,6 +48,8 @@ public class RedBack extends Engine {
         addState(new Beam(this, 1, 2500));
         addState(new Flipper(this, -1, 750));
         addThreadedState(new Beam(this, 1, 1700));
+
+        addThreadedState(new DriveStraightForward(this, 0.15, 2300));
 
         addSubEngine(new RedBackLeft(this, readCam));
         addSubEngine(new RedBackCenter(this, readCam));
