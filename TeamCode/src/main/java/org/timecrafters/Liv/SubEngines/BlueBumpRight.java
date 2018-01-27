@@ -21,7 +21,7 @@ public class BlueBumpRight extends SubEngine{
 
     @Override
     public void setProcesses() {
-        addState(new Flipper(engine, -0.5, 120));
+        addState(new Flipper(engine, -0.5, 120, false, 0));
     }
 
     @Override

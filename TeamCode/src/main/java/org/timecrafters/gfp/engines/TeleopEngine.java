@@ -25,8 +25,8 @@ public class TeleopEngine extends Engine {
         addThreadedState(new Grabbers(this,0.3));
         addThreadedState(new Winch(this,1.0));
         addThreadedState(new Arm(this,1.0,0.3));
-        addThreadedState(new JewelBump(this,1.0,1.0));
-        addThreadedState(new RelicGrabber(this,1.0));
+        //addThreadedState(new JewelBump(this,1.0,1.0));
+        //addThreadedState(new RelicGrabber(this,1.0));
 
     }
 

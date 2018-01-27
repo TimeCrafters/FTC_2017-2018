@@ -38,16 +38,16 @@ public class RedBack extends Engine {
         addState(readCam);
 
         addState(new Beam(this, -1, 1500));
-        addThreadedState(new Flipper(this, 1, 725));
+        addThreadedState(new Flipper(this, 1, 725, true,500));
         addState(new Beam(this, -1, 2500));
 
         addState(readColor);
 
         addSubEngine(new RedBumpLeft(this, readColor));
 
-        addState(new Beam(this, 1, 2500));
-        addState(new Flipper(this, -1, 750));
-        addThreadedState(new Beam(this, 1, 1700));
+        addState(new Beam(this, 1, 2500+1700));
+        addThreadedState(new Flipper(this, -1, 750, false, 2500));
+     //   addThreadedState(new Beam(this, 1, 1700));
 
         addThreadedState(new DriveStraightForward(this, 0.15, 2300));
 

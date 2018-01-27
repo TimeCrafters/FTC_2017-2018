@@ -21,9 +21,9 @@ public class BlueBumpLeft extends SubEngine {
     @Override
     public void setProcesses() {
         if (readColor.getRedAverage() >=2.0 && readColor.getBlueAverage() <=5.0) {
-            addState(new Flipper(engine, 1, 120));
+            addState(new Flipper(engine, 1, 120, false, 0));
         } else {
-            addState(new Flipper(engine, -1, 120));
+            addState(new Flipper(engine, -1, 120, false, 0));
         }
     }
 
