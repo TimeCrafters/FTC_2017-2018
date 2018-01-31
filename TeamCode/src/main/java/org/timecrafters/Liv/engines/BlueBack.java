@@ -58,7 +58,7 @@ import org.timecrafters.gfp.state.util.Sleep;
         addThreadedState(new Flipper(this, -1, 750, false, 2500));
       //  addThreadedState(new Beam(this, 1, 1700));
 
-        addThreadedState(new DriveStraightBackward(this, 0.3, 1700));
+        addThreadedState(new DriveStraightForward(this, -0.3, 1700, 250));
 
         addSubEngine(new BlueBackCenter(this,readCam));
         addSubEngine(new BlueBackRight(this,readCam));

@@ -35,6 +35,7 @@ public class DarcShadowzTestEngineRed extends Engine {
 
     public void setProcesses() {
 
+        // Read Pictograph and determine left, center, right
         readCam = new ReadCam(this);
         hardWareConfig = new HardWareConfig(this);
         addState(hardWareConfig);
@@ -42,22 +43,25 @@ public class DarcShadowzTestEngineRed extends Engine {
 
         ReadColor readColor = new ReadColor(this, 3, 5, 0);
 
+        // Beam down, flipper out, beam continues down
         addState(new Beam(this, -1, 1500));
         addThreadedState(new Flipper(this, 1, 725, true, 500));
         addState(new Beam(this, -1, 2500));
 
+        // Color sensor reads red/blue, bump left or right
         addState(readColor);
-
         addSubEngine(new RedBumpLeft(this, readColor));
 
+        // Beam up, small delay before flipper in and drive off balancing stone
         addState(new Beam(this, 1, 2500+1700));
         addThreadedState(new Flipper(this, -1, 750, false, 2500));
-     //   addThreadedState(new Beam(this, 1, 1700));
+        addThreadedState(new DriveStraightForward(this, 0.15, 2300, 250));
 
-        addThreadedState(new DriveStraightForward(this, 0.15, 2300));
+        // Turn Left, Drive Forward
         addState(new TurnLeft(this, 0.3, 1000));
-        addState(new DriveStraightForward(this, 0.50, 3150));
+        addState(new DriveStraightForward(this, 0.50, 2900));
 
+        // Run SubEngine left, center, right
         addSubEngine(new RedFrontCenterColumn(this, readCam));
         addSubEngine(new RedFrontRightColumn(this, readCam));
         addSubEngine(new RedFrontLeftColumn(this, readCam));

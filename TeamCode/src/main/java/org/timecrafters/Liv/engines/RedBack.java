@@ -49,7 +49,7 @@ public class RedBack extends Engine {
         addThreadedState(new Flipper(this, -1, 750, false, 2500));
      //   addThreadedState(new Beam(this, 1, 1700));
 
-        addThreadedState(new DriveStraightForward(this, 0.15, 2300));
+        addThreadedState(new DriveStraightForward(this, 0.15, 2300, 250));
 
         addSubEngine(new RedBackLeft(this, readCam));
         addSubEngine(new RedBackCenter(this, readCam));
