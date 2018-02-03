@@ -20,6 +20,8 @@ public class Config extends State {
         this.engine = engine;
     }
 
+    public HardWareConfig hardWareConfig;
+
     public DcMotor dcRightGrabber;
     public DcMotor dcLeftGrabber;
 
@@ -51,58 +53,36 @@ public class Config extends State {
 
     public void init(){
 
-        //Grabbers
-        dcRightGrabber = engine.hardwareMap.dcMotor.get("dcRightGrabber");
+        hardWareConfig = engine.hardWareConfig;
+        dcRightGrabber = hardWareConfig.dcRightGrabber;
+        dcLeftGrabber = hardWareConfig.dcLeftGrabber;
 
-        dcLeftGrabber = engine.hardwareMap.dcMotor.get("dcLeftGrabber");
+        dcFrontRight = hardWareConfig.dcFrontRight;
+        dcFrontLeft = hardWareConfig.dcFrontLeft;
+        dcBackRight = hardWareConfig.dcBackRight;
+        dcBackLeft = hardWareConfig.dcBackLeft;
 
-//        sleep(time);
+        dcArm = hardWareConfig.dcArm;
+        dcWinch = hardWareConfig.dcWinch;
 
-        //Drive Train
-        dcFrontLeft  = engine.hardwareMap.dcMotor.get("dcFrontLeft");
-        dcFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        dcFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        winchTouch = hardWareConfig.winchTouch;
+        flipperTouch = hardWareConfig.flipperTouch;
+        beamTouch = hardWareConfig.beamTouch;
 
-        dcFrontRight = engine.hardwareMap.dcMotor.get("dcFrontRight");
-        dcFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        dcFrontRight.setDirection(DcMotorSimple.Direction.FORWARD);
+        crFlipper = hardWareConfig.crFlipper;
+        crBeam = hardWareConfig.crBeam;
+        crGrabber = hardWareConfig.crGrabber;
 
-        dcBackRight  = engine.hardwareMap.dcMotor.get("dcBackRight");
-        dcBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        dcBackRight.setDirection(DcMotorSimple.Direction.FORWARD);
-
-
-        dcBackLeft   = engine.hardwareMap.dcMotor.get("dcBackLeft");
-        dcBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        dcBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        dcWinch = engine.hardwareMap.dcMotor.get("dcWinch");
-        dcWinch.setDirection(DcMotorSimple.Direction.REVERSE);
-        dcWinch.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        //dcWinch.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        dcArm = engine.hardwareMap.dcMotor.get("dcArm");
-        dcArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        dcArm.setDirection(DcMotorSimple.Direction.FORWARD);
-
-        //winchTouch = engine.hardwareMap.touchSensor.get("winchTouch");
-        flipperTouch = engine.hardwareMap.touchSensor.get("flipperTouch");
-        beamTouch = engine.hardwareMap.touchSensor.get("beamTouch");
-
-        //frontRightDistanceSensor = engine.hardwareMap.get(ModernRoboticsI2cRangeSensor.class,
-        //        "frontRightDistanceSensor");
-
-        colorSensor = engine.hardwareMap.colorSensor.get("colorSensor");
-
-        crFlipper = engine.hardwareMap.crservo.get("crFlipper");
-        crBeam = engine.hardwareMap.crservo.get("crBeam");
-        crGrabber = engine.hardwareMap.crservo.get("crGrabber");
-
-
+        colorSensor = hardWareConfig.colorSensor;
+        super.init();
     }
 
     public void exec(){
         setFinished(true);
+    }
+
+    public void setHardWareConfig(HardWareConfig hardWareConfig){
+        this.hardWareConfig = hardWareConfig;
     }
 
 }

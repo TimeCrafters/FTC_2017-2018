@@ -23,28 +23,22 @@ public abstract class SubEngine {
     private boolean machineFinished = false;
     private boolean opFininished = true;
 
+    private boolean isInitalized = false;
+
     private boolean runable = false;
 
     private boolean preInit= false;
 
     public static String TAG = "PROGRAM.SUBENGINE.CLEAN";
 
+    boolean evaluated = false;
+
     public abstract void setProcesses();
 
     public abstract void evaluate();
 
-    public void addState(State state){
-        stateY = 0;
-        processes[stateX][stateY] = state;
-        Log.i(TAG, "CREATED NEW STATE : " + "["+stateX + "]" + "[" + stateY +"]" );
-        stateX ++;
-    }
+    private String name = "";
 
-    public void addThreadedState(State state){
-        stateY ++;
-        processes[stateX-1][stateY] = state;
-        Log.i(TAG, "ADDED PROCCES TO STATE : " + "["+stateX + "]" + "[" + stateY +"]" );
-    }
 
     public void checkStates(){
 
@@ -85,13 +79,12 @@ public abstract class SubEngine {
                 Log.i(TAG, "Started State : " + Integer.toString(currentX));
 
 
-            }else if(subEngines[currentX] != null){
-                checkingStates = false;
-            }
-            else if (processes[currentX][0] == null && !machineFinished) {
+            }else if (processes[currentX][0] == null && !machineFinished) {
                 Log.i(TAG, "MACHINE TERMINATED");
                 machineFinished = true;
                 stop();
+            }else{
+
             }
 
         }
@@ -119,6 +112,19 @@ public abstract class SubEngine {
             }
 
         }
+    }
+
+    public void addState(State state){
+        stateY = 0;
+        processes[stateX][stateY] = state;
+        Log.i(TAG, "CREATED NEW STATE : " + "["+stateX + "]" + "[" + stateY +"]" );
+        stateX ++;
+    }
+
+    public void addThreadedState(State state){
+        stateY ++;
+        processes[stateX-1][stateY] = state;
+        Log.i(TAG, "ADDED PROCCES TO STATE : " + "["+stateX + "]" + "[" + stateY +"]" );
     }
 
     public boolean isPreInit() {
@@ -151,5 +157,29 @@ public abstract class SubEngine {
 
     public void setRunable(boolean runable) {
         this.runable = runable;
+    }
+
+    public boolean isEvaluated() {
+        return evaluated;
+    }
+
+    public void setEvaluated(boolean evaluated) {
+        this.evaluated = evaluated;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public boolean isInitalized() {
+        return isInitalized;
+    }
+
+    public void setInitalized(boolean initalized) {
+        isInitalized = initalized;
     }
 }

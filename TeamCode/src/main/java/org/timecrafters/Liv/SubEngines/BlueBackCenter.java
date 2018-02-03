@@ -1,5 +1,7 @@
 package org.timecrafters.Liv.SubEngines;
 
+        import android.util.Log;
+
         import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
         import org.timecrafters.Darcshadowz.State.RightGrabber;
         import org.timecrafters.Liv.engines.BlueBack;
@@ -13,6 +15,8 @@ package org.timecrafters.Liv.SubEngines;
         import org.timecrafters.gfp.state.drive.TurnLeft;
         import org.timecrafters.gfp.state.drive.TurnRight;
         import org.timecrafters.gfp.state.grabber.LeftGrabber;
+
+        import java.util.Objects;
 
 /**
  * Created by Liv on 1/2/2018.
@@ -30,21 +34,27 @@ public class BlueBackCenter extends SubEngine{
     @Override
     public void setProcesses() {
         // center glyph goal
-        addState(new DriveStraightBackward(engine, 0.3, 3305));
-        addState(new TurnRight(engine, 0.3, 410));
-        addState(new RaiseArm(engine, 1, 650));
-        addState(new DriveStraightForward(engine, 0.3, 400));
-        addState(new ExtendArm(engine, 0.5, 1290));
+        addState(new DriveStraightBackward(engine, 0.3, 450)); //500 was to much, might want to test later
+        addState(new TurnRight(engine, 0.3, 900)); //1025 too much
+        addState(new RaiseArm(engine, 1, 500));
+        addThreadedState(new DriveStraightBackward(engine, 0.5, 800));
+        addState(new ExtendArm(engine, 0.5, 2000));
+        addState(new DriveStraightForward(engine, 0.5, 300));
+        addState(new RaiseArm(engine, -1, 500));
         addState(new RightGrabber(engine, -0.5, 500));
-        addState(new DriveStraightForward(engine, -0.5, 516));
-        addState(new TurnLeft(engine, 0.3, 1737));
-        addState(new DriveStraightForward(engine, -0.3, 850));
-        addState(new DriveStraightForward(engine, 0.5, 860));
+        addState(new RaiseArm(engine, 1, 1950));
+        addState(new DriveStraightBackward(engine,   0.5, 500));
+        addState(new TurnLeft(engine, 0.3, 1800));
+        addState(new DriveStraightBackward(engine, 0.3, 1200));
+        addState(new DriveStraightForward(engine, 0.3, 100));
+        addState(new RaiseArm(engine, -1, 1950));
     }
 
     @Override
     public void evaluate() {
-        if (readCam.getVuMark() == RelicRecoveryVuMark.LEFT) {
+        if (readCam.getVuMark() == RelicRecoveryVuMark.CENTER) {
             setRunable(true);
         }
-    }}
+
+    }
+}

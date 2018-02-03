@@ -1,8 +1,10 @@
 package org.timecrafters.Darcshadowz.SubEngines.Red;
 
 import android.support.annotation.RequiresPermission;
+import android.util.Log;
 
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
+import org.timecrafters.Darcshadowz.State.RightGrabber;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.SubEngine;
 import org.timecrafters.gfp.state.arm.ExtendArm;
@@ -30,22 +32,19 @@ public class RedFrontCenterColumn extends SubEngine {
     @Override
 
     public void setProcesses() {
-        addState(new DriveStraightForward(engine, 0.15, 2500));
-        addState(new TurnLeft(engine, 0.3, 1000));
-        addState(new DriveStraightForward(engine, 0.5, 3150));
 
-        addState(new TurnRight(engine, 0.3, 1550));
-        addState(new DriveStraightForward(engine, 0.5, 700));
-
-        addState(new ExtendArm(engine, 1, 2800));
+        addState(new TurnRight(engine,0.3,1650));
+        addState(new RaiseArm(engine, 1, 500));
+        addThreadedState(new DriveStraightForward(engine, 0.5, 300));
+        addThreadedState(new ExtendArm(engine, 1, 2800));
+        addState(new RaiseArm(engine, -1, 500));
         addState(new LeftGrabber(engine, 0.5, 500));
         addState(new RaiseArm(engine, 1, 1950));
-        addState(new DriveStraightBackward(engine, 0.5, 700));
+        addState(new DriveStraightBackward(engine, 0.5, 500));
         addState(new TurnRight(engine, 0.3, 1750));
         addState(new DriveStraightBackward(engine, 0.5, 700));
-        addState(new DriveStraightForward(engine, 0.5, 100));
-        addState(new RaiseArm(engine, -1, 1950));
-        addState(new ExtendArm(engine, 0, 0));
+        addState(new DriveStraightForward(engine, 0.5, 200));
+        addThreadedState(new RaiseArm(engine,-1, 1950));
     }
 
     @Override
@@ -54,5 +53,6 @@ public class RedFrontCenterColumn extends SubEngine {
         if (readCam.getVuMark() == RelicRecoveryVuMark.CENTER) {
             setRunable(true);
         }
+
     }
 }

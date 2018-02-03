@@ -15,15 +15,21 @@ public class TestState extends State {
 
     private volatile boolean burger = false;
 
+    String output;
+
+    public TestState(String output){
+        this.output = output;
+    }
+    public TestState(){
+        this.output ="TestState";
+    }
+
     public void init(){
         Log.i(TAG, "MADE IT TO INIT");
     }
 
     public void exec(){
-        Log.i(TAG, "INSIDE EXEC");
-        sleep(5000);
-        Log.i(TAG, "LEAVING EXEC");
-        burger = true;
+        Log.i(TAG,output);
         setFinished(true);
     }
 

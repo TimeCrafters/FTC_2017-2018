@@ -4,6 +4,7 @@ import android.media.AudioManager;
 import android.media.ToneGenerator;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
@@ -12,7 +13,7 @@ import com.qualcomm.robotcore.hardware.VoltageSensor;
  * Created by cyberarm on 11/22/2017.
  */
 
-@Autonomous(name = "!!! TEST BasicDriveTrain TEST !!!")
+@Disabled//(name = "!!! TEST BasicDriveTrain TEST !!!")
 public class BasicDriveTrain extends OpMode {
     public DcMotor dcFrontRight;
     public DcMotor dcFrontLeft;

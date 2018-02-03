@@ -13,27 +13,19 @@ import org.timecrafters.gfp.state.color.ReadColor;
 
 public class TestSubEngine extends SubEngine {
 
-    ReadColor readColor;
+    String output;
 
-    public TestSubEngine(ReadColor readColor) {
-        this.readColor = readColor;
-        setPreInit(true);
+    public TestSubEngine(String output) {
+        this.output = output;
     }
 
     @Override
     public void setProcesses() {
-        addState(new TestState());
-        addThreadedState(new TestState());
+        addState(new TestState(output));
     }
 
     @Override
     public void evaluate() {
-        //Log.i(TAG, Boolean.toString(state.getIsFinished()));
-        /*if(readCam.getVuMark() == RelicRecoveryVuMark.CENTER) {
-            setRunable(state.getIsFinished());
-        }*/
-        if(readColor.getRedAverage() >= 2.0) {
-            setRunable(true);
-        }
+        setRunable(true);
     }
 }

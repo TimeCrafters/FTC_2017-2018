@@ -1,5 +1,7 @@
 package org.timecrafters.Liv.SubEngines;
 
+import android.util.Log;
+
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.timecrafters.Darcshadowz.State.RightGrabber;
 import org.timecrafters.engine.Engine;
@@ -12,6 +14,8 @@ import org.timecrafters.gfp.state.drive.DriveStraightForward;
 import org.timecrafters.gfp.state.drive.TurnLeft;
 import org.timecrafters.gfp.state.drive.TurnRight;
 import org.timecrafters.gfp.state.grabber.LeftGrabber;
+
+import java.util.Objects;
 
 /**
  * Created by Liv on 1/2/2018.
@@ -29,17 +33,20 @@ public class BlueBackRight extends SubEngine {
     @Override
     public void setProcesses() {
         //Right glyph goal
-        addState(new DriveStraightForward(engine, -0.3, 4128));
-        addState(new TurnRight(engine, 0.2, 410));
-        addState(new RaiseArm(engine, 1, 560));
-        addState(new DriveStraightForward(engine, 0.3, 430));
-        addState(new ExtendArm(engine, 0.5, 1390));
+        addState(new DriveStraightBackward(engine, 0.3, 850));
+        addState(new TurnRight(engine, 0.3, 900)); //1025 too much
+        addState(new RaiseArm(engine, 1, 500));
+        addThreadedState(new DriveStraightBackward(engine, 0.5, 800));
+        addState(new ExtendArm(engine, 0.5, 2000));
+        addState(new DriveStraightForward(engine, 0.5, 300));
+        addState(new RaiseArm(engine, -1, 500));
         addState(new RightGrabber(engine, -0.5, 500));
-        addState(new DriveStraightBackward(engine, 0.3, 500));
-        addState(new TurnLeft(engine, 0.3, 2050));
-        addState(new DriveStraightForward(engine, -0.3, 490));
-        addState(new DriveStraightForward(engine, 0.3, 250));
-        addState(new RaiseArm(engine, -1, 5060));
+        addState(new RaiseArm(engine, 1, 1950));
+        addState(new DriveStraightBackward(engine,   0.5, 500));
+        addState(new TurnLeft(engine, 0.3, 1800));
+        addState(new DriveStraightBackward(engine, 0.3, 1200));
+        addState(new DriveStraightForward(engine, 0.3, 100));
+        addState(new RaiseArm(engine, -1, 1950));
     }
 
     @Override
@@ -47,4 +54,5 @@ public class BlueBackRight extends SubEngine {
         if (readCam.getVuMark() == RelicRecoveryVuMark.RIGHT) {
             setRunable(true);
         }
-    }}
+    }
+}

@@ -4,6 +4,10 @@ import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.timecrafters.gfp.config.HardWareConfig;
+
+import java.util.Objects;
+
 /**
  * Created by t420 on 9/29/2016.
  * First successful test was 5:00 6 thur oct 2016
@@ -48,11 +52,15 @@ public abstract class Engine extends OpMode {
 
     private static String TAG = "PROGRAM.ENGINE: ";
     private static String SUBTAG = "PROGRAM.SUBENGINE";
-    private int x = 0;
+    private int processIndex = 0;
     private boolean machineFinished = false;
     private boolean opFinished = true;
 
     private boolean subProcessFinished = true;
+
+
+    //TODO remove this
+    public HardWareConfig hardWareConfig;
 
 
     //sets processes
@@ -75,6 +83,12 @@ public abstract class Engine extends OpMode {
                 subEngines[i].initStates();
             }
         }
+
+        for(int i=0; i < subEngines.length; i++){
+            if(subEngines[i] != null) {
+                Log.i(TAG, Integer.toString(i) + Objects.toString(subEngines[i]) + subEngines[i].getName());
+            }
+        }
     }
 
     //checks if ops are finished
@@ -88,20 +102,25 @@ public abstract class Engine extends OpMode {
         }else{
 
             //Run evaluate on sub engines
-            if(!subEngines[x].isRunable()) {
-                subEngines[x].evaluate();
+            if(!subEngines[processIndex].evaluated) {
+                Log.i(TAG,"EVALUATING SUB ENGINE : "+Integer.toString(processIndex));
+                subEngines[processIndex].evaluate();
+                subEngines[processIndex].setEvaluated(true);
+                /*Log.i(TAG,"FINISHED EVALUATING SUB ENGINE : "+ subEngines[processIndex].getName()+
+                        Integer.toString(processIndex));*/
+
             }
 
             //Check if sub engine is runnable
-            if(subEngines[x].isRunable()) {
+            if(subEngines[processIndex].isRunable()) {
 
                 //check sub engines
                 checkSubEngines();
             }else{
-                //if engine is not runnable than incrament x and switch to "checking states"
-                Log.i(TAG, "SUB ENGINE NOT RUNNABLE : " + "[" + Integer.toString(x) + "]" + "[0]");
+                //if engine is not runnable than incrament processIndex and switch to "checking states"
+                Log.i(TAG, "SUB ENGINE NOT RUNNABLE : " + "[" + Integer.toString(processIndex) + "]" + "[0]");
                 checkingStates = true;
-                x++;
+                processIndex++;
             }
         }
 
@@ -152,10 +171,10 @@ public abstract class Engine extends OpMode {
             // state are finished, if so set opFinsished to true
             for (int y = 0; y < processes.length; y++) {
 
-                if (processes[x][y] != null) {
-                    if (processes[x][y].getIsFinished()) {
+                if (processes[processIndex][y] != null) {
+                    if (processes[processIndex][y].getIsFinished()) {
                         opFinished = true;
-                        Log.i(TAG, "FINISHED OP : " + "[" + Integer.toString(x) + "]" + "[" + Integer.toString(y) + "]");
+                        Log.i(TAG, "FINISHED OP : " + "[" + Integer.toString(processIndex) + "]" + "[" + Integer.toString(y) + "]");
                     } else {
                         opFinished = false;
                         break;
@@ -165,26 +184,26 @@ public abstract class Engine extends OpMode {
                 }
             }
             if (opFinished) {
-                x++;
+                processIndex++;
             }
 
 
         } else {
             //If opmode is finished than set up the next set of processes or
-            if (processes[x][0] != null) {
+            if (processes[processIndex][0] != null) {
                 //set next state
                 for (int i = 0; i < processes.length; i++) {
-                    threads[i] = new Thread(processes[x][i]);
+                    threads[i] = new Thread(processes[processIndex][i]);
                     threads[i].start();
                 }
                 opFinished = false;
-                Log.i(TAG, "Started State : " + Integer.toString(x));
+                Log.i(TAG, "Started State : " + Integer.toString(processIndex));
 
 
-            }else if(subEngines[x] != null){
+            }else if(subEngines[processIndex] != null){
                 checkingStates = false;
             }
-            else if (processes[x][0] == null && !machineFinished) {
+            else if (processes[processIndex][0] == null && !machineFinished) {
                 Log.i(TAG, "MACHINE TERMINATED");
                 machineFinished = true;
                 stop();
@@ -199,21 +218,23 @@ public abstract class Engine extends OpMode {
         // Check if sub engines need to be initialized
         if(!isSubEngineinit){
             //Run set Proccesses on the sub engine
-            subEngines[x].setProcesses();
+            subEngines[processIndex].setProcesses();
 
-            if(!subEngines[x].isPreInit()) {
-                subEngines[x].initStates();
+            if(!subEngines[processIndex].isPreInit()) {
+                subEngines[processIndex].initStates();
             }
 
             //set subEngineInit to true so this only runs through once
             isSubEngineinit = true;
-        }else if(!subEngines[x].isMachineFinished()){
+        }
+        if(!subEngines[processIndex].isMachineFinished()){
             //Log.i(TAG,"STARTED CHECKING SUBSTATE PROCESS");
-            subEngines[x].checkStates();
+            subEngines[processIndex].checkStates();
             //Log.i(TAG, "FINISEHD CHECKING SUBSTATE PROCESSES");
         }else{
+            isSubEngineinit = false;
             Log.i(TAG,"FINISHED SUBENGINE");
-            this.x++;
+            this.processIndex++;
             checkingStates = true;
         }
     }
@@ -222,18 +243,18 @@ public abstract class Engine extends OpMode {
     public abstract void setProcesses();
 
     public int getProcessIndex() {
-        return x;
+        return processIndex;
     }
 
     //adds the ability to add processes inside states
     public void addInLineProcess(State state,boolean init) {
         for(int i = 0; i < processes.length;i ++){
-            if(processes[x][i] == null || processes[x][i].getIsFinished()){
+            if(processes[processIndex][i] == null || processes[processIndex][i].getIsFinished()){
                 if(init){
                     state.init();
                 }
-                processes[x][i] = state;
-                Thread thread = new Thread(processes[x][i]);
+                processes[processIndex][i] = state;
+                Thread thread = new Thread(processes[processIndex][i]);
                 thread.start();
                 Log.i(TAG, "ADDED THREAD AT : " + "[" + Integer.toString(getProcessIndex()) + "]" + "[" + Integer.toString(i) + "]");
                 break;

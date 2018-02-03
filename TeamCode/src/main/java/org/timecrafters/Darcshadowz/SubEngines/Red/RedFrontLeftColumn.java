@@ -1,6 +1,7 @@
 package org.timecrafters.Darcshadowz.SubEngines.Red;
 
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
+import org.timecrafters.Darcshadowz.State.RightGrabber;
 import org.timecrafters.engine.Engine;
 import org.timecrafters.engine.SubEngine;
 import org.timecrafters.gfp.state.arm.ExtendArm;
@@ -24,32 +25,29 @@ public class RedFrontLeftColumn extends SubEngine {
         this.readCam = readCam;
     }
 
-    ReadCam read = new ReadCam(engine);
     @Override
 
 
     public void setProcesses() {
-        addState(new DriveStraightForward(engine, 0.15, 2500));
-        addState(new TurnLeft(engine, 0.3, 1000));
-        addState(new DriveStraightForward(engine, 0.5, 3000));
 
         addState(new TurnRight(engine,0.3,1500));
-        addState(new DriveStraightForward(engine, 0.5, 500));
-        addState(new ExtendArm(engine, 1, 2100));
+        addState(new RaiseArm(engine, 1, 500));
+        addThreadedState(new DriveStraightForward(engine, 0.5, 100));
+        addThreadedState(new ExtendArm(engine, 1, 2800));
+        addState(new RaiseArm(engine, -1, 500));
         addState(new LeftGrabber(engine, 0.5, 500));
         addState(new RaiseArm(engine, 1, 1950));
-        addState(new DriveStraightBackward(engine, 0.5, 300));
-        addState(new TurnRight(engine, 0.3, 1400));
-        addState(new DriveStraightBackward(engine, 0.5, 350));
+        addState(new DriveStraightBackward(engine, 0.5, 500));
+        addState(new TurnRight(engine, 0.3, 1750));
+        addState(new DriveStraightBackward(engine, 0.5, 800));
         addState(new DriveStraightForward(engine, 0.5, 100));
-        addState(new RaiseArm(engine,-1, 1950));
-        addState(new ExtendArm(engine, 0, 0));
+        addThreadedState(new RaiseArm(engine,-1, 1950));
 
     }
-    @Override
     public void evaluate() {
   //      setPreInit(true);
-        if(readCam.getVuMark() == RelicRecoveryVuMark.LEFT)
-        setRunable(true);
+        if(readCam.getVuMark() == RelicRecoveryVuMark.LEFT || readCam.getVuMark() == RelicRecoveryVuMark.UNKNOWN) {
+            setRunable(true);
+        }
     }
 }

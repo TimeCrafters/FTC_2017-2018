@@ -13,7 +13,7 @@ public class RedBumpRight extends SubEngine {
     Engine engine;
     ReadColor readColor;
 
-    public RedBumpRight(Engine engine,ReadColor readColor) {
+    public RedBumpRight(Engine engine, ReadColor readColor) {
         this.engine = engine;
         this.readColor = readColor;
 
@@ -21,13 +21,13 @@ public class RedBumpRight extends SubEngine {
 
     @Override
     public void setProcesses() {
-        addState(new Flipper(engine,-0.5,120));
+        addState(new Flipper(engine,-0.5,120, false,0));
         //addState(new Flipper(engine, 0.5, 150));
     }
 
     @Override
     public void evaluate() {
-        if(readColor.getBlueAverage() >=0.0){
+        if(readColor.getRedAverage() >=2.0 && readColor.getBlueAverage() <=5.0){
             setRunable(true);
         }
     }

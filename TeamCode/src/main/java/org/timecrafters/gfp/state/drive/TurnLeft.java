@@ -15,6 +15,12 @@ public class TurnLeft extends Drive {
         this.power = power;
         this.distance = distance;
     }
+    public TurnLeft(Engine engine, double power, int distance, boolean haltOnComplete){
+        super(engine);
+        this.power = power;
+        this.distance = distance;
+        this.haltOnComplete = haltOnComplete;
+    }
 
     public void init(){
         super.init();
