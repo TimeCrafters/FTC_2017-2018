@@ -45,6 +45,7 @@ public class Config extends State {
     public CRServo crFlipper;
     public CRServo crBeam;
     public CRServo crGrabber;
+    public CRServo crBrake;
 
     public ColorSensor colorSensor;
 
@@ -72,6 +73,7 @@ public class Config extends State {
         crFlipper = hardWareConfig.crFlipper;
         crBeam = hardWareConfig.crBeam;
         crGrabber = hardWareConfig.crGrabber;
+        crBrake =  hardWareConfig.crBrake;
 
         colorSensor = hardWareConfig.colorSensor;
         super.init();
