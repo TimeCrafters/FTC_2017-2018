@@ -16,6 +16,8 @@ public class Grabbers extends Config {
     boolean b=false;
     boolean x=false;
     boolean joystick=true;
+    int xTarget = 0;
+    int bTarget = 0;
     public Grabbers(Engine engine,double power){
         super(engine);
         this.power = power;
@@ -54,31 +56,29 @@ public class Grabbers extends Config {
 
         if(engine.gamepad2.b){
             if(!b){
-                dcRightGrabber.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-                dcRightGrabber.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                dcRightGrabber.setTargetPosition(dcRightGrabber.getCurrentPosition()+500);
+                dcRightGrabber.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                bTarget = (dcRightGrabber.getCurrentPosition()+500);
                 dcRightGrabber.setPower(1.0);
                 b=true;
             }
         }else{
 
             b=false;
-            if (joystick){
+            if (joystick && dcLeftGrabber.getCurrentPosition() <= bTarget){
                 dcRightGrabber.setPower(0.0);
             }
         }
         if(engine.gamepad2.x){
             if(!x){
-                dcLeftGrabber.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-                dcLeftGrabber.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                dcLeftGrabber.setTargetPosition(dcLeftGrabber.getCurrentPosition()-500);
+                dcLeftGrabber.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                xTarget = (dcLeftGrabber.getCurrentPosition()-500);
                 dcLeftGrabber.setPower(-1.0);
                 x=true;
             }
         }else{
 
             x=false;
-            if (joystick){
+            if (joystick && dcLeftGrabber.getCurrentPosition() >= xTarget){
                 dcLeftGrabber.setPower(0.0);
                 }
         }
