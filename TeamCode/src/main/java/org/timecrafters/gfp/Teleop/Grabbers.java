@@ -45,8 +45,7 @@ public class Grabbers extends Config {
         dcRightGrabber.setPower(engine.gamepad2.right_stick_x);
         dcLeftGrabber.setPower(engine.gamepad2.left_stick_x);
 
-        if (Math.abs(engine.gamepad2.right_stick_x)>=0.1 ||
-            (engine.gamepad2.left_stick_x)>=0.1){
+        if (Math.abs(engine.gamepad2.right_stick_x) >= 0.1 || Math.abs(engine.gamepad2.left_stick_x) >= 0.1){
             joystick=false;
 
         }else{
@@ -57,27 +56,31 @@ public class Grabbers extends Config {
             if(!b){
                 dcRightGrabber.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
                 dcRightGrabber.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                dcRightGrabber.setTargetPosition(dcRightGrabber.getCurrentPosition()+100);
-                dcRightGrabber.setPower(0.3);
+                dcRightGrabber.setTargetPosition(dcRightGrabber.getCurrentPosition()+500);
+                dcRightGrabber.setPower(1.0);
                 b=true;
             }
         }else{
 
             b=false;
-            if (joystick){dcRightGrabber.setPower(0.0);}
+            if (joystick){
+                dcRightGrabber.setPower(0.0);
+            }
         }
         if(engine.gamepad2.x){
             if(!x){
                 dcLeftGrabber.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
                 dcLeftGrabber.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                dcLeftGrabber.setTargetPosition(dcLeftGrabber.getCurrentPosition()+100);
-                dcLeftGrabber.setPower(-0.3);
+                dcLeftGrabber.setTargetPosition(dcLeftGrabber.getCurrentPosition()-500);
+                dcLeftGrabber.setPower(-1.0);
                 x=true;
             }
         }else{
 
             x=false;
-            if (joystick){dcLeftGrabber.setPower(0.0);}
+            if (joystick){
+                dcLeftGrabber.setPower(0.0);
+                }
         }
     }
 }
