@@ -39,6 +39,7 @@ public class HardWareConfig  extends State{
     public CRServo crFlipper;
     public CRServo crBeam;
     public CRServo crGrabber;
+    public CRServo crBrake;
 
     public ColorSensor colorSensor;
 
@@ -96,6 +97,7 @@ public class HardWareConfig  extends State{
         crFlipper = engine.hardwareMap.crservo.get("crFlipper");
         crBeam = engine.hardwareMap.crservo.get("crBeam");
         crGrabber = engine.hardwareMap.crservo.get("crGrabber");
+        crBrake = engine.hardwareMap.crservo.get ("crBrake");
 
         crGrabber.setPower(0);
     }

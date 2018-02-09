@@ -4,7 +4,7 @@ import org.timecrafters.engine.Engine;
 import org.timecrafters.gfp.config.Config;
 
 /**
- * Created by goldfishpi on 1/20/18.
+ * Created by luke on 2/3/18.
  */
 
 public class RelicGrabber extends Config {
@@ -15,9 +15,9 @@ public class RelicGrabber extends Config {
     }
 
     public void exec(){
-        if(engine.gamepad2.dpad_up){
+        if(engine.gamepad2.right_bumper){
             crGrabber.setPower(power);
-        }else if(engine.gamepad2.dpad_down){
+        }else if(engine.gamepad2.right_trigger >0.0){
             crGrabber.setPower(-power);
         }else{
             crGrabber.setPower(0.0);
