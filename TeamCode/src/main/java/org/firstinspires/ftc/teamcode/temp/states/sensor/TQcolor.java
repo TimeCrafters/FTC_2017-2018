@@ -26,18 +26,13 @@ public class TQcolor extends State {
     public void init(){
       color = engine.hardwareMap.colorSensor.get("color");
       motor = engine.hardwareMap.dcMotor.get("motor");
+      motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
     @Override
     public void exec() {
-       if (color.red() > value)
-        {   engine.telemetry.addData("finished",true);
-            setFinished(true);
-            motor.setPower(0);
-        }else{
-           motor.setPower(1);
-           engine.telemetry.addData("color data",color.red());
-        }
-        engine.telemetry.update();
+        motor.setTargetPosition(color.red()/100);
+        engine.telemetry.addData("color data",color.red());
+        motor.setTargetPosition(0);
     }
 }

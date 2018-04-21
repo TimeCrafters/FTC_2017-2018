@@ -13,6 +13,6 @@ import org.timecrafters.gfp.engines.TestEngine;
 public class ServoEngine1 extends Engine {
     @Override
     public void setProcesses() {
-        addState(new TQcolor(this,14));
+        addState(new TQcolor(this,20));
     }
 }
