@@ -17,6 +17,7 @@ public class DrivState extends State {
     private double power;
     private int ticks;
     private OpticalDistanceSensor distance;
+    private double OdsV;
     //private int TouchSensor;
 
     public DrivState(Engine engine, double power, int ticks) {
@@ -24,28 +25,24 @@ public class DrivState extends State {
         this.power = power;
         this.ticks = ticks;
 
+
     }
     @Override
     public void init() {
         motor = engine.hardwareMap.dcMotor.get("DcMotor1");
         distance= engine.hardwareMap.opticalDistanceSensor.get("distance");
-        //motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
 
     @Override
     public void exec() {
-        //random=Math.random();
-    //motor.setTargetPosition(ticks);
-    motor.setPower(power);
-    if (distance.getLightDetected() <= 0.1) {
-        motor.setPower(1);
-    }
-    engine.telemetry.addData("distance",distance.getLightDetected());
+    OdsV = distance.getRawLightDetected();
+motor.setPower(OdsV*4-1);
+
+    engine.telemetry.addData("distance",distance.getRawLightDetected());
     engine.telemetry.update();
-    //sleep(100);
-    //motor.setTargetPosition((int) random);
-    //engine.telemetry.addData("ticks",motor.getCurrentPosition());
+
 
     }
 }
