@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.temp.states.sensor;
 
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.timecrafters.engine.Engine;
@@ -17,6 +18,10 @@ public class ColorSensor1 extends State {
     private int colorSensorRed;
     private TouchSensor touchSensor;
     private int colorSensorBlue;
+    private DcMotor motor2;
+    private Servo servo1;
+    private int howLong;
+    private boolean isPressed ;
 
     public ColorSensor1(Engine engine) {
         this.engine = engine;
@@ -27,24 +32,42 @@ public class ColorSensor1 extends State {
         super.init();
         colorSensor = engine.hardwareMap.colorSensor.get("color");
         motor1 = engine.hardwareMap.dcMotor.get("motor1");
+        motor2 = engine.hardwareMap.dcMotor.get("motor2");
         touchSensor = engine.hardwareMap.touchSensor.get("touch1");
         motor1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        servo1 = engine.hardwareMap.servo.get("servo1");
+        isPressed = false;
+        howLong = 0;
     }
 
     @Override
     public void exec() {
         colorSensorRed = colorSensor.red();
         colorSensorBlue = colorSensor.blue();
+
         engine.telemetry.addData("red", colorSensor.red());
         engine.telemetry.addData("blue", colorSensor.blue());
         engine.telemetry.update();
-        if (touchSensor.isPressed()){
-            motor1.setPower(colorSensorRed /17);
-        }else{
-            motor1.setPower((-1* colorSensorBlue)/17);
+
+        if (!touchSensor.isPressed()) {
+            isPressed = false;
+            howLong = 0;
+            servo1.setPosition(-1);
+            motor1.setPower(colorSensorRed / 15.0);
+            motor2.setPower((-1 * colorSensorBlue) / 15.0);
 
 
+        } else if (touchSensor.isPressed()) {
+            isPressed = true;
+            motor1.setPower((-1 * colorSensorBlue) / 15.0);
+            motor2.setPower(colorSensorRed / 15.0);
         }
-
+        if (isPressed) {
+            if (howLong > 50_000) {
+                servo1.setPosition(1);
+            } else {
+                howLong++;
+            }
+        }
     }
 }
