@@ -23,12 +23,16 @@ public abstract class State implements Runnable  {
 
     public void init(){}
 
-    public abstract void exec();
+    public abstract void exec() throws InterruptedException;
 
     @Override
     public void run(){
         while(!isFinished){
-            exec();
+            try {
+                exec();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
