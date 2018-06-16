@@ -11,10 +11,10 @@ import org.timecrafters.engine.State;
 
 public class motorDrive extends State {
     private DcMotor motor1, motor2;
-    public double motorSpeed1, motorSpeed2, motorpower;
-    public motorDrive(Engine engine,double motorpower) {
+    private double motorPercentageDistance,motorDistance,motorRampDistance,motorLastSpeed,motorspeed1,done;
+    private double motorEndingDistance, motorRampSpeed;
+    public motorDrive(Engine engine) {
         this.engine = engine;
-        this.motorpower = motorpower;
 
     }
 
@@ -26,29 +26,37 @@ public class motorDrive extends State {
      motor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
      motor1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
      motor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorSpeed1 = 0.45;
-        motorSpeed2 = motorpower;
+     //set motor distance
+     motorDistance = 10000;
+     //set motor rampage percentage
+     motorPercentageDistance = .1;
+     //combine them
+     motorRampDistance = motorDistance*motorPercentageDistance;
+     //begining motor speed
+     motorLastSpeed = 0;
+     done = 0;
     }
 
     @Override
-    public void exec() throws InterruptedException {
-        int difference = Math.abs (motor1.getCurrentPosition() - motor2.getCurrentPosition());
-        motor1.setPower(motorSpeed1);
-        motor2.setPower(motorSpeed2);
-        engine.telemetry.addData("motor encoder difference",motor1.getCurrentPosition() - motor2.getCurrentPosition());
+    public void exec() {
         engine.telemetry.addData("motor1 power",motor1.getPower());
-        engine.telemetry.addData("motor2 power",motor2.getPower());
         engine.telemetry.update();
-
-
-
-        if (motor1.getCurrentPosition() < motor2.getCurrentPosition()){
-          motorSpeed1 = motorSpeed1 +difference*.0000001;
-        }else if (motor1.getCurrentPosition() > motor2.getCurrentPosition()){
-            motorSpeed1 = motorSpeed1 -difference*.0000001;
-        }else{
-            //motor1.setPower(motorSpeed1);
-            //motor2.setPower(motorSpeed2);
+        motorspeed1 = motorLastSpeed;
+        motorRampSpeed = 1/motorRampDistance;
+        if (motor1.getCurrentPosition()< motorRampDistance/4 ){
+            motor1.setPower(motorspeed1);
+            motorLastSpeed = motorLastSpeed + motorRampSpeed ;
+            motorEndingDistance = motor1.getCurrentPosition();
+            engine.telemetry.addData("position", motor1.getCurrentPosition());
+        }else {
+            motor1.setPower(motorspeed1);
+            engine.telemetry.addData("done", done);
+            engine.telemetry.addData("ended on", motorEndingDistance);
+            engine.telemetry.update();
+            if (done == 0) {
+                done = done + 1;
+            }
         }
+
     }
 }

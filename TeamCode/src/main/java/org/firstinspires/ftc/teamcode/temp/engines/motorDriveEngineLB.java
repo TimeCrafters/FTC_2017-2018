@@ -1,9 +1,9 @@
 package org.firstinspires.ftc.teamcode.temp.engines;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.temp.states.motors.motorDrive;
+import org.firstinspires.ftc.teamcode.temp.states.motors.motorDrive2;
 import org.timecrafters.engine.Engine;
 
 /**
@@ -13,6 +13,7 @@ import org.timecrafters.engine.Engine;
 public class motorDriveEngineLB extends Engine {
     @Override
     public void setProcesses() {
-      addState(new motorDrive(this,0.5));
+      addState(new motorDrive(this));
+      //addThreadedState(new motorDrive2(this, 0.5));
     }
 }
