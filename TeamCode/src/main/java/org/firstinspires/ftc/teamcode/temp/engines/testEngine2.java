@@ -1,7 +1,9 @@
 package org.firstinspires.ftc.teamcode.temp.engines;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 
+import org.firstinspires.ftc.teamcode.temp.states.sensor.TCcolorSensor;
 import org.firstinspires.ftc.teamcode.temp.subengine.ExampleSubEngine;
 import org.timecrafters.engine.Engine;
 
@@ -13,6 +15,8 @@ public class testEngine2 extends Engine{
 
     @Override
     public void setProcesses() {
-        addSubEngine(new ExampleSubEngine(this));
+        TCcolorSensor colorsensor = new TCcolorSensor (this);
+        addSubEngine(new ExampleSubEngine(this, colorsensor));
+
     }
 }

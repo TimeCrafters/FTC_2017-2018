@@ -30,15 +30,7 @@ public class DriveTest23 extends State {
 
     @Override
     public void exec() {
-    if (motorSpeed <1.0){
-        motorSpeed = lastMotorSpeed+0.1;
-        motor1.setPower(motorSpeed);
-         sleep(250);
-        lastMotorSpeed = motorSpeed;
-         }else{
-        motor1.setPower(1.0);
+    motor1.setPower(engine.gamepad1.right_stick_y*-1);
+    motor2.setPower(engine.gamepad1.left_stick_y);
     }
-    }
-
-
 }

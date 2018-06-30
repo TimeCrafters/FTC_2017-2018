@@ -29,7 +29,7 @@ public class motorDrive extends State {
      //set motor distance
      motorDistance = 10000;
      //set motor rampage percentage
-     motorPercentageDistance = 1;
+     motorPercentageDistance = .5;
      //combine them
      motorRampDistance = motorDistance*motorPercentageDistance;
      //begining motor speed
@@ -42,7 +42,7 @@ public class motorDrive extends State {
         engine.telemetry.addData("motor1 power",motor1. getPower());
         engine.telemetry.update();
         motorspeed1 = motorLastSpeed;
-        motorRampSpeed = (1/motorRampDistance)*25;
+        motorRampSpeed = (1/motorRampDistance)*20;
         if (motor1.getCurrentPosition()< motorRampDistance ){
             motor1.setPower(motorspeed1);
             motorLastSpeed = motorLastSpeed + motorRampSpeed;
